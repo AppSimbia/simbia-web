@@ -1,14 +1,15 @@
 import './App.css';
-import Header from './components/header/header';
+import TextInput from './components/textInput/textInput';
 
 function App() {
   return (
     <>
-      <Header industryName="Raízen" logo="https://assets.hgbrasil.com/finance/companies/big/raizen.png" />
+      <h1>Text Input Component</h1>
 
-      <h1>Tag Component</h1>
+      <TextInput placeholder="Digite algo..." />
+      <TextInput placeholder="Digite algo..." size='md' />
     </>
   )
 }
 
-export default App
+export default App;

@@ -1,35 +1,32 @@
-.button {
-    width: 100%;
-    display: block;
-    padding: 0.8rem 1rem;
+.tag {
+    width: fit-content;
+    margin: 1rem auto;
+    padding: 0.4rem 0.5rem;
     background-color: var(--color-primary-50);
     color: var(--color-neutral-100);
+    display: block;
     border: none;
     border-radius: 8px;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
     font-family: "K2D";
     font-weight: 800;
     font-size: 1rem;
+    cursor: default;
     user-select: none;
     transition: background-color 0.4s, transform 0.4s;
 }
-.button:hover {
+.tag:hover {
     background-color: var(--color-primary-75);
     transform: translateY(-1px);
 }
-.button:active {
-    background-color: var(--color-primary-0);
-    transform: translateY(0);
-}
 
-.button:disabled {
+.disabled {
     background-color: var(--color-neutral-50);
-    cursor: not-allowed;
     box-shadow: none;
 }
-.button:disabled:hover {
+.disabled:hover {
     transform: none;
+    background-color: var(--color-neutral-50);
 }
 
 .error {
@@ -37,21 +34,4 @@
 }
 .error:hover {
     background-color: var(--color-error-75);
-}
-.error:active {
-    background-color: var(--color-error-0);
-}
-
-.secondary {
-    background-color: var(--color-secondary-50);
-}
-.secondary:hover {
-    background-color: var(--color-secondary-75);
-}
-.secondary:active {
-    background-color: var(--color-secondary-0);
-}
-
-.md {
-    max-width: 300px;
 }

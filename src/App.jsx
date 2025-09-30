@@ -1,39 +1,16 @@
 import './App.css'
-import Button from './components/button/button';
+import Tag from './components/tag/tag'
+import Button from './components/button/button'
 
 function App() {
   return (
     <>
-      <h1>Button Component</h1>
+      <h1>Tag Component</h1>
       
-      <Button
-        label="Click Me"
-        onClick={() => alert('Button Clicked!')}
-      />
-
-      <Button
-        label="Click Me"
-        onClick={() => alert('Button Clicked!')}
-        variant='secondary'
-      />
-
-      <Button
-        label="Click Me"
-        onClick={() => alert('Button Clicked!')}
-        variant='error'
-      />
-
-      <Button
-        label="Click Me"
-        onClick={() => alert('Button Clicked!')}
-        disabled={true}
-      />
-
-      <Button
-        label="Click Me"
-        onClick={() => alert('Button Clicked!')}
-        size='md'
-      />
+      <Tag label="Primary" variant="primary" />
+      <Tag label="Secondary" variant="secondary" />
+      <Tag label="Error" variant="error" />
+      <Tag label="Disabled" variant="disabled" />
     </>
   )
 }

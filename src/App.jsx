@@ -1,16 +1,12 @@
-import './App.css'
-import Tag from './components/tag/tag'
-import Button from './components/button/button'
+import './App.css';
+import Header from './components/header/header';
 
 function App() {
   return (
     <>
+      <Header industryName="Raízen" logo="https://assets.hgbrasil.com/finance/companies/big/raizen.png" />
+
       <h1>Tag Component</h1>
-      
-      <Tag label="Primary" variant="primary" />
-      <Tag label="Secondary" variant="secondary" />
-      <Tag label="Error" variant="error" />
-      <Tag label="Disabled" variant="disabled" />
     </>
   )
 }

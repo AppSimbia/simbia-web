@@ -1,7 +1,6 @@
 .button {
     width: 100%;
     display: block;
-    margin: 1rem auto;
     padding: 0.8rem 1rem;
     background-color: var(--color-primary-50);
     color: var(--color-neutral-100);

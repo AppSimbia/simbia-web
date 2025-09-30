@@ -20,6 +20,13 @@
     transform: translateY(-1px);
 }
 
+.secondary {
+    background-color: var(--color-secondary-50);
+}
+.secondary:hover {
+    background-color: var(--color-secondary-75);
+}
+
 .disabled {
     background-color: var(--color-neutral-50);
     box-shadow: none;

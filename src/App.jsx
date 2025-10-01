@@ -1,13 +1,15 @@
 import './App.css';
-import TextInput from './components/textInput/textInput';
+import TextInputMultiline from './components/textInputMultiline/textInputMultiline';
 
 function App() {
   return (
     <>
-      <h1>Text Input Component</h1>
+      <h1>Text Input Multiline Component</h1>
 
-      <TextInput placeholder="Digite algo..." />
-      <TextInput placeholder="Digite algo..." size='md' />
+      <TextInputMultiline 
+        placeholder="Type your message here..."
+        size='md'
+      />
     </>
   )
 }

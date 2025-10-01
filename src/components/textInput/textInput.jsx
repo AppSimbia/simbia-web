@@ -2,14 +2,18 @@ import styles from './textInput.module.css';
 
 function TextInput({
     placeholder,
-    size
+    size,
+    value,
+    onChange
 }) {
     return (
         <input 
             className={`
                 ${styles.input}
                 ${styles[size]}`}
-            placeholder={placeholder} 
+            placeholder={placeholder}
+            value={value}
+            onChange={(event) => onChange(event.target.value)}
         />
     )
 }

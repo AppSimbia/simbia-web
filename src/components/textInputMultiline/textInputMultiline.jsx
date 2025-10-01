@@ -3,7 +3,9 @@ import styles from './textInputMultiline.module.css';
 function TextInputMultiline({
     placeholder,
     size = '',
-    rows = 4
+    rows = 4,
+    value,
+    onChange
 }) {
     return (
         <>
@@ -13,6 +15,8 @@ function TextInputMultiline({
                 `}
                 placeholder={placeholder}
                 rows={rows}
+                value={value}
+                onChange={(event) => onChange(event.target.value)}
             />
         </>
     );

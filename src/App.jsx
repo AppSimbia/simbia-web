@@ -6,7 +6,7 @@ function App() {
     <>
       <h1>Switch Component</h1>
 
-      <Switch />
+      <Switch isOn={true} onChange={(e) => {alert(e)}} />
     </>
   )
 }

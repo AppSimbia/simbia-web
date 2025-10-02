@@ -11,10 +11,18 @@ function Switch({
     useEffect(() => {
         setOn(isOn);
     }, [isOn]);
+
     return (
         <>
             <label className={styles.switch}>
-                <input type="checkbox" onChange={(event) => {onChange?.(event.target.checked)}}></input>
+                <input
+                    type="checkbox"
+                    checked={on}
+                    onChange={(event) => {
+                        setOn(event.target.checked);
+                        onChange?.(event.target.checked);
+                    }}
+                ></input>
                 <span className={`${styles.slider} ${on ? styles.on : styles.off}`}></span>
             </label>
         </>

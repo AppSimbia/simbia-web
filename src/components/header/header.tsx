@@ -1,10 +1,15 @@
 import styles from './header.module.css';
 import hamburguerIcon from '../../assets/icons/hamburguer.svg';
 
+interface HeaderProps {
+    industryName: string;
+    logo: string;
+};
+
 function Header({
     industryName,
     logo
-}) {
+}: HeaderProps) {
     return (
         <header className={`${styles.header}`}>
             <div className={`${styles.left}`}>

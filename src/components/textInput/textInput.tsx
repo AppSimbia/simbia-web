@@ -1,11 +1,18 @@
 import styles from './textInput.module.css';
 
+interface TextInputProps {
+    placeholder: string;
+    size?: '' | 'md';
+    value?: string;
+    onChange?: (value: string) => void;
+}
+
 function TextInput({
     placeholder,
-    size,
+    size = '',
     value,
     onChange
-}) {
+}: TextInputProps) {
     return (
         <input 
             className={`
@@ -13,7 +20,7 @@ function TextInput({
                 ${styles[size]}`}
             placeholder={placeholder}
             value={value}
-            onChange={(event) => onChange(event.target.value)}
+            onChange={(event) => onChange?.(event.target.value)}
         />
     )
 }

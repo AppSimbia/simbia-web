@@ -1,9 +1,14 @@
 import styles from './tag.module.css'
 
+interface TagProps {
+    label: string;
+    variant: '' | 'secondary' | 'disabled' | 'error';
+}
+
 function Tag({
     label,
-    variant = 'primary'
-}) {
+    variant = ''
+}: TagProps) {
     return (
         <>
             <span

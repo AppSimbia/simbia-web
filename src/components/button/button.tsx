@@ -1,27 +1,22 @@
+import { ButtonProps } from "../../interfaces/buttonProps";
 import styles from "./button.module.css";
 
-interface ButtonProps {
-    label: string,
-    onClick?: () => void;
-    variant?: '' | 'secondary' | 'error';
-    disabled?: boolean;
-    size?: '' | 'md';
+interface ButtonComponentProps {
+    button: ButtonProps;
 };
 
-function Button({
-    label = '',
-    onClick,
-    variant = '',
-    disabled = false,
-    size = ''
-}: ButtonProps) {
+function Button({button}: ButtonComponentProps) {
     return (
         <button
-            className={`${styles.button} ${styles[variant]} ${styles[size]}`}
-            onClick={onClick}
-            disabled={disabled}
+            className={`
+                ${styles.button}
+                ${button.variant ? styles[button.variant] : ''}
+                ${button.size ? styles[button.size] : ''}
+            `}
+            onClick={button.onClick}
+            disabled={button.disabled}
         >
-            {label.toUpperCase()}
+            {button.label.toUpperCase()}
         </button>
     );
 }

@@ -1,25 +1,22 @@
+import { TextInputProps } from '../../interfaces/textInputProps';
 import styles from './textInput.module.css';
 
-interface TextInputProps {
-    placeholder: string;
-    size?: '' | 'md';
-    value?: string;
-    onChange?: (value: string) => void;
-}
+interface TextInputComponentProps {
+    textInput: TextInputProps;
+    onChange: (value: string) => void;
+};
 
 function TextInput({
-    placeholder,
-    size = '',
-    value,
+    textInput,
     onChange
-}: TextInputProps) {
+}: TextInputComponentProps) {
     return (
         <input 
             className={`
                 ${styles.input}
-                ${styles[size]}`}
-            placeholder={placeholder}
-            value={value}
+                ${textInput.size ? styles[textInput.size] : ''}`}
+            placeholder={textInput.placeholder}
+            value={textInput.value}
             onChange={(event) => onChange?.(event.target.value)}
         />
     )

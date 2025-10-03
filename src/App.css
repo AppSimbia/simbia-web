@@ -1,9 +1,16 @@
 #root {
+  padding: 2rem;
   max-width: 1920px;
-  margin: auto;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
-* {
+h1 {
   margin: auto;
+}
+
+div {
+  display: flex;
+  gap: 10px;
 }

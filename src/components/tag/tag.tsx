@@ -1,23 +1,20 @@
-import styles from './tag.module.css'
+import { TagProps } from '../../interfaces/tagProps';
+import styles from './tag.module.css';
 
-interface TagProps {
-    label: string;
-    variant: '' | 'secondary' | 'disabled' | 'error';
+interface TagComponentProps {
+    tagProps: TagProps;
 }
 
-function Tag({
-    label,
-    variant = ''
-}: TagProps) {
+function Tag(tag: TagComponentProps) {
     return (
         <>
             <span
                 className={`
                     ${styles.tag}
-                    ${styles[variant]}
+                    ${tag.tagProps.variant ? styles[tag.tagProps.variant] : ''}
                 `}
             >
-                {label}
+                {tag.tagProps.label}
             </span>
         </>
     );

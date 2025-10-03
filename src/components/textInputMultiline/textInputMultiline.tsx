@@ -1,29 +1,24 @@
+import { TextInputMultilineProps } from '../../interfaces/textInputMultilineProps';
 import styles from './textInputMultiline.module.css';
 
-interface TextInputMultilineProps {
-    placeholder: string;
-    size?: '' | 'md';
-    rows: number;
-    value?: string;
-    onChange?: (value: string) => void;
-}
+interface TextInputMultilineComponentProps {
+    textInputMultiline: TextInputMultilineProps;
+    onChange: (value: string) => void;
+};
 
 function TextInputMultiline({
-    placeholder,
-    size = '',
-    rows = 4,
-    value,
+    textInputMultiline,
     onChange
-}: TextInputMultilineProps) {
+}: TextInputMultilineComponentProps) {
     return (
         <>
             <textarea className={`
                     ${styles.input}
-                    ${styles[size]}
+                    ${textInputMultiline.size ? styles[textInputMultiline.size] : ''}
                 `}
-                placeholder={placeholder}
-                rows={rows}
-                value={value}
+                placeholder={textInputMultiline.placeholder}
+                rows={textInputMultiline.rows}
+                value={textInputMultiline.value}
                 onChange={(event) => onChange?.(event.target.value)}
             />
         </>

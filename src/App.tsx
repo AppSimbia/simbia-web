@@ -1,26 +1,14 @@
 import './App.css';
-import PostCard from './components/postCard/postCard';
-import { PostCardProps } from './interfaces/postCardProps';
+import Button from './components/button/button';
+import Tag from './components/tag/tag';
 
 function App() {
-  let product: PostCardProps = {
-    imgUrl: 'https://picsum.photos/300/300',
-    industryLogo: 'https://picsum.photos/100/100',
-    productName: 'Lorem Ipsum',
-    tag: {
-      label: "Cancelada",
-      variant: "disabled"
-    },
-    productPrice: 999.99,
-    unit: 1000,
-    measureUnit: 'Kg',
-  };
-  
   return (
     <>
-      <h1>Post Card Component</h1>
+      <h1>Button Component</h1>
 
-      <PostCard product={product} onClick={() => {alert("clicou")}}/>
+      <Button label='Button' variant='outlined' disabled onClick={() => {alert("Button")}}/>
+      <Tag label='Tag' variant='error' disabled onClick={() => {alert("Tag")}}/>
     </>
   )
 }

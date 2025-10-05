@@ -1,16 +1,12 @@
 import { useState } from 'react';
 import styles from './switch.module.css';
 import { useEffect } from 'react';
-
-interface SwitchProps {
-    isOn?: boolean;
-    onChange?: (checked: boolean) => void;
-};
+import { switchProps } from '../../interfaces/props';
 
 function Switch({
     isOn = false,
     onChange
-}: SwitchProps) {
+}: switchProps) {
     let [on, setOn] = useState(false);
 
     useEffect(() => {

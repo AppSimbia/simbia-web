@@ -1,26 +1,30 @@
 import styles from "./postCard.module.css";
 import Tag from "../tag/tag";
-import { PostCardProps } from "../../interfaces/postCardProps";
+import { PostCardProps } from "../../interfaces/props";
 
-interface PostCardComponentProps {
-    product: PostCardProps;
-    onClick?: () => void;
-}
-
-function PostCard({ product, onClick }: PostCardComponentProps) {
+function PostCard({
+        imgUrl,
+        industryLogo,
+        productName = "Carregando",
+        tag,
+        productPrice = 0,
+        unit = 0,
+        measureUnit,
+        onClick
+    }: PostCardProps) {
     return (
         <>
             <div className={styles.card} onClick={onClick}>
                 <div className={styles.imgContainer}>
-                    <img src={product.imgUrl} alt={product.productName} className={styles.image} />
-                    <img src={product.industryLogo} alt="Logo" className={styles.logo} />
+                    <img src={imgUrl} alt={productName} className={styles.image} />
+                    <img src={industryLogo} alt="Logo" className={styles.logo} />
                 </div>
 
-                <h3 className={styles.productName}>{product.productName}</h3>
-                {product.tag && <Tag tagProps={product.tag} />}
+                <h3 className={styles.productName}>{productName}</h3>
+                {tag && <Tag {...tag}/>}
                 <div className={styles.productInfo}>
-                    <p>R${product.productPrice}</p>
-                    <p>{product.unit}{product.measureUnit}</p>
+                    <p>R${productPrice}</p>
+                    <p>{unit}{measureUnit}</p>
                 </div>
             </div>
         </>

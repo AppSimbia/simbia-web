@@ -1,6 +1,7 @@
 export interface TextInputMultilineProps {
     placeholder: string;
-    size?: '' | 'md';
+    size?: 'md';
     rows?: number;
     value?: string;
+    onChange: (value: string) => void;
 };

@@ -1,21 +1,24 @@
-import { TagProps } from '../../interfaces/tagProps';
+import { TagProps } from '../../interfaces/props';
 import styles from './tag.module.css';
 
-interface TagComponentProps {
-    tagProps: TagProps;
-}
-
-function Tag(tag: TagComponentProps) {
+function Tag({
+    label,
+    variant = 'primary',
+    onClick,
+    disabled = false
+}: TagProps) {
     return (
         <>
-            <span
+            <button
+                onClick={onClick}
+                disabled={disabled}
                 className={`
                     ${styles.tag}
-                    ${tag.tagProps.variant ? styles[tag.tagProps.variant] : ''}
+                    ${styles[variant]}
                 `}
             >
-                {tag.tagProps.label}
-            </span>
+                {label}
+            </button>
         </>
     );
 }

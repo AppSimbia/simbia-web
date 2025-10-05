@@ -8,4 +8,5 @@ export interface PostCardProps {
     productPrice: number;
     unit: number;
     measureUnit: string;
+    onClick: () => void;
 };

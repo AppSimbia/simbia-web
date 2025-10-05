@@ -1,5 +1,6 @@
 export interface TextInputProps {
     placeholder: string;
-    size?: '' | 'md';
+    size?: 'md';
     value?: string;
+    onChange: (value: string) => void;
 };

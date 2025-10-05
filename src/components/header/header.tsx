@@ -1,10 +1,6 @@
 import styles from './header.module.css';
 import hamburguerIcon from '../../assets/icons/hamburguer.svg';
-
-interface HeaderProps {
-    industryName: string;
-    logo: string;
-};
+import { HeaderProps } from '../../interfaces/props';
 
 function Header({
     industryName,

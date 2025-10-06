@@ -1,7 +1,7 @@
 export interface ButtonProps {
     label: string,
     onClick?: () => void;
-    variant?: 'primary' | 'secondary' | 'error' | 'outlined' | 'outlined-secondary' | 'outlined-error';
+    variant?: 'primary' | 'secondary' | 'error' | 'outlined' | 'outlined-secondary' | 'outlined-error' | 'outlined-neutral';
     disabled?: boolean;
-    size?: 'md';
+    size?: 'sm' | 'md' | 'lg';
 };

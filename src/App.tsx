@@ -1,16 +1,19 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Button from './components/button/button';
-import Tag from './components/tag/tag';
+import SignIn from './pages/sign-in/signin';
+import SignUp from './pages/sign-up/signUp';
 
 function App() {
   return (
     <>
-      <h1>Button Component</h1>
-
-      <Button label='Button' variant='outlined' disabled onClick={() => {alert("Button")}}/>
-      <Tag label='Tag' variant='error' disabled onClick={() => {alert("Tag")}}/>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/sign-in' element={<SignIn/>} />
+          <Route path='/sign-up' element={<SignUp/>} />
+        </Routes>
+      </BrowserRouter>
     </>
-  )
+  );
 }
 
 export default App;

@@ -1,6 +1,7 @@
 export interface TextInputProps {
     placeholder: string;
-    size?: 'md';
+    size?: 'sm' | 'md' | 'lg';
+    variant?: 'default' | 'underline';
     value?: string;
-    onChange: (value: string) => void;
+    onChange?: (value: string) => void;
 };

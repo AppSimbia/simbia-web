@@ -2,8 +2,12 @@
     width: 100%;
     display: block;
     border: none;
+    font-family: "DM Sans";
     font-size: 1rem;
-    color: var(--color-neutral-0);
+    font-weight: 400;
+    text-align: start;
+    color: var(--color-secondary-0);
+    padding: 0.8rem 1rem;
 }
 .input:focus {
     outline: none;
@@ -12,13 +16,11 @@
 .default {
     border-radius: 8px;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
-    padding: 0.8rem 1rem;
 }
 
 .underline {
     background-color: #FFFFFF00;
     border-bottom: 2px solid var(--color-secondary-0);
-    padding: 0.8rem 1rem;
 }
 
 .sm {

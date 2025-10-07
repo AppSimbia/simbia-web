@@ -5,7 +5,11 @@
     border: none;
     border-radius: 8px;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    font-family: "DM Sans";
     font-size: 1rem;
+    font-weight: 400;
+    text-align: start;
+    color: var(--color-secondary-0);
     resize: none;
 }
 .input:focus {

@@ -1,5 +1,6 @@
 .tag {
     width: fit-content;
+    height: fit-content;
     padding: 0.4rem 0.6rem;
     color: var(--color-neutral-100);
     display: block;

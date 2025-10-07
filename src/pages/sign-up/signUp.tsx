@@ -12,7 +12,7 @@ function SignUp() {
 
                         <h3 className={styles.leftSubtitle}>Crie já uma conta para sua indústria aqui!</h3>
 
-                        <div className={styles.signUpShortcut}>
+                        <div className={styles.signInShortcut}>
                             <span className={styles.buttonLabel}>Já possui uma conta?</span>
                             <Button label='Fazer Login' variant='outlined-neutral' size='sm'/>
                         </div>

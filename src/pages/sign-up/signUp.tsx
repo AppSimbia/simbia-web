@@ -1,8 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/button';
 import TextInput from '../../components/textInput/textInput';
 import styles from './signUp.module.css';
 
 function SignUp() {
+    const navigate = useNavigate();
+
     return (
         <>
             <section>
@@ -14,7 +17,12 @@ function SignUp() {
 
                         <div className={styles.signInShortcut}>
                             <span className={styles.buttonLabel}>Já possui uma conta?</span>
-                            <Button label='Fazer Login' variant='outlined-neutral' size='sm'/>
+                            <Button
+                                label='Fazer Login'
+                                variant='outlined-neutral'
+                                size='sm'
+                                onClick={() => {navigate("/sign-in")}}
+                            />
                         </div>
                     </div>
 

@@ -1,39 +1,33 @@
+import { useLocation } from 'react-router-dom';
 import Button from '../../components/button/button';
 import Tag from '../../components/tag/tag';
-import TextInputMultiline from '../../components/textInputMultiline/textInputMultiline';
 import { Product } from '../../interfaces/models';
 import styles from './productDetails.module.css';
 
-function ProductDetails({
-    name,
-    price = 0,
-    quantity = 0,
-    measureUnit = 'Kg',
-    imgUrl,
-    description,
-    category,
-    classification
-}: Product) {
+function ProductDetails() {
+    const { state } = useLocation();
+    const product = state as Product;
+    
     return (
         <>
             <section className={styles.content}>
                 <div className={styles.containerLeft}>
-                    <img src={imgUrl} alt={name} className={styles.productImg} />
+                    <img src={product.imgUrl} alt={product.name} className={styles.productImg} />
 
                     <div className={styles.tags}>
-                        <Tag label={category}/>
-                        <Tag label={classification} />
+                        <Tag label={product.category}/>
+                        <Tag label={product.classification} />
                     </div>
                 </div>
 
                 <div className={styles.containerRight}>
                     <div className={styles.productDetails}>
-                        <h1 className={styles.name}>{name}</h1>
+                        <h1 className={styles.name}>{product.name}</h1>
                         <div className={styles.productInfo}>
-                            <h3>{quantity}{measureUnit}</h3>
-                            <h3>R${price}/{measureUnit}</h3>
+                            <h3>{product.quantity}{product.measureUnit}</h3>
+                            <h3>R${product.price}/{product.measureUnit}</h3>
                         </div>
-                        <p>{description}</p>
+                        <p>{product.description}</p>
                     </div>
 
                     <Button label='Solicitar Match'/>

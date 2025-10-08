@@ -3,28 +3,21 @@ import Tag from "../tag/tag";
 import { PostCardProps } from "../../interfaces/props";
 
 function PostCard({
-        imgUrl,
-        industryLogo,
-        productName = "Carregando",
-        tag,
-        productPrice = 0,
-        unit = 0,
-        measureUnit,
+        product,
         onClick
     }: PostCardProps) {
     return (
         <>
             <div className={styles.card} onClick={onClick}>
                 <div className={styles.imgContainer}>
-                    <img src={imgUrl} alt={productName} className={styles.image} />
-                    <img src={industryLogo} alt="Logo" className={styles.logo} />
+                    <img src={product.imgUrl} alt={product.name} className={styles.image} />
                 </div>
 
-                <h3 className={styles.productName}>{productName}</h3>
-                {tag && <Tag {...tag}/>}
+                <h3 className={styles.productName}>{product.name}</h3>
+                <Tag label={product.category}/>
                 <div className={styles.productInfo}>
-                    <p>R${productPrice}</p>
-                    <p>{unit}{measureUnit}</p>
+                    <p>R${product.price}</p>
+                    <p>{product.quantity}{product.measureUnit}</p>
                 </div>
             </div>
         </>

@@ -10,7 +10,7 @@ function Header({
         <header className={`${styles.header}`}>
             <div className={`${styles.left}`}>
                 <img src={`${hamburguerIcon}`} alt="Ícone de hambúrguer" className={`${styles.hamburguer}`} />
-                <span className={`${styles.industryName}`}>Olá, {industryName}</span>
+                <h1 className={`${styles.industryName}`}>Olá, {industryName}</h1>
             </div>
 
             <div className={`${styles.right}`}>

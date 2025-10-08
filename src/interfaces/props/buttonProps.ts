@@ -4,4 +4,5 @@ export interface ButtonProps {
     variant?: 'primary' | 'secondary' | 'error' | 'outlined' | 'outlined-secondary' | 'outlined-error' | 'outlined-neutral';
     disabled?: boolean;
     size?: 'sm' | 'md' | 'lg';
+    type?: 'button' | 'submit' | 'reset';
 };

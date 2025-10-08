@@ -29,26 +29,32 @@ section {
     justify-content: center;
     align-items: center;
     gap: 40px;
-    padding: 0 24px;
+    padding: 20px;
 }
 
 .leftSubtitle {
-    font-family: "DM Sans";
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 
 .signInShortcut {
+    width: fit-content;
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.buttonLabel {
-    font-family: "DM Sans";
-    font-size: 1rem;
+.contentRight {
+    width: 60%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
 }
 
-.contentRight {
+.form {
     width: 60%;
     height: 100%;
     position: relative;
@@ -66,6 +72,10 @@ section {
     top: 10px;
 }
 
-.rightTitle {
-    padding-bottom: 10px;
+.form > :first-child {
+    margin-bottom: 30px;
+}
+
+.form > :last-child {
+    margin-top: 30px;
 }

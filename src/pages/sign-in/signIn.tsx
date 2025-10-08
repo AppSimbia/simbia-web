@@ -6,6 +6,11 @@ import styles from './signIn.module.css';
 function SignIn() {
     const navigate = useNavigate();
 
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log("Teste");
+    };
+
     return (
         <>
             <section>
@@ -26,14 +31,15 @@ function SignIn() {
                         </div>
                     </div>
 
-                    <div className={styles.contentRight}>
-                        <img src="simbia-logo.svg" alt="Simbia" className={styles.logo}/>
-
+                    <form className={styles.form} onSubmit={handleSubmit}>
                         <h1 className={styles.rightTitle}>LOGIN</h1>
+                        <img src="simbia-logo.svg" alt="Simbia" className={styles.logo}/>
 
                         <TextInput placeholder='CNPJ' size='lg' variant='underline' />
                         <TextInput placeholder='Senha' size='lg' variant='underline' />
-                    </div>
+
+                        <Button label='Fazer Login' size='lg' type='submit'/>
+                    </form>
                 </div>
             </section>
         </>

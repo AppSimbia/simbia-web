@@ -6,10 +6,12 @@ function Button({
     onClick,
     variant = 'primary',
     disabled = false,
-    size
+    size,
+    type = 'button'
 }: ButtonProps) {
     return (
         <button
+            type={type}
             className={`
                 ${styles.button}
                 ${variant ? styles[variant] : ''}

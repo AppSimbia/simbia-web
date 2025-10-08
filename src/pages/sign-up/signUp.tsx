@@ -6,6 +6,11 @@ import styles from './signUp.module.css';
 function SignUp() {
     const navigate = useNavigate();
 
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log("Teste");
+    };
+
     return (
         <>
             <section>
@@ -26,10 +31,9 @@ function SignUp() {
                         </div>
                     </div>
 
-                    <div className={styles.contentRight}>
+                    <form className={styles.form} onSubmit={handleSubmit}>
+                        <h1 className={styles.formTitle}>CADASTRO</h1>
                         <img src="simbia-logo.svg" alt="Simbia" className={styles.logo}/>
-
-                        <h1 className={styles.rightTitle}>CADASTRO</h1>
 
                         <TextInput placeholder='Nome da Indústria' size='lg' variant='underline' />
                         <TextInput placeholder='E-mail' size='lg' variant='underline' />
@@ -37,7 +41,9 @@ function SignUp() {
                         <TextInput placeholder='Categoria da Indústria' size='lg' variant='underline' />
                         <TextInput placeholder='Senha' size='lg' variant='underline' />
                         <TextInput placeholder='Confirmar Senha' size='lg' variant='underline' />
-                    </div>
+
+                        <Button label='Cadastrar' size='lg' type='submit'/>
+                    </form>
                 </div>
             </section>
         </>

@@ -16,7 +16,7 @@ function PostCard({
                 <h3 className={styles.productName}>{product.name}</h3>
                 <Tag label={product.category}/>
                 <div className={styles.productInfo}>
-                    <p>R${product.price}</p>
+                    <p>R${product.price.toFixed(2)}</p>
                     <p>{product.quantity}{product.measureUnit}</p>
                 </div>
             </div>

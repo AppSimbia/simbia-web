@@ -25,7 +25,7 @@ function ProductDetails() {
                         <h1 className={styles.name}>{product.name}</h1>
                         <div className={styles.productInfo}>
                             <h3>{product.quantity}{product.measureUnit}</h3>
-                            <h3>R${product.price}/{product.measureUnit}</h3>
+                            <h3>R${product.price.toFixed(2)}/{product.measureUnit}</h3>
                         </div>
                         <p>{product.description}</p>
                     </div>

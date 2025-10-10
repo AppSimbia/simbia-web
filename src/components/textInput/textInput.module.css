@@ -24,17 +24,17 @@
 }
 
 .sm {
-    max-width: 200px;
+    width: 200px;
 }
 
 .md {
-    max-width: 300px;
+    width: 300px;
 }
 
 .lg {
-    max-width: 400px;
+    width: 400px;
 }
 
 .xg {
-    max-width: 500px;
+    width: 500px;
 }

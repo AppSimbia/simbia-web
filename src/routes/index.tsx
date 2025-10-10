@@ -2,7 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import SignIn from "../pages/sign-in/signIn";
 import SignUp from "../pages/sign-up/signUp";
 import Feed from "../pages/feed/feed";
-import ProductDetails from "../pages/productDetails/productDetails";
+import ProductDetails from "../components/productDetails/productDetails";
 import { productListMock } from "../mocks";
 
 export function AppRoutes() {

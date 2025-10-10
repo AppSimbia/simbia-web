@@ -16,6 +16,18 @@
     outline: none;
 }
 
+.sm {
+    width: 200px;
+}
+
 .md {
-    max-width: 300px;
+    width: 300px;
+}
+
+.lg {
+    width: 400px;
+}
+
+.xg {
+    width: 500px;
 }

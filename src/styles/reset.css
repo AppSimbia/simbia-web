@@ -14,11 +14,17 @@ h1 {
     font-weight: 800;
 }
 
-h3 {
+h2 {
     width: fit-content;
     font-family: "DM Sans";
     font-size: 1.5rem;
     font-weight: 500;
+}
+
+h3 {
+    width: fit-content;
+    font-family: "DM Sans";
+    font-size: 1.2rem;
 }
 
 p {

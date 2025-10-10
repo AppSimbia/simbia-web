@@ -6,6 +6,7 @@ function TextInputMultiline({
     size,
     rows = 4,
     value,
+    readonly = false,
     onChange
 }: TextInputMultilineProps) {
     return (
@@ -14,6 +15,7 @@ function TextInputMultiline({
                     ${styles.input}
                     ${size ? styles[size] : ''}
                 `}
+                disabled={readonly}
                 placeholder={placeholder}
                 rows={rows}
                 value={value}

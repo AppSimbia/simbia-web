@@ -13,7 +13,7 @@ function PostCard({
                     <img src={product.imgUrl} alt={product.name} className={styles.image} />
                 </div>
 
-                <h3 className={styles.productName}>{product.name}</h3>
+                <h2 className={styles.productName}>{product.name}</h2>
                 <Tag label={product.category}/>
                 <div className={styles.productInfo}>
                     <p>R${product.price.toFixed(2)}</p>

@@ -1,6 +1,7 @@
 import { Product } from "../interfaces/models";
 
 export const productMock: Product = {
+    id: 1,
     name: "Plástico PET Reciclável",
     price: 1.80,
     quantity: 1500,
@@ -11,4 +12,4 @@ export const productMock: Product = {
     classification: "Não perigoso"
 }
 
-export const productListMock: Product[] = Array(10).fill(productMock);
+export const productListMock: Product[] = Array(20).fill(productMock);

@@ -1,4 +1,4 @@
-import styles from "./postCard.module.css";
+import styles from "./productCard.module.css";
 import Tag from "../tag/tag";
 import { PostCardProps } from "../../interfaces/props";
 

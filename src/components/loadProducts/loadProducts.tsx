@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Product, Products } from "../../interfaces/models";
 import Button from "../button/button";
-import PostCard from "../postCard/postCard";
+import PostCard from "../productCard/productCard";
 import ProductDetails from "../productDetails/productDetails";
 import styles from "./loadProducts.module.css";
 import { productMock } from "../../mocks";
@@ -18,7 +18,7 @@ function LoadProducts({products}: Products) {
 
     return (
         <>
-            <section>
+            <section className={styles.content}>
                 <div className={styles.products}>
                     {products.slice(0, limit).map((p) => {
                         return (

@@ -13,7 +13,7 @@ function SignUp() {
 
     return (
         <>
-            <section>
+            <section className={styles.content}>
                 <div className={styles.container}>
                     <div className={styles.contentLeft}>
                         <h1 className={styles.leftTitle}>Bem-Vindo ao Simbia!</h1>

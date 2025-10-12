@@ -1,9 +1,10 @@
 import LoadProducts from '../../components/loadProducts/loadProducts';
-import ProductDetails from '../../components/productDetails/productDetails';
-import { Products } from '../../interfaces/models';
+import { Product } from '../../interfaces/models';
+import { productListMock } from '../../mocks';
 import styles from './feed.module.css';
 
-function Feed({products}: Products) {
+function Feed() {
+    const products: Product[] = productListMock;
     return (
         <>
             <h1 className={styles.feedTitle}>Feed</h1>

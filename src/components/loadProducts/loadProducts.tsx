@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Product, Products } from "../../interfaces/models";
 import Button from "../button/button";
-import PostCard from "../productCard/productCard";
 import ProductDetails from "../productDetails/productDetails";
 import styles from "./loadProducts.module.css";
 import { productMock } from "../../mocks";
+import ProductCard from "../productCard/productCard";
 
 function LoadProducts({products}: Products) {
     const [limit, setLimit] = useState(10);
@@ -22,7 +22,7 @@ function LoadProducts({products}: Products) {
                 <div className={styles.products}>
                     {products.slice(0, limit).map((p) => {
                         return (
-                            <PostCard product={p} onClick={() => {setDetails(p)}}/>
+                            <ProductCard product={p} onClick={() => {setDetails(p)}}/>
                         );
                     })}
                 </div>

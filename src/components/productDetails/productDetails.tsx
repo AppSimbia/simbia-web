@@ -42,7 +42,7 @@ function ProductDetails({
                         </div>
                         <div className={styles.description}>
                             <span>Descrição:</span>
-                            <TextInputMultiline placeholder='Descrição' value={product.description} rows={10} readonly/>
+                            <TextInputMultiline placeholder='Descrição' value={product.description} rows={8} readonly/>
                         </div>
                         <Button label='Solicitar Match'/>
                     </div>

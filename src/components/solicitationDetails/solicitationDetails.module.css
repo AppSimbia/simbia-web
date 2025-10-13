@@ -71,3 +71,9 @@
     align-items: flex-start;
     gap: 4px;
 }
+
+.actions {
+    width: 100%;
+    display: flex;
+    gap: 4px;
+}

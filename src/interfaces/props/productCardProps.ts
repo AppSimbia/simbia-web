@@ -1,7 +1,6 @@
 import { Product } from "../models";
-import { TagProps } from "./tagProps";
 
-export interface PostCardProps {
+export interface ProductCardProps {
     product: Product;
     onClick?: () => void;
 };

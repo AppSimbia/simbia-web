@@ -7,7 +7,8 @@ import { productMock } from "../../mocks";
 import ProductCard from "../productCard/productCard";
 
 function LoadProducts({products}: Products) {
-    const [limit, setLimit] = useState(10);
+    const [limit, setLimit] = useState(products.length > 10 ? 10 : products.length);
+
     const [detailsData, setDetailsData] = useState<Product>(productMock);
     const [isDetailsOpen, setDetailsOpen] = useState(false);
 
@@ -22,8 +23,11 @@ function LoadProducts({products}: Products) {
                 <div className={styles.products}>
                     {products.slice(0, limit).map((p) => {
                         return (
-                            <ProductCard product={p} onClick={() => {setDetails(p)}}/>
-                        );
+                            <ProductCard
+                                product={p}
+                                onClick={() => {setDetails(p)}}
+                            />
+                        )
                     })}
                 </div>
 

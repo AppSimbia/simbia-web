@@ -1,3 +1,4 @@
+import { Payment } from "./Payment";
 import { Product } from "./product";
 
 export interface Solicitation {
@@ -6,6 +7,7 @@ export interface Solicitation {
     industryName?: string;
     product: Product;
     solicitationType: 'Postagem' | 'Match' | 'Fechamento de Match';
+    paymentInfo?: Payment
 };
 
 export interface Solicitations {

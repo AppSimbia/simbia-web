@@ -43,14 +43,26 @@ function SolicitationDetails({
                             <h3>Solicitação de {solicitation.solicitationType} de {solicitation.employeeName || solicitation.industryName}</h3>
                             <h1 className={styles.name}>{solicitation.product.name}</h1>
                         </div>
-                        <div className={styles.productInfo}>
-                            <h3>Quantidade disponível: {solicitation.product.quantity}{solicitation.product.measureUnit}</h3>
-                            <h3>Preço por {solicitation.product.measureUnit}: R${solicitation.product.price.toFixed(2)}</h3>
-                        </div>
+
+                        {solicitation.paymentInfo &&
+                            <div className={styles.paymentInfo}>
+                                <div className={styles.paymentField}>
+                                    <h3>Preço acordado: R${solicitation.paymentInfo.value}</h3>
+                                    <h3>Quantidade acordada: {solicitation.paymentInfo.quantity}{solicitation.product.measureUnit}</h3>
+                                </div>
+                            </div>
+                            ||
+                            <div className={styles.productInfo}>
+                                <h3>Quantidade disponível: {solicitation.product.quantity}{solicitation.product.measureUnit}</h3>
+                                <h3>Preço por {solicitation.product.measureUnit}: R${solicitation.product.price.toFixed(2)}</h3>
+                            </div>
+                        }
+
                         <div className={styles.description}>
                             <span>Descrição:</span>
                             <TextInputMultiline placeholder='Descrição' value={solicitation.product.description} rows={8} readonly/>
                         </div>
+
                         <div className={styles.actions}>
                             <Button label='Aceitar' onClick={onAccept}/>
                             <Button label='Recusar' variant="error" onClick={onRefuse}/>

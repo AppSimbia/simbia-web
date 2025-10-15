@@ -3,6 +3,8 @@
     height: 64px;
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     background-color: var(--color-neutral-100);
     display: flex;
     justify-content: space-between;

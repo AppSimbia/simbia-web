@@ -6,3 +6,6 @@ export * from './textInputMultilineProps';
 export * from './textInputProps';
 export * from './switchProps';
 export * from './employeeCardProps';
+export * from './employeeDetailsProps';
+export * from './productDetailsProps';
+export * from './solicitationDetailsProps';

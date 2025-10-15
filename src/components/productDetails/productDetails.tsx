@@ -1,15 +1,9 @@
+import { useEffect, useState } from 'react';
+import { ProductDetailsProps } from '../../interfaces/props';
 import Button from '../button/button';
 import Tag from '../tag/tag';
-import { Product } from '../../interfaces/models';
-import styles from './productDetails.module.css';
 import TextInputMultiline from '../textInputMultiline/textInputMultiline';
-import { useEffect, useState } from 'react';
-
-interface ProductDetailsProps {
-    product: Product;
-    isOpen: boolean;
-    onClose: () => void;
-};
+import styles from './productDetails.module.css';
 
 function ProductDetails({
     product,

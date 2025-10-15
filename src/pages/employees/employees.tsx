@@ -6,11 +6,11 @@ import styles from "./employees.module.css";
 function Employees() {
     const employees: Employee[] = employeeListMock;
     return (
-        <>
+        <section className={styles.content}>
             <h1 className={styles.employeesTitle}>Funcionários</h1>
 
             <LoadEmployees employees={employees}/>
-        </>
+        </section>
     );
 }
 

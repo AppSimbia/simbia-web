@@ -13,8 +13,8 @@ function LoadSolicitations({solicitations}: Solicitations) {
     const [detailsData, setDetailsData] = useState<Solicitation>(solicitationMock);
     const [isDetailsOpen, setDetailsOpen] = useState(false);
 
-    function setDetails(product: Solicitation) {
-        setDetailsData(product);
+    function openDetails(solicitation: Solicitation) {
+        setDetailsData(solicitation);
         setDetailsOpen(true);
     };
 
@@ -29,7 +29,7 @@ function LoadSolicitations({solicitations}: Solicitations) {
                         return (
                             <SolicitationCard
                                 solicitation={s}
-                                onClick={() => {setDetails(s)}}
+                                onClick={() => {openDetails(s)}}
                                 onAccept={() => {setAcceptModalOpen(true)}}
                                 onRefuse={() => {setRefuseModalOpen(true)}}
                             />

@@ -3,8 +3,8 @@
     display: block;
     padding: 0.8rem 1rem;
     border: none;
-    border-radius: 8px;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
     font-family: "DM Sans";
     font-size: 1rem;
     font-weight: 400;

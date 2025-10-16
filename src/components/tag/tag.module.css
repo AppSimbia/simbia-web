@@ -5,8 +5,8 @@
     color: var(--color-neutral-100);
     display: block;
     border: none;
-    border-radius: 8px;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
     font-family: "K2D";
     font-weight: 800;
     font-size: 1rem;

@@ -4,8 +4,8 @@
     padding: 0.8rem 1rem;
     color: var(--color-neutral-100);
     border: none;
-    border-radius: 12px;
-    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     font-family: "K2D";
     font-weight: 800;

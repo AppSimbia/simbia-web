@@ -5,6 +5,7 @@ import SignIn from "../pages/sign-in/signIn";
 import SignUp from "../pages/sign-up/signUp";
 import Solicitations from "../pages/solicitations/solicitations";
 import Profile from "../pages/profile/profile";
+import { industryMock } from "../mocks";
 
 export function AppRoutes() {
     return (
@@ -15,7 +16,7 @@ export function AppRoutes() {
             <Route path="/feed" element={<Feed/>}/>
             <Route path="/solicitations" element={<Solicitations/>}/>
             <Route path="/employees" element={<Employees/>}/>
-            <Route path="/profile" element={<Profile/>}/>
+            <Route path="/profile" element={<Profile {...industryMock}/>}/>
         </Routes>
     );
 }

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import LoadProducts from "../../../../components/loadProducts/loadProducts";
+import { Industry } from "../../../../interfaces/models/industry";
 import { productListMock } from "../../../../mocks";
 import ProfileInfo from "../profileInfo/profileInfo";
 import styles from "./tabView.module.css";
 
-function TabView() {
+function TabView(industry: Industry) {
     const [selectedTab, setSelectedTab] = useState<"info" | "posts">("info");
 
     return (
@@ -39,9 +40,9 @@ function TabView() {
 
             <div className={styles.tabContent}>
                 {selectedTab === "info" ? (
-                        <ProfileInfo/>
+                        <ProfileInfo {...industry}/>
                     ) : (
-                        <LoadProducts products={productListMock}/>
+                        industry.posts && <LoadProducts products={industry.posts}/>
                     )
                 }
             </div>

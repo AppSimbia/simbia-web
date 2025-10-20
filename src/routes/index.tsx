@@ -16,7 +16,7 @@ export function AppRoutes() {
             <Route path="/feed" element={<Feed/>}/>
             <Route path="/solicitations" element={<Solicitations/>}/>
             <Route path="/employees" element={<Employees/>}/>
-            <Route path="/profile" element={<Profile {...industryMock}/>}/>
+            <Route path="/profile" element={<Profile industry={industryMock} selfProfile/>}/>
         </Routes>
     );
 }

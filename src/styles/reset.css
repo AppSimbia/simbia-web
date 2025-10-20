@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "DM Sans";
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+h1 {
+    width: fit-content;
+    font-size: 2rem;
+    font-family: "K2D";
+    font-weight: 700;
+}
+
+h2 {
+    width: fit-content;
+    font-family: "DM Sans";
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+h3 {
+    width: fit-content;
+    font-family: "DM Sans";
+    font-size: 1.2rem;
+}
+
+p {
+    font-family: "DM Sans";
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: start;
+}

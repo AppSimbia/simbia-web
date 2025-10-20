@@ -1,14 +1,11 @@
 #root {
+  width: 100%;
   max-width: 1280px;
-  margin: auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 200px;
-}
-
-h1 {
-  font-size: 3rem;
+  min-height: calc(100vh - 64px);
+  margin-top: 64px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }

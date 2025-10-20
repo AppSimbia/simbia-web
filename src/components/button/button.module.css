@@ -1,0 +1,182 @@
+.button {
+    width: 100%;
+    display: block;
+    padding: 0.8rem 1rem;
+    color: var(--color-neutral-100);
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-family: "K2D";
+    font-weight: 800;
+    font-size: 1rem;
+    user-select: none;
+    transition: 0.4s;
+}
+.button:hover {
+    transform: translateY(-1px);
+}
+.button:active {
+    transform: translateY(0);
+}
+.button:disabled {
+    background-color: var(--color-neutral-50);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.button:disabled:hover {
+    transform: none;
+    background-color: var(--color-neutral-50);
+}
+
+.primary {
+    background-color: var(--color-primary-50);
+}
+.primary:hover {
+    background-color: var(--color-primary-75);
+}
+.primary:active {
+    background-color: var(--color-primary-0);
+}
+
+.secondary {
+    background-color: var(--color-secondary-50);
+}
+.secondary:hover {
+    background-color: var(--color-secondary-75);
+}
+.secondary:active {
+    background-color: var(--color-secondary-0);
+}
+
+.error {
+    background-color: var(--color-error-50);
+}
+.error:hover {
+    background-color: var(--color-error-75);
+}
+.error:active {
+    background-color: var(--color-error-0);
+}
+
+.outlined {
+    background-color: #FFFFFF00;
+    border: 3px solid var(--color-primary-50);
+    color: var(--color-primary-50);
+}
+.outlined:hover {
+    background-color: #FFFFFF00;
+    border-color: var(--color-primary-75);
+    color: var(--color-primary-75);
+}
+.outlined:active {
+    background-color: #FFFFFF00;
+    border-color: var(--color-primary-0);
+    color: var(--color-primary-0);
+}
+.outlined:disabled {
+    background-color: #FFFFFF00;
+    border-color: var(--color-neutral-50);
+    color: var(--color-neutral-50);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.outlined:disabled:hover {
+    transform: none;
+    background-color: #FFFFFF00;
+}
+
+.outlined-secondary {
+    background-color: #FFFFFF00;
+    border: 3px solid var(--color-secondary-50);
+    color: var(--color-secondary-50);
+}
+.outlined-secondary:hover {
+    background-color: #FFFFFF00;
+    border-color: var(--color-secondary-75);
+    color: var(--color-secondary-75);
+}
+.outlined-secondary:active {
+    background-color: #FFFFFF00;
+    border-color: var(--color-secondary-0);
+    color: var(--color-secondary-0);
+}
+.outlined-secondary:disabled {
+    background-color: #FFFFFF00;
+    border-color: var(--color-neutral-50);
+    color: var(--color-neutral-50);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.outlined-secondary:disabled:hover {
+    transform: none;
+    background-color: #FFFFFF00;
+}
+
+.outlined-error {
+    background-color: #FFFFFF00;
+    border: 3px solid var(--color-error-50);
+    color: var(--color-error-50);
+}
+.outlined-error:hover {
+    background-color: #FFFFFF00;
+    border-color: var(--color-error-75);
+    color: var(--color-error-75);
+}
+.outlined-error:active {
+    background-color: #FFFFFF00;
+    border-color: var(--color-error-0);
+    color: var(--color-error-0);
+}
+.outlined-error:disabled {
+    background-color: #FFFFFF00;
+    border-color: var(--color-neutral-50);
+    color: var(--color-neutral-50);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.outlined-error:disabled:hover {
+    transform: none;
+    background-color: #FFFFFF00;
+}
+
+.outlined-neutral {
+    background-color: #FFFFFF00;
+    border: 3px solid var(--color-neutral-100);
+    color: var(--color-neutral-100);
+}
+.outlined-neutral:hover {
+    background-color: #FFFFFF00;
+}
+.outlined-neutral:active {
+    background-color: #FFFFFF00;
+    border-color: var(--color-neutral-50);
+    color: var(--color-neutral-50);
+}
+.outlined-neutral:disabled {
+    background-color: #FFFFFF00;
+    border-color: var(--color-neutral-50);
+    color: var(--color-neutral-50);
+    cursor: not-allowed;
+    box-shadow: none;
+}
+.outlined-neutral:disabled:hover {
+    transform: none;
+    background-color: #FFFFFF00;
+}
+
+.sm {
+    width: 200px;
+}
+
+.md {
+    width: 300px;
+}
+
+.lg {
+    width: 400px;
+}
+
+.xg {
+    width: 500px;
+}

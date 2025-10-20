@@ -6,7 +6,7 @@ import styles from "./solicitations.module.css";
 function Solicitations() {
     const solicitations: Solicitation[] = solicitationListMock2;
     return (
-        <section className={styles.content}>
+        <section>
             <h1 className={styles.solicitationsTitle}>Solicitações</h1>
 
             <LoadSolicitations solicitations={solicitations}/>

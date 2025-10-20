@@ -6,7 +6,7 @@ import styles from './feed.module.css';
 function Feed() {
     const products: Product[] = productListMock;
     return (
-        <section className={styles.content}>
+        <section>
             <h1 className={styles.feedTitle}>Feed</h1>
 
             <LoadProducts products={products}/>

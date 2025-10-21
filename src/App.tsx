@@ -8,8 +8,9 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Header industryName={industryMock.name} logo={industryMock.imgUrl}/>
-        <AppRoutes/>
+        <Header industryName={industryMock.name} logo={industryMock.imgUrl}>
+          <AppRoutes/>
+        </Header>
       </BrowserRouter>
     </>
   );

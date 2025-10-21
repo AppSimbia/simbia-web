@@ -6,7 +6,8 @@ import styles from './header.module.css';
 
 function Header({
     industryName,
-    logo
+    logo,
+    children
 }: HeaderProps) {
     const navigate = useNavigate();
 
@@ -29,6 +30,10 @@ function Header({
                     <img src={logo} alt="Logo da empresa" className={styles.headerLogo} onClick={() => {navigate("/profile")}}/>
                 </div>
             </header>
+
+            <main className={styles.router}>
+                {children}
+            </main>
 
             <section
                 className={`

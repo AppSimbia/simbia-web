@@ -4,7 +4,7 @@ import TextInput from '../../components/textInput/textInput';
 import styles from './signIn.module.css';
 import React, { useState } from 'react';
 import { Industry, LoginData } from '../../interfaces/models';
-import { login } from '../../api/services/authService';
+import { signIn } from '../../api/services/authService';
 
 function SignIn() {
     const [cnpj, setCnpj] = useState("");
@@ -13,7 +13,7 @@ function SignIn() {
 
     const navigate = useNavigate();
 
-    async function handleLogin(event: React.FormEvent) {
+    async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
 
         try {
@@ -22,7 +22,7 @@ function SignIn() {
                 password: password
             };
 
-            const data = await login(loginData);
+            const data = await signIn(loginData);
 
             if (data) {
                 setIndustry(data);
@@ -55,7 +55,7 @@ function SignIn() {
                         </div>
                     </div>
 
-                    <form className={styles.form} onSubmit={handleLogin}>
+                    <form className={styles.form} onSubmit={handleSubmit}>
                         <h1 className={styles.rightTitle}>LOGIN</h1>
                         <img src="simbia-logo.svg" alt="Simbia" className={styles.logo}/>
 

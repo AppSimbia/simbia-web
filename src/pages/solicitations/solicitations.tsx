@@ -4,7 +4,7 @@ import { solicitationListMock, solicitationListMock2 } from "../../mocks";
 import styles from "./solicitations.module.css";
 
 function Solicitations() {
-    const solicitations: Solicitation[] = solicitationListMock2;
+    const solicitations: Solicitation[] = solicitationListMock;
     return (
         <section>
             <h1 className={styles.solicitationsTitle}>Solicitações</h1>

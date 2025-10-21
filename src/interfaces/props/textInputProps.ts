@@ -4,5 +4,6 @@ export interface TextInputProps {
     variant?: 'default' | 'underline';
     value?: string;
     readonly?: boolean;
+    type?: 'text' | 'password';
     onChange?: (value: string) => void;
 };

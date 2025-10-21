@@ -31,7 +31,9 @@ function LoadProducts({products}: Products) {
                     })}
                 </div>
 
-                <Button label="Carregar Mais" size="lg" onClick={() => {setLimit(limit + 10)}}/>
+                {products.length > limit &&
+                    <Button label="Carregar Mais" size="lg" onClick={() => {setLimit(limit + 10)}}/>
+                }
             </section>
 
             <ProductDetails product={detailsData} isOpen={isDetailsOpen} onClose={() => {setDetailsOpen(false)}}/>

@@ -2,14 +2,38 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/button';
 import TextInput from '../../components/textInput/textInput';
 import styles from './signIn.module.css';
+import React, { useState } from 'react';
+import { Industry, LoginData } from '../../interfaces/models';
+import { login } from '../../api/services/authService';
 
 function SignIn() {
+    const [cnpj, setCnpj] = useState("");
+    const [password, setPassword] = useState("");
+    const [industry, setIndustry] = useState<Industry | null>(null);
+
     const navigate = useNavigate();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    async function handleLogin(event: React.FormEvent) {
         event.preventDefault();
-        console.log("Teste");
-    };
+
+        try {
+            const loginData: LoginData = {
+                cnpj: cnpj,
+                password: password
+            };
+
+            const data = await login(loginData);
+
+            if (data) {
+                setIndustry(data);
+                console.log(industry);
+                alert("Deu certo!")
+            }
+        } catch(err) {
+            console.error("Erro: ", err);
+            alert("Erro")
+        }
+    }
 
     return (
         <>
@@ -31,12 +55,25 @@ function SignIn() {
                         </div>
                     </div>
 
-                    <form className={styles.form} onSubmit={handleSubmit}>
+                    <form className={styles.form} onSubmit={handleLogin}>
                         <h1 className={styles.rightTitle}>LOGIN</h1>
                         <img src="simbia-logo.svg" alt="Simbia" className={styles.logo}/>
 
-                        <TextInput placeholder='CNPJ' size='lg' variant='underline' />
-                        <TextInput placeholder='Senha' size='lg' variant='underline' />
+                        <TextInput
+                            placeholder='CNPJ'
+                            size='lg'
+                            variant='underline'
+                            value={cnpj}
+                            onChange={setCnpj}
+                        />
+                        <TextInput
+                            placeholder='Senha'
+                            size='lg'
+                            variant='underline'
+                            type='password'
+                            value={password}
+                            onChange={setPassword}
+                        />
 
                         <Button label='Fazer Login' size='lg' type='submit'/>
                     </form>

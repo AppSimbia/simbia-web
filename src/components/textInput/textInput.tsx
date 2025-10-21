@@ -7,6 +7,7 @@ function TextInput({
     variant = 'default',
     value,
     readonly = false,
+    type = 'text',
     onChange
 }: TextInputProps) {
     return (
@@ -18,6 +19,7 @@ function TextInput({
             disabled={readonly}
             placeholder={placeholder}
             value={value}
+            type={type}
             onChange={(event) => onChange?.(event.target.value)}
         />
     )

@@ -54,8 +54,6 @@ function SignIn() {
 
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <h1 className={styles.rightTitle}>LOGIN</h1>
-                        <img src="simbia-logo.svg" alt="Simbia" className={styles.logo}/>
-
                         <TextInput
                             placeholder='CNPJ'
                             size='lg'

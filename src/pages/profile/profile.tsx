@@ -18,7 +18,7 @@ function Profile() {
                 <div className={styles.profileInfo}>
                     <img src={industry.imgUrl} alt="Logo da Indústria" className={styles.industryLogo}/>
                     <h1 className={styles.industryName}>{industry.name}</h1>
-                    <Tag label={industry.industryType}/>
+                    <Tag label={industry.industryType.industryTypeName}/>
                 </div>
             </div>
 

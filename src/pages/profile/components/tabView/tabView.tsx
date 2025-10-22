@@ -42,7 +42,7 @@ function TabView(industry: Industry) {
                 {selectedTab === "info" ? (
                         <ProfileInfo {...industry}/>
                     ) : (
-                        industry.posts && <LoadProducts products={industry.posts}/>
+                        <LoadProducts products={productListMock}/>
                     )
                 }
             </div>

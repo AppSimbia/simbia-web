@@ -1,18 +1,18 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Header from './components/header/header';
-import { AppRoutes } from './routes';
-import { industryMock } from './mocks';
+import { AppRoutes } from './routes/appRoutes';
+import { AuthProvider } from './contexts/authContext';
 
 function App() {
   return (
-    <>
+    <AuthProvider>
       <BrowserRouter>
-        <Header industryName={industryMock.name} logo={industryMock.imgUrl}>
+        <Header>
           <AppRoutes/>
         </Header>
       </BrowserRouter>
-    </>
+    </AuthProvider>
   );
 }
 

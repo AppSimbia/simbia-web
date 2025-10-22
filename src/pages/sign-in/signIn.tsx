@@ -1,37 +1,34 @@
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/button';
 import TextInput from '../../components/textInput/textInput';
+import { useAuth } from '../../contexts/authContext';
+import { LoginData } from '../../interfaces/models';
 import styles from './signIn.module.css';
-import React, { useState } from 'react';
-import { Industry, LoginData } from '../../interfaces/models';
-import { signIn } from '../../api/services/authService';
 
 function SignIn() {
+    const { login, logout } = useAuth();
     const [cnpj, setCnpj] = useState("");
     const [password, setPassword] = useState("");
-    const [industry, setIndustry] = useState<Industry | null>(null);
+    const [error, setError] = useState(false);
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        logout();
+    }, []);
+
     async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
-
+      
         try {
-            const loginData: LoginData = {
-                cnpj: cnpj,
-                password: password
-            };
-
-            const data = await signIn(loginData);
-
-            if (data) {
-                setIndustry(data);
-                console.log(industry);
-                alert("Deu certo!")
-            }
-        } catch(err) {
+            const loginData: LoginData = { cnpj, password };
+        
+            await login(loginData);
+        
+            navigate("/profile");
+        } catch (err) {
             console.error("Erro: ", err);
-            alert("Erro")
         }
     }
 

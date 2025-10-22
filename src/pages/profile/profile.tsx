@@ -1,17 +1,17 @@
 import Tag from "../../components/tag/tag";
-import { Industry } from "../../interfaces/models/industry";
+import { useAuth } from "../../contexts/authContext";
+import { useProtectedRoute } from "../../hooks/useProtectedRoute";
 import TabView from "./components/tabView/tabView";
 import styles from "./profile.module.css";
 
-interface ProfileProps {
-    industry: Industry;
-    selfProfile: boolean;
-};
+function Profile() {
+    useProtectedRoute();
+    const { industry } = useAuth();
 
-function Profile({
-    industry,
-    selfProfile = true
-}: ProfileProps) {
+    if (!industry) {
+        return null;
+    }
+
     return (
         <section className={styles.content}>
             <div className={styles.leftContent}>

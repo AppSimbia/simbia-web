@@ -9,7 +9,3 @@ export interface Product {
     category: string;
     classification: string;
 };
-
-export interface Products {
-    products: Product[];
-};

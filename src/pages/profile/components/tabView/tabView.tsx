@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LoadProducts from "../../../../components/loadProducts/loadProducts";
 import { Industry } from "../../../../interfaces/models/industry";
-import { productListMock } from "../../../../mocks";
+import { postListMock, productListMock } from "../../../../mocks";
 import ProfileInfo from "../profileInfo/profileInfo";
 import styles from "./tabView.module.css";
 
@@ -42,7 +42,7 @@ function TabView(industry: Industry) {
                 {selectedTab === "info" ? (
                         <ProfileInfo {...industry}/>
                     ) : (
-                        <LoadProducts products={productListMock}/>
+                        <LoadProducts posts={postListMock}/>
                     )
                 }
             </div>

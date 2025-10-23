@@ -1,27 +1,27 @@
-import { ProductCardProps } from "../../interfaces/props";
+import { PostCardProps } from "../../interfaces/props";
 import Tag from "../tag/tag";
 import styles from "./productCard.module.css";
 
-function ProductCard({
-    product,
+function PostCard({
+    post,
     onClick
-}: ProductCardProps) {
+}: PostCardProps) {
     return (
         <>
             <div className={styles.card} onClick={onClick}>
                 <div className={styles.imgContainer}>
-                    <img src={product.imgUrl} alt={product.name} className={styles.image} />
+                    <img src={post.image} alt={post.title} className={styles.image} />
                 </div>
 
-                <h2 className={styles.productName}>{product.name}</h2>
-                <Tag label={product.category} onClick={(e) => e.stopPropagation()}/>
+                <h2 className={styles.productName}>{post.title}</h2>
+                <Tag label={post.productCategory.categoryName} onClick={(e) => e.stopPropagation()}/>
                 <div className={styles.productInfo}>
-                    <p>R${product.price.toFixed(2)}</p>
-                    <p>{product.quantity} {product.measureUnit}</p>
+                    <p>R$10.00</p>
+                    <p>{post.quantity} {post.measureUnit}</p>
                 </div>
             </div>
         </>
     );
 }
 
-export default ProductCard;
+export default PostCard;

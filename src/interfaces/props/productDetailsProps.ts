@@ -1,7 +1,7 @@
-import { Product } from "../models";
+import { Post } from "../models";
 
 export interface ProductDetailsProps {
-    product: Product;
+    post: Post;
     isOpen: boolean;
     onClose: () => void;
 };

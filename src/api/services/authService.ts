@@ -1,4 +1,4 @@
-import { industryRequest, IndustryResponse } from "../../interfaces/dtos";
+import { industryRequest, IndustryResponse } from "../dtos";
 import { Industry } from "../../interfaces/models/industry";
 import { LoginData } from "../../interfaces/models/loginData";
 import api from "../config";

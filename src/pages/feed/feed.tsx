@@ -1,40 +1,44 @@
 import { useEffect, useState } from 'react';
+import { getPosts } from '../../api/services/postService';
 import Button from '../../components/button/button';
 import LoadProducts from '../../components/loadProducts/loadProducts';
 import TextInput from '../../components/textInput/textInput';
-import { Product } from '../../interfaces/models';
-import { productListMock2 } from '../../mocks';
+import { Post } from '../../interfaces/models';
 import styles from './feed.module.css';
+import { useAuth } from '../../contexts/authContext';
 
 function Feed() {
-    const [products, setProducts] = useState<Product[]>([]);
-    const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+    const { industry } = useAuth();
+    const [posts, setPosts] = useState<Post[]>([]);
+    const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
         async function fetchProducts() {
-            const data = productListMock2;
+            if (!industry) return;
+            
+            const data = await getPosts(industry.cnpj);
 
-            setProducts(data);
-            setFilteredProducts(data);
+            setPosts(data);
+            setFilteredPosts(data);
         }
 
         fetchProducts();
-    }, []);
+    }, [industry]);
 
     useEffect(() => {
         if (search.trim() === "") {
-            setFilteredProducts(products);
+            setFilteredPosts(posts);
         } else {
-            const filteredData = products.filter((p) => 
-                p.name.toLowerCase().includes(search.toLowerCase())
+            const filteredData = posts.filter((p) => 
+                p.title.toLowerCase().includes(search.toLowerCase())
             );
 
-            setFilteredProducts(filteredData);
+            setFilteredPosts(filteredData);
         }
-    }, [products, search]);
+    }, [posts, search]);
 
-    if (!products) {
+    if (!posts) {
         return null;
     }
 
@@ -53,10 +57,11 @@ function Feed() {
                 <Button
                     label="Filtrar"
                     size="ssm"
+                    onClick={() => {console.log(posts)}}
                 />
             </div>
 
-            <LoadProducts products={filteredProducts}/>
+            <LoadProducts posts={filteredPosts}/>
         </section>
     );
 }

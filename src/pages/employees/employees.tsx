@@ -3,8 +3,8 @@ import Button from "../../components/button/button";
 import LoadEmployees from "../../components/loadEmployees/loadEmployees";
 import TextInput from "../../components/textInput/textInput";
 import { Employee } from "../../interfaces/models";
+import { employeeListMock2 } from "../../mocks";
 import styles from "./employees.module.css";
-import { employeeListMock } from "../../mocks";
 
 function Employees() {
     const [employees, setEmployees] = useState<Employee[]>([]);
@@ -13,7 +13,7 @@ function Employees() {
 
     useEffect(() => {
         async function fetchEmployees() {
-            const data = employeeListMock;
+            const data = employeeListMock2;
 
             setEmployees(data);
             setFilteredEmployees(data);

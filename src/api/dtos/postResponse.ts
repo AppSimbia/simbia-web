@@ -6,9 +6,12 @@ export interface ProductCategoryResponse {
 };
 
 export interface PostResponse {
+    idPost: number;
     productCategory: ProductCategoryResponse;
-    idIndustry: number;
-    idEmployee: number;
+    industryName: string;
+    industryImage: string;
+    industryCnpj: string;
+    employeeName: string;
     title: string;
     description: string;
     quantity: number;

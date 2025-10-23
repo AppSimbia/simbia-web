@@ -6,7 +6,7 @@ import TextInputMultiline from '../textInputMultiline/textInputMultiline';
 import styles from './productDetails.module.css';
 
 function ProductDetails({
-    product,
+    post,
     isOpen = false,
     onClose
 }: ProductDetailsProps) {
@@ -21,22 +21,22 @@ function ProductDetails({
             <section className={`${styles.modalOverlay} ${open ? styles.isOpen : ""}`} onClick={onClose}>
                 <div className={styles.content} onClick={(e) => e.stopPropagation()}>
                     <div className={styles.containerLeft}>
-                        <img src={product.imgUrl} alt={product.name} className={styles.productImg} />
+                        <img src={post.image} alt={post.title} className={styles.productImg} />
                         <div className={styles.tags}>
-                            <Tag label={product.category}/>
-                            <Tag label={product.classification} />
+                            <Tag label={post.productCategory.categoryName}/>
+                            <Tag label={post.classification}/>
                         </div>
                     </div>
 
                     <div className={styles.productDetails}>
-                        <h1 className={styles.name}>{product.name}</h1>
+                        <h1 className={styles.name}>{post.title}</h1>
                         <div className={styles.productInfo}>
-                            <h3>Quantidade disponível: {product.quantity} {product.measureUnit}</h3>
-                            <h3>Preço por {product.measureUnit}: R${product.price.toFixed(2)}</h3>
+                            <h3>Quantidade disponível: {post.quantity} {post.measureUnit}</h3>
+                            <h3>Preço por {post.measureUnit}: R$10</h3>
                         </div>
                         <div className={styles.description}>
                             <span>Descrição:</span>
-                            <TextInputMultiline placeholder='Descrição' value={product.description} rows={8} readonly/>
+                            <TextInputMultiline placeholder='Descrição' value={post.description} rows={8} readonly/>
                         </div>
                         <Button label='Solicitar Match'/>
                     </div>

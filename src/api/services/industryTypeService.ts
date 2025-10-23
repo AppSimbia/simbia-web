@@ -1,4 +1,4 @@
-import { IndustryTypeResponse } from "../../interfaces/dtos";
+import { IndustryTypeResponse } from "../dtos";
 import { industryType } from "../../interfaces/models";
 import api from "../config";
 

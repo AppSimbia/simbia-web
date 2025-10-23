@@ -1,6 +1,7 @@
-import { PostResponse } from "../../interfaces/dtos";
+import { PostResponse } from "../dtos";
 import { Post } from "../../interfaces/models";
 import api from "../config";
+import { postAdapter } from "../adapters/postAdapter";
 
 export async function getPosts(cnpj: string): Promise<Post[]> {
     const response = await api.get<PostResponse[]>(
@@ -9,26 +10,5 @@ export async function getPosts(cnpj: string): Promise<Post[]> {
 
     const data = response.data;
 
-    const posts: Post[] = [];
-    data.forEach(postResponse => {
-        const post: Post = {
-            productCategory: {
-                id: postResponse.productCategory.id,
-                categoryName: postResponse.productCategory.categoryName,
-                info: postResponse.productCategory.info
-            },
-            idIndustry: postResponse.idIndustry,
-            idEmployee: postResponse.idEmployee,
-            title: postResponse.title,
-            description: postResponse.description,
-            quantity: postResponse.quantity,
-            measureUnit: postResponse.measureUnit,
-            classification: postResponse.classification,
-            image: postResponse.image
-        };
-
-        posts.push(post);
-    });
-
-    return posts;
+    return data.map(postAdapter);
 }

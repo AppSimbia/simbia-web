@@ -3,11 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import hamburguerIcon from '../../assets/icons/hamburguer.svg';
 import { HeaderProps } from '../../interfaces/props';
 import styles from './header.module.css';
+import { industryMock } from '../../mocks';
+import { useAuth } from '../../contexts/authContext';
 
 function Header({
-    industryName,
-    logo
+    children,
 }: HeaderProps) {
+    const { industry } = useAuth();
     const navigate = useNavigate();
 
     const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -16,19 +18,44 @@ function Header({
         <>
             <header className={styles.header}>
                 <div className={styles.left}>
-                    <img
-                        src={hamburguerIcon}
-                        alt="Ícone de hambúrguer"
-                        className={styles.hamburguer}
-                        onClick={() => setSidebarOpen(!isSidebarOpen)}
-                    />
-                    <h1 className={styles.headerName}>Olá, {industryName}</h1>
+                    {industry ?
+                        <>
+                            <img
+                                src={hamburguerIcon}
+                                alt="Ícone de hambúrguer"
+                                className={styles.hamburguer}
+                                onClick={() => setSidebarOpen(!isSidebarOpen)}
+                            />
+                            <h1 className={styles.headerText}>Olá, {industry.name}</h1>
+                        </>
+                        :
+                        <>
+                            <h1 className={styles.headerText}>Bem-Vindo!</h1>
+                        </>
+                    }
                 </div>
 
                 <div className={styles.right}>
-                    <img src={logo} alt="Logo da empresa" className={styles.headerLogo} onClick={() => {navigate("/profile")}}/>
+                    {industry ?
+                        <img
+                            src={industryMock.imgUrl}
+                            alt="Logo da empresa"
+                            className={styles.headerLogo}
+                            onClick={() => {navigate("/profile")}}
+                        />
+                        :
+                        <img
+                            src="/simbia-logo.svg"
+                            alt="Simbia"
+                            className={styles.headerLogoDefault}
+                        />
+                    }
                 </div>
             </header>
+
+            <main className={styles.router}>
+                {children}
+            </main>
 
             <section
                 className={`

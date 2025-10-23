@@ -2,3 +2,7 @@ export * from './product';
 export * from './solicitation';
 export * from './Payment';
 export * from './employee';
+export * from './industry';
+export * from './loginData';
+export * from './industryType';
+export * from './post';

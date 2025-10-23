@@ -1,40 +1,54 @@
 import { useState } from "react";
-import { Product, Products } from "../../interfaces/models";
+import { Post } from "../../interfaces/models";
 import Button from "../button/button";
+import ProductCard from "../productCard/productCard";
 import ProductDetails from "../productDetails/productDetails";
 import styles from "./loadProducts.module.css";
-import { productMock } from "../../mocks";
-import ProductCard from "../productCard/productCard";
+import { postMock } from "../../mocks";
 
-function LoadProducts({products}: Products) {
-    const [limit, setLimit] = useState(products.length > 10 ? 10 : products.length);
+interface LoadProductsProps {
+    posts: Post[];
+};
 
-    const [detailsData, setDetailsData] = useState<Product>(productMock);
+function LoadProducts({posts}: LoadProductsProps) {
+    const [limit, setLimit] = useState(10);
+
+    const [detailsData, setDetailsData] = useState<Post>(postMock);
     const [isDetailsOpen, setDetailsOpen] = useState(false);
 
-    function setDetails(product: Product) {
+    function setDetails(product: Post) {
         setDetailsData(product);
         setDetailsOpen(true);
     };
 
+    if (!posts) {
+        return null;
+    }
+
     return (
         <>
             <section className={styles.content}>
-                <div className={styles.products}>
-                    {products.slice(0, limit).map((p) => {
+                <div className={styles.posts}>
+                    {posts.slice(0, limit).map((p) => {
                         return (
                             <ProductCard
-                                product={p}
+                                post={p}
                                 onClick={() => {setDetails(p)}}
                             />
                         )
                     })}
                 </div>
 
-                <Button label="Carregar Mais" size="lg" onClick={() => {setLimit(limit + 10)}}/>
+                {posts.length > limit &&
+                    <Button label="Carregar Mais" size="lg" onClick={() => {setLimit(limit + 10)}}/>
+                }
             </section>
 
-            <ProductDetails product={detailsData} isOpen={isDetailsOpen} onClose={() => {setDetailsOpen(false)}}/>
+            <ProductDetails
+                post={detailsData}
+                isOpen={isDetailsOpen}
+                onClose={() => {setDetailsOpen(false)}}
+            />
         </>
     );
 }

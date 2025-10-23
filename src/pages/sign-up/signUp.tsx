@@ -1,14 +1,36 @@
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getIndustryTypes } from '../../api/services/industryTypeService';
 import Button from '../../components/button/button';
 import TextInput from '../../components/textInput/textInput';
+import { industryType } from '../../interfaces/models';
 import styles from './signUp.module.css';
+import SelectInput from '../../components/selectInput/selectInput';
 
 function SignUp() {
+    const [industryName, setIndustryName] = useState("");
+    const [email, setEmail] = useState("");
+    const [cnpj, setCnpj] = useState("");
+    const [industryType, setIndustryType] = useState(0);
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+
+    const [industryTypes, setIndustryTypes] = useState<industryType[] | null>(null);
+
     const navigate = useNavigate();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    useEffect(() => {
+        async function fetchIndustryTypes() {
+            const result = await getIndustryTypes();
+            setIndustryTypes(result);
+        }
+
+        fetchIndustryTypes();
+    }, []);
+
+    async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        console.log("Teste");
+        console.log(industryTypes);
     };
 
     return (
@@ -33,16 +55,58 @@ function SignUp() {
 
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <h1 className={styles.formTitle}>CADASTRO</h1>
-                        <img src="simbia-logo.svg" alt="Simbia" className={styles.logo}/>
+                        <TextInput
+                            placeholder='Nome da Indústria'
+                            size='lg'
+                            variant='underline'
+                            value={industryName}
+                            onChange={setIndustryName}
+                        />
+                        <TextInput
+                            placeholder='E-mail'
+                            size='lg'
+                            variant='underline'
+                            value={email}
+                            onChange={setEmail}
+                        />
+                        <TextInput
+                            placeholder='CNPJ'
+                            size='lg'
+                            variant='underline'
+                            value={cnpj}
+                            onChange={setCnpj}
+                        />
+                        <SelectInput
+                            placeholder='Tipo da Indústria'
+                            size='lg'
+                            variant='underline'
+                            options={industryTypes?.map(it => ({
+                                label: it.industryTypeName,
+                                value: it.id
+                            })) || []}
+                            value={industryType}
+                            onChange={(value) => {setIndustryType(Number(value))}}
+                        />
+                        <TextInput
+                            placeholder='Senha'
+                            size='lg'
+                            variant='underline'
+                            value={password}
+                            onChange={setPassword}
+                        />
+                        <TextInput
+                            placeholder='Confirmar Senha'
+                            size='lg'
+                            variant='underline'
+                            value={confirmPassword}
+                            onChange={setConfirmPassword}
+                        />
 
-                        <TextInput placeholder='Nome da Indústria' size='lg' variant='underline' />
-                        <TextInput placeholder='E-mail' size='lg' variant='underline' />
-                        <TextInput placeholder='CNPJ' size='lg' variant='underline' />
-                        <TextInput placeholder='Categoria da Indústria' size='lg' variant='underline' />
-                        <TextInput placeholder='Senha' size='lg' variant='underline' />
-                        <TextInput placeholder='Confirmar Senha' size='lg' variant='underline' />
-
-                        <Button label='Cadastrar' size='lg' type='submit'/>
+                        <Button
+                            label='Cadastrar'
+                            size='lg'
+                            type='submit'
+                        />
                     </form>
                 </div>
             </section>

@@ -1,6 +1,6 @@
 .content {
     width: 100%;
-    height: 100%;
+    height: calc(100vh - 104px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,9 +38,10 @@
 }
 
 .signUpShortcut {
-    width: fit-content;
+    width: 100%;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 4px;
 }
 

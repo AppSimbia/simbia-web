@@ -1,15 +1,15 @@
 .content {
     width: 100%;
     height: fit-content;
+    container-type: inline-size;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    padding: 20px;
 }
 
-.products {
+.posts {
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -17,14 +17,14 @@
     flex-wrap: wrap;
 }
 
-@container (max-width: 1279px) {
-    .products {
+@container (max-width: 1080px) {
+    .posts {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @container (max-width: 480px) {
-    .products {
+    .posts {
         grid-template-columns: 1fr;
     }
 }

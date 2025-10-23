@@ -165,18 +165,18 @@
     background-color: #FFFFFF00;
 }
 
+.ssm {
+    max-width: 100px;
+}
 .sm {
-    width: 200px;
+    max-width: 200px;
 }
-
 .md {
-    width: 300px;
+    max-width: 300px;
 }
-
 .lg {
-    width: 400px;
+    max-width: 400px;
 }
-
 .xg {
-    width: 500px;
+    max-width: 500px;
 }

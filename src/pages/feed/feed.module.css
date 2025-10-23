@@ -1,7 +1,7 @@
-.content {
-    container-type: inline-size;
-}
-
-.feedTitle {
-    margin: 20px 0 20px 80px;
+.actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px 0;
 }

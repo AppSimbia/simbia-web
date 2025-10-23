@@ -1,15 +1,36 @@
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/button/button';
 import TextInput from '../../components/textInput/textInput';
+import { useAuth } from '../../contexts/authContext';
+import { LoginData } from '../../interfaces/models';
 import styles from './signIn.module.css';
 
 function SignIn() {
+    const { login, logout } = useAuth();
+    const [cnpj, setCnpj] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+
     const navigate = useNavigate();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    useEffect(() => {
+        logout();
+    }, []);
+
+    async function handleSubmit(event: React.FormEvent) {
         event.preventDefault();
-        console.log("Teste");
-    };
+      
+        try {
+            const loginData: LoginData = { cnpj, password };
+        
+            await login(loginData);
+        
+            navigate("/profile");
+        } catch (err) {
+            console.error("Erro: ", err);
+        }
+    }
 
     return (
         <>
@@ -33,10 +54,21 @@ function SignIn() {
 
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <h1 className={styles.rightTitle}>LOGIN</h1>
-                        <img src="simbia-logo.svg" alt="Simbia" className={styles.logo}/>
-
-                        <TextInput placeholder='CNPJ' size='lg' variant='underline' />
-                        <TextInput placeholder='Senha' size='lg' variant='underline' />
+                        <TextInput
+                            placeholder='CNPJ'
+                            size='lg'
+                            variant='underline'
+                            value={cnpj}
+                            onChange={setCnpj}
+                        />
+                        <TextInput
+                            placeholder='Senha'
+                            size='lg'
+                            variant='underline'
+                            type='password'
+                            value={password}
+                            onChange={setPassword}
+                        />
 
                         <Button label='Fazer Login' size='lg' type='submit'/>
                     </form>

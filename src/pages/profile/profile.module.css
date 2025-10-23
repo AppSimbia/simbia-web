@@ -28,9 +28,10 @@
 
 .industryLogo {
     width: 150px;
+    height: 150px;
+    object-fit: cover;
     border-radius: 50%;
-    padding: 4px;
-    background-color: var(--color-primary-50);
+    border: 4px solid var(--color-primary-50);
 }
 
 .industryName {
@@ -51,4 +52,15 @@
     border-radius: 4px;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
     transition: 0.4s;
+}
+
+@media (max-width: 1080px) {
+    .content {
+        flex-direction: column;
+        height: fit-content;
+    }
+    
+    .leftContent {
+        align-items: center;
+    }
 }

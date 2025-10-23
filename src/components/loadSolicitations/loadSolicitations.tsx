@@ -8,7 +8,7 @@ import SolicitationDetails from "../solicitationDetails/solicitationDetails";
 import Modal from "../modal/modal";
 
 function LoadSolicitations({solicitations}: Solicitations) {
-    const [limit, setLimit] = useState(solicitations.length > 10 ? 10 : solicitations.length);
+    const [limit, setLimit] = useState(10);
 
     const [detailsData, setDetailsData] = useState<Solicitation>(solicitationMock);
     const [isDetailsOpen, setDetailsOpen] = useState(false);

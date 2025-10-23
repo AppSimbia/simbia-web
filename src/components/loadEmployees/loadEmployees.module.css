@@ -1,12 +1,12 @@
 .content {
     width: 100%;
     height: fit-content;
+    container-type: inline-size;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    padding: 20px;
 }
 
 .employees {

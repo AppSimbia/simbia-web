@@ -8,21 +8,16 @@ import { Employee, Employees } from "../../interfaces/models";
 import Button from "../button/button";
 
 function LoadEmployees({employees}: Employees) {
-    const [limit, setLimit] = useState(employees.length > 10 ? 10 : employees.length);
+    const [limit, setLimit] = useState(10);
 
     const [detailsData, setDetailsData] = useState<Employee>(employeeMock);
     const [isDetailsOpen, setDetailsOpen] = useState(false);
 
-    const [employeeId, setEmployeeId] = useState(0);
     const [removeEmployeeModalOpen, setRemoveEmployeeModalOpen] = useState(false);
 
     function openDetails(employee: Employee) {
         setDetailsData(employee);
         setDetailsOpen(true);
-    }
-
-    function openRemoveEmployee() {
-        setRemoveEmployeeModalOpen(true);
     }
     
     return (

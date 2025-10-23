@@ -17,7 +17,7 @@ function ProductCard({
                 <Tag label={product.category} onClick={(e) => e.stopPropagation()}/>
                 <div className={styles.productInfo}>
                     <p>R${product.price.toFixed(2)}</p>
-                    <p>{product.quantity}{product.measureUnit}</p>
+                    <p>{product.quantity} {product.measureUnit}</p>
                 </div>
             </div>
         </>

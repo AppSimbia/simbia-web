@@ -31,7 +31,7 @@ function ProductDetails({
                     <div className={styles.productDetails}>
                         <h1 className={styles.name}>{product.name}</h1>
                         <div className={styles.productInfo}>
-                            <h3>Quantidade disponível: {product.quantity}{product.measureUnit}</h3>
+                            <h3>Quantidade disponível: {product.quantity} {product.measureUnit}</h3>
                             <h3>Preço por {product.measureUnit}: R${product.price.toFixed(2)}</h3>
                         </div>
                         <div className={styles.description}>

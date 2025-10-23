@@ -126,7 +126,7 @@
 }
 
 @media (max-width: 480px) {
-    .headerName {
+    .headerText {
         font-size: 1.5rem;
     }
 }

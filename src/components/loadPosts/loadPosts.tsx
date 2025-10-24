@@ -1,23 +1,23 @@
 import { useState } from "react";
 import { Post } from "../../interfaces/models";
-import Button from "../button/button";
-import ProductCard from "../productCard/productCard";
-import ProductDetails from "../productDetails/productDetails";
-import styles from "./loadProducts.module.css";
 import { postMock } from "../../mocks";
+import Button from "../button/button";
+import PostDetails from "../postDetails/postDetails";
+import PostCard from "../postCard/postCard";
+import styles from "./loadPosts.module.css";
 
-interface LoadProductsProps {
+interface LoadPostsProps {
     posts: Post[];
 };
 
-function LoadProducts({posts}: LoadProductsProps) {
+function LoadPosts({posts}: LoadPostsProps) {
     const [limit, setLimit] = useState(10);
 
     const [detailsData, setDetailsData] = useState<Post>(postMock);
     const [isDetailsOpen, setDetailsOpen] = useState(false);
 
-    function setDetails(product: Post) {
-        setDetailsData(product);
+    function setDetails(post: Post) {
+        setDetailsData(post);
         setDetailsOpen(true);
     };
 
@@ -31,7 +31,7 @@ function LoadProducts({posts}: LoadProductsProps) {
                 <div className={styles.posts}>
                     {posts.slice(0, limit).map((p) => {
                         return (
-                            <ProductCard
+                            <PostCard
                                 post={p}
                                 onClick={() => {setDetails(p)}}
                             />
@@ -44,7 +44,7 @@ function LoadProducts({posts}: LoadProductsProps) {
                 }
             </section>
 
-            <ProductDetails
+            <PostDetails
                 post={detailsData}
                 isOpen={isDetailsOpen}
                 onClose={() => {setDetailsOpen(false)}}
@@ -53,4 +53,4 @@ function LoadProducts({posts}: LoadProductsProps) {
     );
 }
 
-export default LoadProducts;
+export default LoadPosts;

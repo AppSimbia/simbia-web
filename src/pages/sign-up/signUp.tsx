@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { getIndustryTypes } from '../../api/services/industryTypeService';
 import Button from '../../components/button/button';
 import TextInput from '../../components/textInput/textInput';
-import { industryType } from '../../interfaces/models';
 import styles from './signUp.module.css';
 import SelectInput from '../../components/selectInput/selectInput';
+import { IndustryType } from '../../interfaces/models';
 
 function SignUp() {
     const [industryName, setIndustryName] = useState("");
@@ -15,7 +15,7 @@ function SignUp() {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
-    const [industryTypes, setIndustryTypes] = useState<industryType[] | null>(null);
+    const [industryTypes, setIndustryTypes] = useState<IndustryType[] | null>(null);
 
     const navigate = useNavigate();
 

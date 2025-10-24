@@ -1,4 +1,4 @@
-export interface industryRequest {
+export interface IndustryRequest {
     idIndustryType: number;
     cnpj: string;
     password: string;

@@ -17,10 +17,10 @@ export function postAdapter(response: PostResponse): Post {
 
     const adaptedPost: Post = {
         idPost: response.idPost,
-        productCategory: {
-            id: response.productCategory.id,
-            categoryName: response.productCategory.categoryName,
-            info: response.productCategory.info
+        postCategory: {
+            id: response.postCategory.id,
+            categoryName: response.postCategory.categoryName,
+            info: response.postCategory.info
         },
         industryName: response.industryName,
         industryImage: response.industryImage,
@@ -29,6 +29,7 @@ export function postAdapter(response: PostResponse): Post {
         title: response.title,
         description: response.description,
         quantity: response.quantity,
+        price: response.price,
         measureUnit: measureUnitMap[response.measureUnit],
         classification: classificationMap[response.classification],
         image: response.image,

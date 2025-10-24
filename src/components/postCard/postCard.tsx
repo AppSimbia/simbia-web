@@ -1,6 +1,6 @@
 import { PostCardProps } from "../../interfaces/props";
 import Tag from "../tag/tag";
-import styles from "./productCard.module.css";
+import styles from "./postCard.module.css";
 
 function PostCard({
     post,
@@ -13,10 +13,10 @@ function PostCard({
                     <img src={post.image} alt={post.title} className={styles.image} />
                 </div>
 
-                <h2 className={styles.productName}>{post.title}</h2>
-                <Tag label={post.productCategory.categoryName} onClick={(e) => e.stopPropagation()}/>
-                <div className={styles.productInfo}>
-                    <p>R$10.00</p>
+                <h2 className={styles.postName}>{post.title}</h2>
+                <Tag label={post.postCategory.categoryName} onClick={(e) => e.stopPropagation()}/>
+                <div className={styles.postInfo}>
+                    <p>R${post.price.toFixed(2)}</p>
                     <p>{post.quantity} {post.measureUnit}</p>
                 </div>
             </div>

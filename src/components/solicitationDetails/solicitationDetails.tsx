@@ -23,36 +23,36 @@ function SolicitationDetails({
             <section className={`${styles.modalOverlay} ${open ? styles.isOpen : ""}`} onClick={onClose}>
                 <div className={styles.content} onClick={(e) => e.stopPropagation()}>
                     <div className={styles.containerLeft}>
-                        <img src={solicitation.product.imgUrl} alt={solicitation.product.name} className={styles.productImg} />
+                        <img src={solicitation.post.image} alt={solicitation.post.title} className={styles.postImg} />
                         <div className={styles.tags}>
-                            <Tag label={solicitation.product.category}/>
-                            <Tag label={solicitation.product.classification} />
+                            <Tag label={solicitation.post.postCategory.categoryName}/>
+                            <Tag label={solicitation.post.classification} />
                         </div>
                     </div>
 
-                    <div className={styles.productDetails}>
+                    <div className={styles.postDetails}>
                         <div className={styles.title}>
                             <h3>Solicitação de {solicitation.solicitationType} de {solicitation.employeeName || solicitation.industryName}</h3>
-                            <h1 className={styles.name}>{solicitation.product.name}</h1>
+                            <h1 className={styles.name}>{solicitation.post.title}</h1>
                         </div>
 
                         {solicitation.paymentInfo &&
                             <div className={styles.paymentInfo}>
                                 <div className={styles.paymentField}>
                                     <h3>Preço acordado: R${solicitation.paymentInfo.value}</h3>
-                                    <h3>Quantidade acordada: {solicitation.paymentInfo.quantity}{solicitation.product.measureUnit}</h3>
+                                    <h3>Quantidade acordada: {solicitation.paymentInfo.quantity}{solicitation.post.measureUnit}</h3>
                                 </div>
                             </div>
                             ||
-                            <div className={styles.productInfo}>
-                                <h3>Quantidade disponível: {solicitation.product.quantity}{solicitation.product.measureUnit}</h3>
-                                <h3>Preço por {solicitation.product.measureUnit}: R${solicitation.product.price.toFixed(2)}</h3>
+                            <div className={styles.postInfo}>
+                                <h3>Quantidade disponível: {solicitation.post.quantity}{solicitation.post.measureUnit}</h3>
+                                <h3>Preço por {solicitation.post.measureUnit}: R${solicitation.post.price.toFixed(2)}</h3>
                             </div>
                         }
 
                         <div className={styles.description}>
                             <span>Descrição:</span>
-                            <TextInputMultiline placeholder='Descrição' value={solicitation.product.description} rows={8} readonly/>
+                            <TextInputMultiline placeholder='Descrição' value={solicitation.post.description} rows={8} readonly/>
                         </div>
 
                         <div className={styles.actions}>

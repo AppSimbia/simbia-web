@@ -1,6 +1,5 @@
-import styles from "./employeeCard.module.css";
-import { Employee } from "../../interfaces/models";
 import { EmployeeCardProps } from "../../interfaces/props";
+import styles from "./employeeCard.module.css";
 
 function EmployeeCard({
     employee,

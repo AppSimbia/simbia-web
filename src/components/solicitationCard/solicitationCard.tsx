@@ -17,7 +17,7 @@ function SolicitationCard({
                     {solicitation.employeeName || solicitation.industryName}
                 </h1>
 
-                <h3 className={styles.postTitle}>{solicitation.product.name}</h3>
+                <h3 className={styles.postTitle}>{solicitation.post.title}</h3>
 
                 <div className={styles.aaa}>
                     <Tag label={solicitation.solicitationType} onClick={(e) => e.stopPropagation()}/>

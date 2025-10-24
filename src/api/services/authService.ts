@@ -6,12 +6,9 @@ import api from "../config";
 export async function signIn(loginData: LoginData): Promise<Industry> {
   const response = await api.post<IndustryResponse>(
     "/industries/login",
-    {},
     {
-      params: {
-        username: loginData.cnpj,
-        password: loginData.password,
-      },
+      cnpj: loginData.cnpj,
+      password: loginData.password,
     }
   );
 

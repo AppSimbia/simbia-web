@@ -10,6 +10,7 @@
     font-weight: 400;
     text-align: start;
     color: var(--color-secondary-0);
+    background-color: var(--color-neutral-100);
     resize: none;
 }
 .input:focus {

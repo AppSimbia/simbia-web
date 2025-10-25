@@ -8,7 +8,7 @@ interface Option {
 
 interface SelectInputProps {
     options: Option[];
-    placeholder?: string;
+    placeholder: string;
     value?: number | string;
     onChange?: (value: number | string) => void;
     size?: "sm" | "md" | "lg" | "xg";
@@ -18,7 +18,7 @@ interface SelectInputProps {
 
 function SelectInput({
     options,
-    placeholder = "Selecione...",
+    placeholder,
     value,
     onChange,
     size,

@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
-import { SolicitationDetailsProps } from "../../interfaces/props";
 import Button from "../button/button";
 import Tag from "../tag/tag";
 import TextInputMultiline from "../textInputMultiline/textInputMultiline";
 import styles from "./solicitationDetails.module.css";
+import { Solicitation } from "../../interfaces/models";
+
+export interface SolicitationDetailsProps {
+    solicitation: Solicitation;
+    isOpen: boolean;
+    onAccept: () => void;
+    onRefuse: () => void;
+    onClose: () => void;
+};
 
 function SolicitationDetails({
     solicitation,

@@ -1,5 +1,10 @@
-import { EmployeeCardProps } from "../../interfaces/props";
+import { Employee } from "../../interfaces/models";
 import styles from "./employeeCard.module.css";
+
+export interface EmployeeCardProps {
+    employee: Employee;
+    onClick: () => void;
+};
 
 function EmployeeCard({
     employee,

@@ -1,16 +1,12 @@
 import { useState } from "react";
-import { Post } from "../../interfaces/models";
+import { Post, Posts } from "../../interfaces/models";
 import { postMock } from "../../mocks";
 import Button from "../button/button";
 import PostDetails from "../postDetails/postDetails";
 import PostCard from "../postCard/postCard";
 import styles from "./loadPosts.module.css";
 
-interface LoadPostsProps {
-    posts: Post[];
-};
-
-function LoadPosts({posts}: LoadPostsProps) {
+function LoadPosts({posts}: Posts) {
     const [limit, setLimit] = useState(10);
 
     const [detailsData, setDetailsData] = useState<Post>(postMock);

@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
-import { PostDetailsProps } from '../../interfaces/props';
 import Button from '../button/button';
 import Tag from '../tag/tag';
 import TextInputMultiline from '../textInputMultiline/textInputMultiline';
 import styles from './postDetails.module.css';
+import { Post } from '../../interfaces/models';
+
+export interface PostDetailsProps {
+    post: Post;
+    isOpen: boolean;
+    onClose: () => void;
+};
 
 function PostDetails({
     post,

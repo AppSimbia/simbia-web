@@ -1,6 +1,11 @@
-import { PostCardProps } from "../../interfaces/props";
+import { Post } from "../../interfaces/models";
 import Tag from "../tag/tag";
 import styles from "./postCard.module.css";
+
+export interface PostCardProps {
+    post: Post;
+    onClick?: () => void;
+};
 
 function PostCard({
     post,

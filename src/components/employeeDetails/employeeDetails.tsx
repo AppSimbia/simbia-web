@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import Button from "../button/button";
 import styles from "./employeeDetails.module.css";
-import { EmployeeDetailsProps } from "../../interfaces/props";
+import { Employee } from "../../interfaces/models";
+
+export interface EmployeeDetailsProps {
+    employee: Employee;
+    isOpen: boolean;
+    onClose: () => void;
+    onRemove: () => void;
+};
 
 function EmployeeDetails({
     employee,

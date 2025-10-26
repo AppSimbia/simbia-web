@@ -2,7 +2,14 @@ import Tag from "../tag/tag";
 import styles from "./solicitationCard.module.css";
 import closeIcon from "../../assets/icons/close.svg";
 import CheckIcon from "../../assets/icons/check.svg";
-import { SolicitationCardProps } from "../../interfaces/props/solicitationCardProps";
+import { Solicitation } from "../../interfaces/models";
+
+export interface SolicitationCardProps {
+    solicitation: Solicitation;
+    onClick: () => void;
+    onAccept: () => void;
+    onRefuse: () => void;
+};
 
 function SolicitationCard({
     solicitation,

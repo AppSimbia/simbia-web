@@ -20,3 +20,7 @@ export interface Post {
     image: string;
     publicationDate: string;
 };
+
+export interface Posts {
+    posts: Post[];
+};

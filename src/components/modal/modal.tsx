@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import Button from "../button/button";
+import Button, { ButtonProps } from "../button/button";
 import styles from "./modal.module.css";
-import { ButtonProps, TextInputProps } from "../../interfaces/props";
-import TextInput from "../textInput/textInput";
+import TextInput, { TextInputProps } from "../textInput/textInput";
 
 interface ModalProps {
     title: string;

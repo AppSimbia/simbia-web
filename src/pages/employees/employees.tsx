@@ -3,7 +3,7 @@ import Button from "../../components/button/button";
 import LoadEmployees from "../../components/loadEmployees/loadEmployees";
 import Modal from "../../components/modal/modal";
 import TextInput from "../../components/textInput/textInput";
-import { getEmployees } from "../../firebase/services/employeesService";
+import { getEmployees, removeEmployee } from "../../firebase/services/employeesService";
 import { Employee } from "../../interfaces/models";
 import styles from "./employees.module.css";
 import { useAuth } from "../../contexts/authContext";
@@ -65,6 +65,17 @@ function Employees() {
         }
     }
 
+    async function handleRemoveEmployee(uid: string) {
+        const success = await removeEmployee(uid);
+
+        if (success) {
+            console.log("Sucesso");
+            fetchEmployees();
+        } else {
+            console.error("Erro");
+        }
+    }
+
     if (!employees) {
         return null;
     }
@@ -89,7 +100,10 @@ function Employees() {
                     />
                 </div>
 
-                <LoadEmployees employees={filteredEmployees}/>
+                <LoadEmployees
+                    employees={filteredEmployees}
+                    removeEmployee={(uid) => {handleRemoveEmployee(uid)}}
+                />
             </section>
 
             <Modal

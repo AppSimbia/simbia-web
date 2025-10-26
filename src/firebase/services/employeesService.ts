@@ -1,6 +1,8 @@
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "../config";
-import { EmployeeResponse } from "../dtos";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { auth, db, storage } from "../config";
+import { EmployeeRequest, EmployeeResponse } from "../dtos";
+import { getDownloadURL, ref } from "firebase/storage";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 export async function getEmployees(): Promise<EmployeeResponse[]> {
     const querySnapshot = await getDocs(collection(db, "employee"));
@@ -21,4 +23,35 @@ export async function getEmployees(): Promise<EmployeeResponse[]> {
     });
 
     return employees;
+}
+
+export async function createEmployee(employee: EmployeeRequest): Promise<boolean> {
+    try {
+      const imageUrl = await getDefaultImageUrl();
+  
+      const userCredential = await createUserWithEmailAndPassword(auth, employee.email, "senha123");
+      const uid = userCredential.user.uid;
+
+      await setDoc(doc(db, "employee", uid), {
+        ...employee,
+        imageUrl,
+      });
+  
+      return true;
+    } catch (err: any) {
+      console.error("Erro ao adicionar funcionário:", err.code, err.message);
+      return false;
+    }
+  }
+  
+
+export async function getDefaultImageUrl(): Promise<string> {
+    try {
+    const imageRef = ref(storage, "profile_images/default-profile.svg");
+      const url = await getDownloadURL(imageRef);
+
+      return url;
+    } catch (error) {      
+      return "";
+    }
 }

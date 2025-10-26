@@ -40,18 +40,18 @@
     top: 0;
 }
 
-.productName {
+.postName {
     font-family: "K2D";
     user-select: none;
     font-weight: 600;
 }
 
-.productInfo {
+.postInfo {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.productInfo p {
+.postInfo p {
     user-select: none;
 }

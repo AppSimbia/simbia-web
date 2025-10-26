@@ -1,5 +1,11 @@
-import { TagProps } from '../../interfaces/props';
 import styles from './tag.module.css';
+
+export interface TagProps {
+    label: string;
+    variant?: 'primary' | 'secondary' | 'error' | 'outlined' | 'outlined-secondary' | 'outlined-error';
+    onClick?: (e?: any) => void | any;
+    disabled?: boolean;
+};
 
 function Tag({
     label,

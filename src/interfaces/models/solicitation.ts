@@ -1,11 +1,11 @@
-import { Payment } from "./Payment";
-import { Product } from "./product";
+import { Payment } from "./payment";
+import { Post } from "./post";
 
 export interface Solicitation {
     id: number;
     employeeName?: string;
     industryName?: string;
-    product: Product;
+    post: Post;
     solicitationType: 'Postagem' | 'Match' | 'Fechamento de Match';
     paymentInfo?: Payment
 };

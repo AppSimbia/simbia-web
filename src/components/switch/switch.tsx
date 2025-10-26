@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import styles from './switch.module.css';
 import { useEffect } from 'react';
-import { switchProps } from '../../interfaces/props';
+
+export interface switchProps {
+    isOn?: boolean;
+    onChange?: (checked: boolean) => void;
+};
 
 function Switch({
     isOn = false,

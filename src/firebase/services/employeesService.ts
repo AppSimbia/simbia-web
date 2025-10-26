@@ -28,21 +28,22 @@ export async function getEmployees(industryId: number): Promise<EmployeeResponse
 }
 
 export async function createEmployee(employee: EmployeeRequest): Promise<boolean> {
-  try {
-    const imageUrl = await getDefaultImageUrl();
+    try {
+      const imageUri = await getDefaultImageUrl();
+  
+      const userCredential = await createUserWithEmailAndPassword(auth, employee.email, "senha123");
+      const uid = userCredential.user.uid;
 
-    const userCredential = await createUserWithEmailAndPassword(auth, employee.email, "senha123");
-    const uid = userCredential.user.uid;
-
-    await setDoc(doc(db, "employee", uid), {
-      ...employee,
-      imageUrl,
-    });
-
-    return true;
-  } catch (err: any) {
-    console.error("Erro ao adicionar funcionário:", err.code, err.message);
-    return false;
+      await setDoc(doc(db, "employee", uid), {
+        ...employee,
+        imageUri,
+      });
+  
+      return true;
+    } catch (err: any) {
+      console.error("Erro ao adicionar funcionário:", err.code, err.message);
+      return false;
+    }
   }
 }
   

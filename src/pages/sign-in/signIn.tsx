@@ -10,7 +10,6 @@ function SignIn() {
     const { login, logout } = useAuth();
     const [cnpj, setCnpj] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
 
     const navigate = useNavigate();
 
@@ -52,7 +51,7 @@ function SignIn() {
                         </div>
                     </div>
 
-                    <form className={styles.form} onSubmit={handleSubmit}>
+                    <form className={styles.contentRight} onSubmit={handleSubmit}>
                         <h1 className={styles.rightTitle}>LOGIN</h1>
                         <TextInput
                             placeholder='CNPJ'

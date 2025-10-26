@@ -1,4 +1,4 @@
-export interface ProductCategoryResponse {
+export interface PostCategoryResponse {
     id: number;
     categoryName: string;
     info: string;
@@ -7,7 +7,7 @@ export interface ProductCategoryResponse {
 
 export interface PostResponse {
     idPost: number;
-    productCategory: ProductCategoryResponse;
+    postCategory: PostCategoryResponse;
     industryName: string;
     industryImage: string;
     industryCnpj: string;
@@ -15,6 +15,7 @@ export interface PostResponse {
     title: string;
     description: string;
     quantity: number;
+    price: number;
     measureUnit: string;
     classification: string;
     image: string;

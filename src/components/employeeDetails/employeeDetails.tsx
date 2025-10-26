@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import Button from "../button/button";
 import styles from "./employeeDetails.module.css";
-import { EmployeeDetailsProps } from "../../interfaces/props";
+import { Employee } from "../../interfaces/models";
+
+export interface EmployeeDetailsProps {
+    employee: Employee;
+    isOpen: boolean;
+    onClose: () => void;
+    onRemove: () => void;
+};
 
 function EmployeeDetails({
     employee,
@@ -19,7 +26,7 @@ function EmployeeDetails({
         <>
             <section className={`${styles.modalOverlay} ${open ? styles.isOpen : ""}`} onClick={onClose}>
                 <div className={styles.content} onClick={(e) => e.stopPropagation()}>
-                    <img src={employee.image} alt="Imagem de perfil" className={styles.employeeImg}/>
+                    <img src={employee.imageUri} alt="Imagem de perfil" className={styles.employeeImg}/>
 
                     <div className={styles.employeeInfo}>
                         <h1 className={styles.employeeName}>{employee.name}</h1>

@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import hamburguerIcon from '../../assets/icons/hamburguer.svg';
-import { HeaderProps } from '../../interfaces/props';
 import styles from './header.module.css';
 import { industryMock } from '../../mocks';
 import { useAuth } from '../../contexts/authContext';
+
+export interface HeaderProps {
+    children: React.ReactNode;
+};
 
 function Header({
     children,

@@ -27,14 +27,14 @@ export async function getEmployees(): Promise<EmployeeResponse[]> {
 
 export async function createEmployee(employee: EmployeeRequest): Promise<boolean> {
     try {
-      const imageUrl = await getDefaultImageUrl();
+      const imageUri = await getDefaultImageUrl();
   
       const userCredential = await createUserWithEmailAndPassword(auth, employee.email, "senha123");
       const uid = userCredential.user.uid;
 
       await setDoc(doc(db, "employee", uid), {
         ...employee,
-        imageUrl,
+        imageUri,
       });
   
       return true;

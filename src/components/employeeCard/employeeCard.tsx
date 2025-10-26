@@ -8,7 +8,7 @@ function EmployeeCard({
     return (
         <>
             <div className={styles.card} onClick={onClick}>
-                <img src={employee.image} alt="Imagem de perfil" className={styles.employeeImg}/>
+                <img src={employee.imageUri} alt="Imagem de perfil" className={styles.employeeImg}/>
 
                 <div className={styles.employeeInfo}>
                     <h1 className={styles.employeeName}>{employee.name}</h1>

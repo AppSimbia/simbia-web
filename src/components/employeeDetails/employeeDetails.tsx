@@ -19,7 +19,7 @@ function EmployeeDetails({
         <>
             <section className={`${styles.modalOverlay} ${open ? styles.isOpen : ""}`} onClick={onClose}>
                 <div className={styles.content} onClick={(e) => e.stopPropagation()}>
-                    <img src={employee.image} alt="Imagem de perfil" className={styles.employeeImg}/>
+                    <img src={employee.imageUri} alt="Imagem de perfil" className={styles.employeeImg}/>
 
                     <div className={styles.employeeInfo}>
                         <h1 className={styles.employeeName}>{employee.name}</h1>

@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import Button from "../button/button";
 import styles from "./modal.module.css";
-import { ButtonProps } from "../../interfaces/props";
+import { ButtonProps, TextInputProps } from "../../interfaces/props";
+import TextInput from "../textInput/textInput";
 
 interface ModalProps {
     title: string;
     subtitle: string;
     isOpen: boolean;
     onClose?: () => void;
+    inputs?: TextInputProps[];
     actions?: ButtonProps[];
 };
 
@@ -16,6 +18,7 @@ function Modal({
     subtitle,
     isOpen = false,
     onClose,
+    inputs = [],
     actions = []
 }: ModalProps) {
     const [open, setOpen] = useState(isOpen);
@@ -32,6 +35,14 @@ function Modal({
                         <h1>{title}</h1>
                         <h3>{subtitle}</h3>
                     </div>
+
+                    {inputs.length > 0 && (
+                        <div className={styles.inputs}>
+                            {inputs.map((input, index) => (
+                                <TextInput key={index} {...input}/>
+                            ))}
+                        </div>
+                    )}
 
                     {actions.length > 0 && (
                         <div className={styles.actions}>

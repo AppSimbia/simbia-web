@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { auth, db, storage } from "../config";
 import { EmployeeRequest, EmployeeResponse } from "../dtos";
 import { getDownloadURL, ref } from "firebase/storage";
@@ -53,5 +53,16 @@ export async function getDefaultImageUrl(): Promise<string> {
       return url;
     } catch (error) {      
       return "";
+    }
+}
+
+export async function removeEmployee(uid: string): Promise<boolean> {
+    try {
+        await deleteDoc(doc(db, "employee", uid));
+        return true;
+    }
+    catch (err) {
+        console.error("Erro ao remover funcionário: ", err);
+        return false;
     }
 }

@@ -20,16 +20,9 @@ function Employees() {
     const [employeeEmail, setEmployeeEmail] = useState("");
 
     useEffect(() => {
-        async function fetchEmployees() {
-            const data = await getEmployees();
-
-            setEmployees(data);
-            setFilteredEmployees(data);
-        }
-
         fetchEmployees();
-    }, []);
-
+    }, [industry]);
+    
     useEffect(() => {
         if (search.trim() === "") {
             setFilteredEmployees(employees);
@@ -37,15 +30,26 @@ function Employees() {
             const filteredData = employees.filter((e) => 
                 e.name.toLowerCase().includes(search.toLowerCase())
             );
-
+            
             setFilteredEmployees(filteredData);
         }
     }, [employees, search]);
 
+    async function fetchEmployees() {
+        if (!industry) return;
+
+        const data = await getEmployees(industry.id);
+
+        setEmployees(data);
+        setFilteredEmployees(data);
+    }
+
     async function handleCreateEmployee() {
+        if (!industry) return;
+
         if (employeeName.trim() !== "" && employeeEmail.trim() !== "") {
             const employeeData: EmployeeRequest = {
-                industryId: industry!.id,
+                industryId: industry.id,
                 name: employeeName.trim(),
                 email: employeeEmail.trim(),
             }
@@ -54,6 +58,7 @@ function Employees() {
 
             if (success) {
                 console.log("Sucesso");
+                fetchEmployees();
             } else {
                 console.error("Erro");
             }

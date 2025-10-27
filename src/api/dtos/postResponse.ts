@@ -19,4 +19,5 @@ export interface PostResponse {
     classification: string;
     image: string;
     publicationDate: string;
+    status: string;
 };

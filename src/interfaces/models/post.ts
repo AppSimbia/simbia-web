@@ -14,4 +14,5 @@ export interface Post {
     classification: string;
     image: string;
     publicationDate: string;
+    status: string;
 };

@@ -1,5 +1,13 @@
-import { TextInputMultilineProps } from '../../interfaces/props';
 import styles from './textInputMultiline.module.css';
+
+export interface TextInputMultilineProps {
+    placeholder: string;
+    size?: 'sm' | 'md' | 'lg' | 'xg';
+    rows?: number;
+    value?: string;
+    readonly?: boolean;
+    onChange?: (value: string) => void;
+};
 
 function TextInputMultiline({
     placeholder,

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getPosts } from '../../api/services/postService';
 import Button from '../../components/button/button';
-import LoadProducts from '../../components/loadProducts/loadProducts';
+import LoadPosts from '../../components/loadPosts/loadPosts';
 import TextInput from '../../components/textInput/textInput';
+import { useAuth } from '../../contexts/authContext';
 import { Post } from '../../interfaces/models';
 import styles from './feed.module.css';
-import { useAuth } from '../../contexts/authContext';
 
 function Feed() {
     const { industry } = useAuth();
@@ -14,7 +14,7 @@ function Feed() {
     const [search, setSearch] = useState("");
 
     useEffect(() => {
-        async function fetchProducts() {
+        async function fetchPosts() {
             if (!industry) return;
             
             const data = await getPosts(industry.cnpj);
@@ -23,7 +23,7 @@ function Feed() {
             setFilteredPosts(data);
         }
 
-        fetchProducts();
+        fetchPosts();
     }, [industry]);
 
     useEffect(() => {
@@ -61,7 +61,7 @@ function Feed() {
                 />
             </div>
 
-            <LoadProducts posts={filteredPosts}/>
+            <LoadPosts posts={filteredPosts}/>
         </section>
     );
 }

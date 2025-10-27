@@ -51,20 +51,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-}
-
-.form {
-    width: 60%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: 10px;
+    padding: 20px;
 }
 
 .logo {
@@ -74,10 +63,18 @@
     top: 10px;
 }
 
-.form > :first-child {
-    margin-bottom: 30px;
+.navigationBalls {
+    display: flex;
+    gap: 10px;
 }
 
-.form > :last-child {
-    margin-top: 30px;
+.navigationBall {
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-neutral-50);
+    border-radius: 50%;
+}
+
+.ballSelected {
+    background-color: var(--color-primary-50);
 }

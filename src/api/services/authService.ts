@@ -1,4 +1,4 @@
-import { industryRequest, IndustryResponse } from "../dtos";
+import { IndustryRequest, IndustryResponse } from "../dtos";
 import { Industry } from "../../interfaces/models/industry";
 import { LoginData } from "../../interfaces/models/loginData";
 import api from "../config";
@@ -35,7 +35,7 @@ export async function signIn(loginData: LoginData): Promise<Industry> {
   return industry;
 }
 
-export async function signUp(industryRequest: industryRequest): Promise<Industry> {
+export async function signUp(industryRequest: IndustryRequest): Promise<Industry> {
   const response = await api.post<IndustryResponse>(
     "/industries",
     industryRequest

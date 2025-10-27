@@ -1,4 +1,4 @@
-export interface PostCategory {
+export interface ProductCategory {
     id: number;
     categoryName: string;
     info: string;
@@ -6,7 +6,7 @@ export interface PostCategory {
 
 export interface Post {
     idPost: number;
-    postCategory: PostCategory;
+    productCategory: ProductCategory;
     industryName: string;
     industryImage: string;
     industryCnpj: string;
@@ -19,6 +19,7 @@ export interface Post {
     classification: string;
     image: string;
     publicationDate: string;
+    status: string;
 };
 
 export interface Posts {

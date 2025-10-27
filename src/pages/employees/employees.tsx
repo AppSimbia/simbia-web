@@ -8,7 +8,8 @@ import { Employee } from "../../interfaces/models";
 import styles from "./employees.module.css";
 import { useAuth } from "../../contexts/authContext";
 import { createEmployee } from "../../firebase/services/employeesService";
-import { EmployeeRequest } from "../../firebase/dtos";
+import { createEmployeeAndGetId } from "../../api/services/employeeService";
+import { EmployeeRequest } from "../../api/dtos";
 
 function Employees() {
     const { industry } = useAuth();
@@ -53,8 +54,15 @@ function Employees() {
                 name: employeeName.trim(),
                 email: employeeEmail.trim(),
             }
+
+            const employeeId = await createEmployeeAndGetId(employeeData);
             
-            const success: boolean = await createEmployee(employeeData);
+            const success: boolean = await createEmployee({
+                industryId: employeeData.industryId,
+                name: employeeData.name,
+                email: employeeData.email,
+                employeeId: employeeId
+            });
 
             if (success) {
                 console.log("Sucesso");

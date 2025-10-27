@@ -1,17 +1,17 @@
 import { IndustryTypeResponse } from "../dtos";
-import { industryType } from "../../interfaces/models";
+import { IndustryType } from "../../interfaces/models";
 import api from "../config";
 
-export async function getIndustryTypes(): Promise<industryType[]> {
+export async function getIndustryTypes(): Promise<IndustryType[]> {
     const response = await api.get<IndustryTypeResponse[]>(
         "/industries/types"
     );
 
     const data = response.data;
     
-    let industryTypes: industryType[] = [];
+    let industryTypes: IndustryType[] = [];
     data.forEach(type => {
-        const industryType: industryType = {
+        const industryType: IndustryType = {
             id: type.id,
             industryTypeName: type.industryTypeName,
             info: type.info,

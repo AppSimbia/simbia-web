@@ -29,7 +29,7 @@ function PostDetails({
                     <div className={styles.containerLeft}>
                         <img src={post.image} alt={post.title} className={styles.postImg} />
                         <div className={styles.tags}>
-                            <Tag label={post.postCategory.categoryName}/>
+                            {post.productCategory && <Tag label={post.productCategory.categoryName}/>}
                             <Tag label={post.classification}/>
                         </div>
                     </div>

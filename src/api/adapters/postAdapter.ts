@@ -4,8 +4,8 @@ import { PostResponse } from "../dtos";
 export function postAdapter(response: PostResponse): Post {
     const classificationMap: Record<string, string> = {
         "1": "Perigoso",
-        "2": "Perigoso Não Inerte",
-        "3": "Perigoso Inerte"
+        "2": "Não Perigoso Não Inerte",
+        "3": "Não Perigoso Inerte"
     };
 
     const measureUnitMap: Record<string, string> = {
@@ -17,10 +17,10 @@ export function postAdapter(response: PostResponse): Post {
 
     const adaptedPost: Post = {
         idPost: response.idPost,
-        postCategory: {
-            id: response.postCategory.id,
-            categoryName: response.postCategory.categoryName,
-            info: response.postCategory.info
+        productCategory: {
+            id: response.productCategory.id,
+            categoryName: response.productCategory.categoryName,
+            info: response.productCategory.info
         },
         industryName: response.industryName,
         industryImage: response.industryImage,
@@ -33,7 +33,8 @@ export function postAdapter(response: PostResponse): Post {
         measureUnit: measureUnitMap[response.measureUnit],
         classification: classificationMap[response.classification],
         image: response.image,
-        publicationDate: response.publicationDate
+        publicationDate: response.publicationDate,
+        status: response.status
     };
 
     return adaptedPost;

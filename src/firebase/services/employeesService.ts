@@ -16,6 +16,7 @@ export async function getEmployees(industryId: number): Promise<EmployeeResponse
         id: doc.id,
         imageUri: data.imageUri,
         industryId: data.industryId,
+        employeeId: data.employeeId,
         name: data.name,
         email: data.email
       };
@@ -37,6 +38,7 @@ export async function createEmployee(employee: EmployeeRequest): Promise<boolean
     await setDoc(doc(db, "employee", uid), {
       ...employee,
       imageUri,
+      firstAccess: true
     });
 
     return true;
@@ -45,7 +47,6 @@ export async function createEmployee(employee: EmployeeRequest): Promise<boolean
     return false;
   }
 }
-  
 
 export async function getDefaultImageUrl(): Promise<string> {
   try {

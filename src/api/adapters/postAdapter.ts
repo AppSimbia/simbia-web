@@ -17,10 +17,10 @@ export function postAdapter(response: PostResponse): Post {
 
     const adaptedPost: Post = {
         idPost: response.idPost,
-        postCategory: {
-            id: response.postCategory.id,
-            categoryName: response.postCategory.categoryName,
-            info: response.postCategory.info
+        productCategory: {
+            id: response.productCategory.id,
+            categoryName: response.productCategory.categoryName,
+            info: response.productCategory.info
         },
         industryName: response.industryName,
         industryImage: response.industryImage,

@@ -19,7 +19,7 @@ function PostCard({
                 </div>
 
                 <h2 className={styles.postName}>{post.title}</h2>
-                <Tag label={post.postCategory.categoryName} onClick={(e) => e.stopPropagation()}/>
+                <Tag label={post.productCategory.categoryName} onClick={(e) => e.stopPropagation()}/>
                 <div className={styles.postInfo}>
                     <p>R${post.price.toFixed(2)}</p>
                     <p>{post.quantity} {post.measureUnit}</p>

@@ -25,9 +25,10 @@ function LoadPosts({posts}: Posts) {
         <>
             <section className={styles.content}>
                 <div className={styles.posts}>
-                    {posts.slice(0, limit).map((p) => {
+                    {posts.slice(0, limit).map((p, i) => {
                         return (
                             <PostCard
+                                key={i}
                                 post={p}
                                 onClick={() => {setDetails(p)}}
                             />

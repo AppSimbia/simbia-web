@@ -2,7 +2,7 @@ import { Post } from "../interfaces/models";
 
 export const postMock: Post = {
     idPost: 1,
-    postCategory: {
+    productCategory: {
         id: 1,
         categoryName: "Plásticos",
         info: "Plásticos"
@@ -18,7 +18,8 @@ export const postMock: Post = {
     price: 9.5,
     measureUnit: "kg",
     classification: "Não perigoso",
-    publicationDate: "aaaaaaa"
+    publicationDate: "aaaaaaa",
+    status: "2"
 };
 
 export const postListMock: Post[] = Array(20).fill(postMock);

@@ -1,12 +1,28 @@
+import { useEffect, useState } from "react";
+import { getPosts } from "../../api/services/postService";
 import Tag from "../../components/tag/tag";
 import { useAuth } from "../../contexts/authContext";
 import { useProtectedRoute } from "../../hooks/useProtectedRoute";
 import TabView from "./components/tabView/tabView";
 import styles from "./profile.module.css";
+import { Post } from "../../interfaces/models";
 
 function Profile() {
     useProtectedRoute();
     const { industry } = useAuth();
+    const [posts, setPosts] = useState<Post[]>([]);
+
+    useEffect(() => {
+        async function fetchPosts() {
+            if (!industry) return;
+            
+            const data = await getPosts(industry.cnpj);
+
+            setPosts(data);
+        }
+
+        fetchPosts();
+    }, [industry]);
 
     if (!industry) {
         return null;
@@ -22,7 +38,7 @@ function Profile() {
                 </div>
             </div>
 
-            <TabView {...industry}/>
+            <TabView industry={industry} posts={posts}/>
         </section>
     );
 }

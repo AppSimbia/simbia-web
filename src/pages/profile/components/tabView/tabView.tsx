@@ -1,11 +1,19 @@
 import { useState } from "react";
 import LoadPosts from "../../../../components/loadPosts/loadPosts";
+import { Post } from "../../../../interfaces/models";
 import { Industry } from "../../../../interfaces/models/industry";
-import { postListMock } from "../../../../mocks";
 import ProfileInfo from "../profileInfo/profileInfo";
 import styles from "./tabView.module.css";
 
-function TabView(industry: Industry) {
+export interface TabViewProps {
+    industry: Industry;
+    posts: Post[];
+};
+
+function TabView({
+    industry,
+    posts
+}: TabViewProps) {
     const [selectedTab, setSelectedTab] = useState<"info" | "posts">("info");
 
     return (
@@ -42,7 +50,7 @@ function TabView(industry: Industry) {
                 {selectedTab === "info" ? (
                         <ProfileInfo {...industry}/>
                     ) : (
-                        <LoadPosts posts={postListMock}/>
+                        <LoadPosts posts={posts}/>
                     )
                 }
             </div>

@@ -4,6 +4,10 @@ import hamburguerIcon from '../../assets/icons/hamburguer.svg';
 import styles from './header.module.css';
 import { industryMock } from '../../mocks';
 import { useAuth } from '../../contexts/authContext';
+import userCircleIcon from '../../assets/icons/user-circle.svg';
+import emailClosedIcon from '../../assets/icons/email-closed.svg';
+import helpChatIcon from '../../assets/icons/help-chat.svg';
+import userGroupIcon from '../../assets/icons/user-group.svg';
 
 export interface HeaderProps {
     children: React.ReactNode;
@@ -78,25 +82,29 @@ function Header({
                         <li className={styles.navigationItem} onClick={() => {
                             navigate("/profile");
                             setSidebarOpen(false);
-                            }}>
+                        }}>
+                            <img src={userCircleIcon} className={styles.navigationIcon}/>
                             <h3>Perfil</h3>
                         </li>
                         <li className={styles.navigationItem} onClick={() => {
                             navigate("/feed");
                             setSidebarOpen(false);
-                            }}>
+                        }}>
+                            <img src={emailClosedIcon} className={styles.navigationIcon}/>
                             <h3>Postagens</h3>
                         </li>
                         <li className={styles.navigationItem} onClick={() => {
                             navigate("/solicitations");
                             setSidebarOpen(false);
-                            }}>
+                        }}>
+                            <img src={helpChatIcon} className={styles.navigationIcon}/>
                             <h3>Solicitações</h3>
                         </li>
                         <li className={styles.navigationItem} onClick={() => {
                             navigate("/employees");
                             setSidebarOpen(false);
-                            }}>
+                        }}>
+                            <img src={userGroupIcon} className={styles.navigationIcon}/>
                             <h3>Funcionários</h3>
                         </li>
                     </ul>

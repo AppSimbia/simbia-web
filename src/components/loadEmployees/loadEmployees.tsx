@@ -7,7 +7,15 @@ import styles from "./loadEmployees.module.css";
 import { Employee, Employees } from "../../interfaces/models";
 import Button from "../button/button";
 
-function LoadEmployees({employees}: Employees) {
+export interface LoadEmployeesProps {
+    employees: Employee[];
+    removeEmployee: (uid: string) => void;
+};
+
+function LoadEmployees({
+    employees,
+    removeEmployee
+}: LoadEmployeesProps) {
     const [limit, setLimit] = useState(10);
 
     const [detailsData, setDetailsData] = useState<Employee>(employeeMock);
@@ -59,7 +67,8 @@ function LoadEmployees({employees}: Employees) {
                     },
                     {
                         label: 'Remover',
-                        variant: 'error'
+                        variant: 'error',
+                        onClick: () => {removeEmployee(detailsData.id)}
                     }
                 ]}
             />

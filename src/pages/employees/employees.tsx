@@ -3,7 +3,7 @@ import Button from "../../components/button/button";
 import LoadEmployees from "../../components/loadEmployees/loadEmployees";
 import Modal from "../../components/modal/modal";
 import TextInput from "../../components/textInput/textInput";
-import { getEmployees } from "../../firebase/services/employeesService";
+import { getEmployees, removeEmployee } from "../../firebase/services/employeesService";
 import { Employee } from "../../interfaces/models";
 import styles from "./employees.module.css";
 import { useAuth } from "../../contexts/authContext";
@@ -21,18 +21,9 @@ function Employees() {
     const [employeeEmail, setEmployeeEmail] = useState("");
 
     useEffect(() => {
-        async function fetchEmployees() {
-            if (!industry) return;
-
-            const data = await getEmployees(industry.id);
-
-            setEmployees(data);
-            setFilteredEmployees(data);
-        }
-
         fetchEmployees();
     }, [industry]);
-
+    
     useEffect(() => {
         if (search.trim() === "") {
             setFilteredEmployees(employees);
@@ -40,13 +31,24 @@ function Employees() {
             const filteredData = employees.filter((e) => 
                 e.name.toLowerCase().includes(search.toLowerCase())
             );
-
+            
             setFilteredEmployees(filteredData);
         }
     }, [employees, search]);
 
+    async function fetchEmployees() {
+        if (!industry) return;
+
+        const data = await getEmployees(industry.id);
+
+        setEmployees(data);
+        setFilteredEmployees(data);
+    }
+
     async function handleCreateEmployee() {
-        if (industry && employeeName.trim() !== "" && employeeEmail.trim() !== "") {
+        if (!industry) return;
+
+        if (employeeName.trim() !== "" && employeeEmail.trim() !== "") {
             const employeeData: EmployeeRequest = {
                 industryId: industry.id,
                 name: employeeName.trim(),
@@ -64,9 +66,21 @@ function Employees() {
 
             if (success) {
                 console.log("Sucesso");
+                fetchEmployees();
             } else {
                 console.error("Erro");
             }
+        }
+    }
+
+    async function handleRemoveEmployee(uid: string) {
+        const success = await removeEmployee(uid);
+
+        if (success) {
+            console.log("Sucesso");
+            fetchEmployees();
+        } else {
+            console.error("Erro");
         }
     }
 
@@ -94,7 +108,10 @@ function Employees() {
                     />
                 </div>
 
-                <LoadEmployees employees={filteredEmployees}/>
+                <LoadEmployees
+                    employees={filteredEmployees}
+                    removeEmployee={(uid) => {handleRemoveEmployee(uid)}}
+                />
             </section>
 
             <Modal

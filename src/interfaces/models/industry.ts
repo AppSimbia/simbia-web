@@ -3,7 +3,7 @@ import { IndustryType } from "./industryType";
 export interface Industry {
     id: number;
     name: string;
-    imgUrl: string;
+    image: string;
     cnpj: string;
     industryType: IndustryType;
     description: string;
@@ -11,5 +11,7 @@ export interface Industry {
     email: string;
     cep: string;
     state: string;
+    latitude: number;
+    longitude: number;
     city: string;
 };

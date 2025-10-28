@@ -12,3 +12,25 @@ export async function getPosts(cnpj: string): Promise<Post[]> {
 
     return data.map(postAdapter);
 }
+
+export async function approvePostSolicitation(postId: number): Promise<boolean> {
+    const response = await api.put<Post>(
+        `/posts/${postId}`,
+        {status: "2"}
+    );
+
+    const data = response.data;
+
+    return data.status === "2";
+}
+
+export async function refusePostSolicitation(postId: number): Promise<boolean> {
+    const response = await api.put<Post>(
+        `/posts/${postId}`,
+        {status: "3"}
+    );
+
+    const data = response.data;
+
+    return data.status === "3";
+}

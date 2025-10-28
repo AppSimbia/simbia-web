@@ -53,6 +53,8 @@ function SignUp() {
                 contactMail: page1Fields.contactMail,
                 cep: page1Fields.cep,
                 city: "Osasco",
+                latitude: -23.55052,
+                longitude: -46.633308,
                 state: "São Paulo",
                 image: page2Fields.image
             };

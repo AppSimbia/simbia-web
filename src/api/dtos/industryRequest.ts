@@ -7,6 +7,8 @@ export interface IndustryRequest {
     contactMail: string;
     cep: string;
     city: string;
+    latitude: number;
+    longitude: number;
     state: string;
     image: string;
 };

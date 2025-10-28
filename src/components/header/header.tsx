@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import hamburguerIcon from '../../assets/icons/hamburguer.svg';
-import styles from './header.module.css';
-import { industryMock } from '../../mocks';
-import { useAuth } from '../../contexts/authContext';
-import userCircleIcon from '../../assets/icons/user-circle.svg';
 import emailClosedIcon from '../../assets/icons/email-closed.svg';
+import hamburguerIcon from '../../assets/icons/hamburguer.svg';
 import helpChatIcon from '../../assets/icons/help-chat.svg';
+import userCircleIcon from '../../assets/icons/user-circle.svg';
 import userGroupIcon from '../../assets/icons/user-group.svg';
+import { useAuth } from '../../contexts/authContext';
+import styles from './header.module.css';
 
 export interface HeaderProps {
     children: React.ReactNode;
@@ -45,7 +44,7 @@ function Header({
                 <div className={styles.right}>
                     {industry ?
                         <img
-                            src={industryMock.imgUrl}
+                            src={industry.image}
                             alt="Logo da empresa"
                             className={styles.headerLogo}
                             onClick={() => {navigate("/profile")}}

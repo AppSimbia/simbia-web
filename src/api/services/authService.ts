@@ -17,7 +17,6 @@ export async function signIn(loginData: LoginData): Promise<Industry> {
   const industry: Industry = {
     id: data.login.id,
     name: data.industryName,
-    imgUrl: data.image,
     cnpj: data.cnpj,
     industryType: {
       id: data.industryType.id,
@@ -29,7 +28,10 @@ export async function signIn(loginData: LoginData): Promise<Industry> {
     email: data.contactMail,
     cep: data.cep,
     state: data.state,
-    city: data.city
+    latitude: data.latitude,
+    longitude: data.longitude,
+    city: data.city,
+    image: data.image,
   };
 
   return industry;
@@ -46,7 +48,6 @@ export async function signUp(industryRequest: IndustryRequest): Promise<Industry
   const registeredIndustry: Industry = {
     id: data.login.id,
     name: data.industryName,
-    imgUrl: data.image,
     cnpj: data.cnpj,
     industryType: {
       id: data.industryType.id,
@@ -58,7 +59,10 @@ export async function signUp(industryRequest: IndustryRequest): Promise<Industry
     email: data.contactMail,
     cep: data.cep,
     state: data.state,
-    city: data.city
+    latitude: data.latitude,
+    longitude: data.longitude,
+    city: data.city,
+    image: data.image,
   };
 
   return registeredIndustry;

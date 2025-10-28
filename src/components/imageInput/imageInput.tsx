@@ -1,16 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './imageInput.module.css';
-import Button from '../button/button';
 import defaultProfile from "../../assets/icons/default-profile.svg";
+import styles from './imageInput.module.css';
 
 interface ImageInputProps {
-    label: string;
     onChange: (file: File | null) => void;
     value?: File | null;
 };
 
 function ImageInput({
-    label,
     onChange,
     value
 }: ImageInputProps) {
@@ -28,9 +25,10 @@ function ImageInput({
 
     function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
         const file = event.target.files?.[0] || null;
-        onChange(file);
-
+        
         if (file) {
+            onChange(file);
+
             const url = URL.createObjectURL(file);
             setPreviewUrl(url);
         } else {
@@ -44,19 +42,19 @@ function ImageInput({
 
     return (
         <div className={styles.container}>
-            {previewUrl && (
-                <img
-                    src={previewUrl || defaultProfile}
-                    alt="Pré-visualização"
-                    className={styles.preview}
-                    onClick={handleClick}
-            />)}
+            <img
+                src={previewUrl || defaultProfile}
+                alt="Pré-visualização"
+                className={styles.preview}
+                onClick={handleClick}
+            />
 
-            {!previewUrl && (
-                <Button
-                    label={label}
-                    onClick={handleClick}
-            />)}
+            <span
+                className={styles.text}
+                onClick={handleClick}
+            >
+                Escolher Imagem
+            </span>
 
             <input
                 className={styles.input}

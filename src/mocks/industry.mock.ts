@@ -3,7 +3,6 @@ import { Industry } from "../interfaces/models/industry";
 export const industryMock: Industry = {
     id: 1,
     name: "Raízen",
-    imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLGlr26j0ftFCRkG-wQt4yKBTm-wMN9M4Ifw&s",
     cnpj: "00.623.904/0001-73",
     industryType: {
         id: 2,
@@ -15,5 +14,8 @@ export const industryMock: Industry = {
     email: "raizen@raizen.com",
     cep: "06038-080",
     state: "São Paulo",
-    city: "Osasco"
+    latitude: -23.55052,
+    longitude: -46.633308,
+    city: "Osasco",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLGlr26j0ftFCRkG-wQt4yKBTm-wMN9M4Ifw&s",
 };

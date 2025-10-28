@@ -8,5 +8,7 @@ export interface CreateIndustry {
     cep: string;
     city: string;
     state: string;
-    image: File;
+    latitude: number;
+    longitude: number;
+    image: string;
 };

@@ -33,7 +33,7 @@ function SolicitationDetails({
                     <div className={styles.containerLeft}>
                         <img src={solicitation.post.image} alt={solicitation.post.title} className={styles.postImg} />
                         <div className={styles.tags}>
-                            <Tag label={solicitation.post.postCategory.categoryName}/>
+                            <Tag label={solicitation.post.productCategory.categoryName}/>
                             <Tag label={solicitation.post.classification} />
                         </div>
                     </div>

@@ -7,8 +7,8 @@ export interface CreateIndustry {
     contactMail: string;
     cep: string;
     city: string;
+    state: string;
     latitude: number;
     longitude: number;
-    state: string;
-    image: File;
+    image: string;
 };

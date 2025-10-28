@@ -5,8 +5,8 @@ export function locationAdapter(response: LocationResponse): LocationData {
     const adaptedLocation: LocationData = {
         state: response.uf,
         city: response.localidade,
-        latitude: parseInt(response.latitude),
-        longitude: parseInt(response.longitude)
+        latitude: parseFloat(response.lat),
+        longitude: parseFloat(response.lon)
     }
 
     return adaptedLocation;

@@ -5,6 +5,6 @@ export interface LocationResponse {
     uf: string;
     estado: string;
     regiao: string;
-    latitude: string;
-    longitude: string;
+    lat: string;
+    lon: string;
 };

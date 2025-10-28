@@ -1,67 +1,68 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { signUp } from '../../api/services/authService';
 import { getIndustryTypes } from '../../api/services/industryTypeService';
+import { getLocationData } from '../../apiIntegration/services/cepService';
 import Button from '../../components/button/button';
 import { useAuth } from '../../contexts/authContext';
+import { saveIndustryImage } from '../../firebase/services/industryService';
 import { CreateIndustry, IndustryType } from '../../interfaces/models';
-import FormPage1, { FormPage1Fields } from './components/formPage1/formPage1';
-import FormPage2, { FormPage2Fields } from './components/formPage2/formPage2';
+import { LocationData } from '../../interfaces/models/locationData';
+import FormPage1 from './components/formPage1/formPage1';
+import FormPage2 from './components/formPage2/formPage2';
 import styles from './signUp.module.css';
 
 function SignUp() {
     const { logout } = useAuth();
-    const [industry, setIndustry] = useState<CreateIndustry>();
     const [industryTypes, setIndustryTypes] = useState<IndustryType[] | null>(null);
     const [page, setPage] = useState(1);
-    const [page1Fields, setPage1Fields] = useState<FormPage1Fields | null>(null);
-    const [page2Fields, setPage2Fields] = useState<FormPage2Fields | null>(null);
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        async function fetchIndustryTypes() {
-            const result = await getIndustryTypes();
-            setIndustryTypes(result);
-        }
+    const form = useRef<CreateIndustry>({
+        idIndustryType: 0,
+        cnpj: "",
+        password: "",
+        industryName: "",
+        description: "",
+        contactMail: "",
+        cep: "",
+        city: "",
+        state: "",
+        latitude: 0,
+        longitude: 0,
+        image: ""
+    });
 
+    useEffect(() => {
         logout();
-        fetchIndustryTypes();
+        getIndustryTypes().then(setIndustryTypes);
     }, []);
 
-    function nextPage(fields: FormPage1Fields) {
+    function nextPage(fields: Partial<CreateIndustry>) {
+        form.current = { ...form.current, ...fields };
         setPage(2);
-        setPage1Fields(fields);
-        console.log(fields);
     }
-
-    function previousPage(fields: FormPage2Fields) {
+    
+    function previousPage(fields: Partial<CreateIndustry>) {
+        form.current = { ...form.current, ...fields };
         setPage(1);
-        setPage2Fields(fields);
-        console.log(fields);
     }
 
-    function sendForm(fields: FormPage2Fields) {
-        setPage2Fields(fields);
+    async function handleSignIn(fields: Partial<CreateIndustry>, imageFile: File) {
+        const locationData: LocationData = await getLocationData(form.current.cep);
+        const image: string = await saveIndustryImage(imageFile);
 
-        if (page1Fields && page2Fields && page2Fields.image) {
-            const completeFormFields: CreateIndustry = {
-                idIndustryType: page1Fields.idIndustryType,
-                cnpj: page1Fields.cnpj,
-                password: page2Fields.password,
-                industryName: page1Fields.industryName,
-                description: page2Fields.description,
-                contactMail: page1Fields.contactMail,
-                cep: page1Fields.cep,
-                city: "Osasco",
-                latitude: -23.55052,
-                longitude: -46.633308,
-                state: "São Paulo",
-                image: page2Fields.image
-            };
+        form.current = { ...form.current, ...fields, ...locationData, image };
 
-            setIndustry(completeFormFields);
-            console.log("Deu: ", industry);
-        };
+        const loginData = await signUp(form.current);
+
+        if (loginData) {
+            console.log("Sucesso");
+            navigate("/profile");
+        } else {
+            console.log("Erro");
+        }
     }
 
     return (
@@ -101,14 +102,14 @@ function SignUp() {
                         {page === 1 ?
                             <FormPage1
                                 industryTypes={industryTypes}
-                                fields={page1Fields}
+                                fields={form.current}
                                 onNextPage={(fields) => {nextPage(fields)}}
                             />
                             :
                             <FormPage2
                                 onPreviousPage={(fields) => {previousPage(fields)}}
-                                fields={page2Fields}
-                                onSubmit={(fields: FormPage2Fields) => {sendForm(fields)}}
+                                fields={form.current}
+                                onSubmit={(fields, image) => {handleSignIn(fields, image)}}
                             />
                         }
                     </div>

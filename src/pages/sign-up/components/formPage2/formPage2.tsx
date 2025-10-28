@@ -4,18 +4,13 @@ import TextInput from "../../../../components/textInput/textInput";
 import TextInputMultiline from "../../../../components/textInputMultiline/textInputMultiline";
 import styles from './formPage2.module.css';
 import ImageInput from "../../../../components/imageInput/imageInput";
+import { CreateIndustry } from "../../../../interfaces/models";
 
 interface FormPage2Props {
-    onPreviousPage: (fields: FormPage2Fields) => void;
-    fields?: FormPage2Fields | null;
-    onSubmit: (fields: FormPage2Fields) => void;
+    onPreviousPage: (fields: Partial<CreateIndustry>) => void;
+    fields?: Partial<CreateIndustry> | null;
+    onSubmit: (fields: Partial<CreateIndustry>, image: File) => void;
 }
-
-export interface FormPage2Fields {
-    image: File | null;
-    description: string;
-    password: string;
-};
 
 function FormPage2({
     onPreviousPage,
@@ -28,15 +23,11 @@ function FormPage2({
     const [confirmPassword, setConfirmPassword] = useState("");
 
     useEffect(() => {
-        if (fields) {
-            setImage(fields.image);
-            setDescription(fields.description);
-            setPassword(fields.password);
-        }
+        setDescription(fields?.description || "");
+        setPassword(fields?.password || "");
     }, []);
 
-    const getFields = (): FormPage2Fields => ({
-        image,
+    const getFields = (): Partial<CreateIndustry> => ({
         description,
         password
     });
@@ -49,10 +40,16 @@ function FormPage2({
         event.preventDefault();
 
         if (password !== confirmPassword || password === "") {
+            console.log("Confirme sua senha");
             return;
         }
 
-        onSubmit(getFields());
+        if (!image) {
+            console.log("A imagem é obrigatória")
+            return;
+        }
+        
+        onSubmit(getFields(), image);
     }
 
     return (
@@ -61,7 +58,6 @@ function FormPage2({
             onSubmit={handleSubmit}
         >
             <ImageInput
-                label="Escolher imagem"
                 onChange={(file) => setImage(file)}
                 value={image}
             />

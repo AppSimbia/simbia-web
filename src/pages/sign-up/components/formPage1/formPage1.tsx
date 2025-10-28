@@ -2,21 +2,15 @@ import React, { useEffect, useState } from 'react';
 import Button from '../../../../components/button/button';
 import SelectInput from '../../../../components/selectInput/selectInput';
 import TextInput from '../../../../components/textInput/textInput';
-import { IndustryType } from '../../../../interfaces/models';
+import { CreateIndustry, IndustryType } from '../../../../interfaces/models';
 import styles from './formPage1.module.css';
+import { LocationData } from '../../../../interfaces/models/locationData';
+import { getLocationData } from '../../../../apiIntegration/services/cepService';
 
 interface FormPage1Props {
     industryTypes: IndustryType[] | null;
-    fields?: FormPage1Fields | null;
-    onNextPage: (fields: FormPage1Fields) => void;
-};
-
-export interface FormPage1Fields {
-    industryName: string;
-    cnpj: string;
-    contactMail: string;
-    idIndustryType: number;
-    cep: string;
+    fields?: Partial<CreateIndustry> | null;
+    onNextPage: (fields: Partial<CreateIndustry>) => void;
 };
 
 function FormPage1({
@@ -29,28 +23,28 @@ function FormPage1({
     const [contactMail, setContactMail] = useState("");
     const [idIndustryType, setIdIndustryType] = useState(0);
     const [cep, setCep] = useState("");
+    const [city, setCity] = useState("");
 
     useEffect(() => {
-        if (fields) {
-            setIndustryName(fields.industryName);
-            setCnpj(fields.cnpj);
-            setContactMail(fields.contactMail);
-            setIdIndustryType(fields.idIndustryType);
-            setCep(fields.cep);
-        }
+        setIndustryName(fields?.industryName || "");
+        setCnpj(fields?.cnpj || "");
+        setContactMail(fields?.contactMail || "");
+        setIdIndustryType(fields?.idIndustryType || 0);
+        setCep(fields?.cep || "");
     }, []);
 
-    const getFields = (): FormPage1Fields => ({
+    const getFields = (): Partial<CreateIndustry> => ({
         industryName,
         cnpj,
         contactMail,
         idIndustryType,
-        cep
+        cep,
+        city
     });
 
     function handleNextPage(event: React.FormEvent) {
         event.preventDefault();
-
+        
         onNextPage(getFields());
     }
         

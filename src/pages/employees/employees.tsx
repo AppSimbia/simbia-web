@@ -56,12 +56,10 @@ function Employees() {
             }
 
             const employeeId = await createEmployeeAndGetId(employeeData);
-            
+
             const success: boolean = await createEmployee({
-                industryId: employeeData.industryId,
-                name: employeeData.name,
-                email: employeeData.email,
-                employeeId: employeeId
+                ...employeeData,
+                employeeId
             });
 
             if (success) {

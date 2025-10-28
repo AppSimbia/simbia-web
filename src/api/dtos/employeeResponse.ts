@@ -1,4 +1,4 @@
 export interface EmployeeResponse {
-    employeeId: number;
+    idEmployee: number;
     employeeName: string;
 };

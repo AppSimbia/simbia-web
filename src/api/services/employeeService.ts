@@ -10,5 +10,5 @@ export async function createEmployeeAndGetId(employeeData: EmployeeRequest): Pro
         }
     );
 
-    return response.data.employeeId;
+    return response.data.idEmployee;
 }

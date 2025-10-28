@@ -45,7 +45,7 @@ function Header({
                 <div className={styles.right}>
                     {industry ?
                         <img
-                            src={industryMock.imgUrl}
+                            src={industryMock.image}
                             alt="Logo da empresa"
                             className={styles.headerLogo}
                             onClick={() => {navigate("/profile")}}

@@ -32,7 +32,7 @@ function Profile() {
         <section className={styles.content}>
             <div className={styles.leftContent}>
                 <div className={styles.profileInfo}>
-                    <img src={industry.imgUrl} alt="Logo da Indústria" className={styles.industryLogo}/>
+                    <img src={industry.image} alt="Logo da Indústria" className={styles.industryLogo}/>
                     <h1 className={styles.industryName}>{industry.name}</h1>
                     <Tag label={industry.industryType.industryTypeName}/>
                 </div>

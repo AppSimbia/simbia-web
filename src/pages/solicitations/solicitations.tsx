@@ -3,24 +3,28 @@ import Button from "../../components/button/button";
 import LoadSolicitations from "../../components/loadSolicitations/loadSolicitations";
 import TextInput from "../../components/textInput/textInput";
 import { Solicitation } from "../../interfaces/models";
-import { solicitationListMock } from "../../mocks";
+import { getSolicitations } from "../../mongo/services/solicitationService";
 import styles from "./solicitations.module.css";
+import { useAuth } from "../../contexts/authContext";
 
 function Solicitations() {
+    const { industry } = useAuth();
     const [solicitations, setSolicitations] = useState<Solicitation[] | null>(null);
     const [filteredSolicitations, setFilteredSolicitations] = useState<Solicitation[] | null>(null);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
         async function fetchSolicitations() {
-            const data = solicitationListMock;
+            if (!industry) return;
+
+            const data = await getSolicitations(industry.cnpj);
 
             setSolicitations(data);
             setFilteredSolicitations(data);
         }
 
         fetchSolicitations();
-    }, []);
+    }, [industry]);
 
     useEffect(() => {
         if (!solicitations) return;

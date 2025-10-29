@@ -18,6 +18,11 @@ export default defineConfig(({ mode }) => {
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/integration/, ""),
         },
+        "/mongo": {
+          target: env.VITE_MONGODB_API_BASE_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/mongo/, ""),
+        },
       },
     },
   }

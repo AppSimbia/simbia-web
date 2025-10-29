@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { Employee } from "../../interfaces/models";
 import { employeeMock } from "../../mocks";
+import Button from "../button/button";
 import EmployeeCard from "../employeeCard/employeeCard";
 import EmployeeDetails from "../employeeDetails/employeeDetails";
+import Loading from "../loading/loading";
 import Modal from "../modal/modal";
 import styles from "./loadEmployees.module.css";
-import { Employee, Employees } from "../../interfaces/models";
-import Button from "../button/button";
 
 export interface LoadEmployeesProps {
-    employees: Employee[];
+    employees: Employee[] | null;
     removeEmployee: (uid: string) => void;
 };
 
@@ -27,6 +28,8 @@ function LoadEmployees({
         setDetailsData(employee);
         setDetailsOpen(true);
     }
+
+    if (!employees) return <Loading isLoading/>
     
     return (
         <>

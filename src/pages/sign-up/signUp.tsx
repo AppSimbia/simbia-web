@@ -11,11 +11,13 @@ import { LocationData } from '../../interfaces/models/locationData';
 import FormPage1 from './components/formPage1/formPage1';
 import FormPage2 from './components/formPage2/formPage2';
 import styles from './signUp.module.css';
+import Loading from '../../components/loading/loading';
 
 function SignUp() {
     const { logout } = useAuth();
     const [industryTypes, setIndustryTypes] = useState<IndustryType[] | null>(null);
     const [page, setPage] = useState(1);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -50,6 +52,8 @@ function SignUp() {
     }
 
     async function handleSignIn(fields: Partial<CreateIndustry>, imageFile: File) {
+        setLoading(true);
+
         const locationData: LocationData = await getLocationData(form.current.cep);
         const image: string = await saveIndustryImage(imageFile);
 
@@ -63,6 +67,8 @@ function SignUp() {
         } else {
             console.log("Erro");
         }
+
+        setLoading(false);
     }
 
     return (
@@ -115,6 +121,8 @@ function SignUp() {
                     </div>
                 </div>
             </section>
+
+            <Loading isLoading={loading} fullScreen/>
         </>
     );
 }

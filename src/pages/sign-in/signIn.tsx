@@ -5,11 +5,13 @@ import TextInput from '../../components/textInput/textInput';
 import { useAuth } from '../../contexts/authContext';
 import { LoginData } from '../../interfaces/models';
 import styles from './signIn.module.css';
+import Loading from '../../components/loading/loading';
 
 function SignIn() {
     const { login, logout } = useAuth();
     const [cnpj, setCnpj] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -18,6 +20,8 @@ function SignIn() {
     }, []);
 
     async function handleSubmit(event: React.FormEvent) {
+        setLoading(true);
+
         event.preventDefault();
       
         try {
@@ -29,6 +33,8 @@ function SignIn() {
         } catch (err) {
             console.error("Erro: ", err);
         }
+
+        setLoading(false);
     }
 
     return (
@@ -73,6 +79,8 @@ function SignIn() {
                     </form>
                 </div>
             </section>
+
+            <Loading isLoading={loading} fullScreen/>
         </>
     );
 }

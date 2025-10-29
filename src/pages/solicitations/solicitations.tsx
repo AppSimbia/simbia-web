@@ -7,8 +7,8 @@ import { solicitationListMock } from "../../mocks";
 import styles from "./solicitations.module.css";
 
 function Solicitations() {
-    const [solicitations, setSolicitations] = useState<Solicitation[]>([]);
-    const [filteredSolicitations, setFilteredSolicitations] = useState<Solicitation[]>([]);
+    const [solicitations, setSolicitations] = useState<Solicitation[] | null>(null);
+    const [filteredSolicitations, setFilteredSolicitations] = useState<Solicitation[] | null>(null);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
@@ -23,6 +23,8 @@ function Solicitations() {
     }, []);
 
     useEffect(() => {
+        if (!solicitations) return;
+
         if (search.trim() === "") {
             setFilteredSolicitations(solicitations);
         } else {
@@ -36,10 +38,6 @@ function Solicitations() {
             setFilteredSolicitations(filteredData);
         }
     }, [solicitations, search]);
-
-    if (!solicitations) {
-        return null;
-    }
 
     return (
         <section>

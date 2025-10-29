@@ -13,8 +13,8 @@ import { EmployeeRequest } from "../../api/dtos";
 
 function Employees() {
     const { industry } = useAuth();
-    const [employees, setEmployees] = useState<Employee[]>([]);
-    const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([]);
+    const [employees, setEmployees] = useState<Employee[] | null>(null);
+    const [filteredEmployees, setFilteredEmployees] = useState<Employee[] | null>(null);
     const [search, setSearch] = useState("");
     const [createEmployeeModalOpen, setCreateEmployeeModalOpen] = useState(false);
     const [employeeName, setEmployeeName] = useState("");
@@ -25,6 +25,8 @@ function Employees() {
     }, [industry]);
     
     useEffect(() => {
+        if (!employees) return;
+
         if (search.trim() === "") {
             setFilteredEmployees(employees);
         } else {
@@ -80,10 +82,6 @@ function Employees() {
         } else {
             console.error("Erro");
         }
-    }
-
-    if (!employees) {
-        return null;
     }
 
     return (

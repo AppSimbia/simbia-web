@@ -9,8 +9,8 @@ import styles from './feed.module.css';
 
 function Feed() {
     const { industry } = useAuth();
-    const [posts, setPosts] = useState<Post[]>([]);
-    const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
+    const [posts, setPosts] = useState<Post[] | null>(null);
+    const [filteredPosts, setFilteredPosts] = useState<Post[] | null>(null);
     const [search, setSearch] = useState("");
 
     useEffect(() => {
@@ -27,6 +27,8 @@ function Feed() {
     }, [industry]);
 
     useEffect(() => {
+        if (!posts) return;
+
         if (search.trim() === "") {
             setFilteredPosts(posts);
         } else {
@@ -37,10 +39,6 @@ function Feed() {
             setFilteredPosts(filteredData);
         }
     }, [posts, search]);
-
-    if (!posts) {
-        return null;
-    }
 
     return (
         <section>

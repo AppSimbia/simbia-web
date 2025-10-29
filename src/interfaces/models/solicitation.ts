@@ -9,7 +9,3 @@ export interface Solicitation {
     solicitationType: 'Postagem' | 'Match' | 'Fechamento de Match';
     paymentInfo?: Payment
 };
-
-export interface Solicitations {
-    solicitations: Solicitation[];
-};

@@ -7,7 +7,7 @@ import styles from "./tabView.module.css";
 
 export interface TabViewProps {
     industry: Industry;
-    posts: Post[];
+    posts: Post[] | null;
 };
 
 function TabView({

@@ -5,7 +5,3 @@ export interface Employee {
     name: string;
     email: string;
 };
-
-export interface Employees {
-    employees: Employee[];
-};

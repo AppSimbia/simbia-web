@@ -21,7 +21,3 @@ export interface Post {
     publicationDate: string;
     status: string;
 };
-
-export interface Posts {
-    posts: Post[];
-};

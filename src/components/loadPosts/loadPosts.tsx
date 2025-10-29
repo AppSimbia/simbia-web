@@ -1,12 +1,17 @@
 import { useState } from "react";
-import { Post, Posts } from "../../interfaces/models";
+import { Post } from "../../interfaces/models";
 import { postMock } from "../../mocks";
 import Button from "../button/button";
-import PostDetails from "../postDetails/postDetails";
+import Loading from "../loading/loading";
 import PostCard from "../postCard/postCard";
+import PostDetails from "../postDetails/postDetails";
 import styles from "./loadPosts.module.css";
 
-function LoadPosts({posts}: Posts) {
+export interface LoadPostsProps {
+    posts: Post[] | null;
+}
+
+function LoadPosts({posts}: LoadPostsProps) {
     const [limit, setLimit] = useState(10);
 
     const [detailsData, setDetailsData] = useState<Post>(postMock);
@@ -18,7 +23,7 @@ function LoadPosts({posts}: Posts) {
     };
 
     if (!posts) {
-        return null;
+        return <Loading isLoading/>;
     }
 
     return (

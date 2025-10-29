@@ -1,13 +1,18 @@
 import { useState } from "react";
-import { Solicitation, Solicitations } from "../../interfaces/models";
+import { Solicitation } from "../../interfaces/models";
 import { solicitationMock } from "../../mocks";
 import Button from "../button/button";
-import SolicitationCard from "../solicitationCard/solicitationCard";
-import styles from "./loadSolicitations.module.css";
-import SolicitationDetails from "../solicitationDetails/solicitationDetails";
 import Modal from "../modal/modal";
+import SolicitationCard from "../solicitationCard/solicitationCard";
+import SolicitationDetails from "../solicitationDetails/solicitationDetails";
+import styles from "./loadSolicitations.module.css";
+import Loading from "../loading/loading";
 
-function LoadSolicitations({solicitations}: Solicitations) {
+export interface LoadSolicitationsProps {
+    solicitations: Solicitation[] | null;
+}
+
+function LoadSolicitations({solicitations}: LoadSolicitationsProps) {
     const [limit, setLimit] = useState(10);
 
     const [detailsData, setDetailsData] = useState<Solicitation>(solicitationMock);
@@ -20,6 +25,8 @@ function LoadSolicitations({solicitations}: Solicitations) {
 
     const [acceptModalOpen, setAcceptModalOpen] = useState(false);
     const [refuseModalOpen, setRefuseModalOpen] = useState(false);
+
+    if (!solicitations) return <Loading isLoading/>
 
     return (
         <>

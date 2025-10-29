@@ -1,0 +1,42 @@
+.snackbar {
+    width: 400px;
+    height: fit-content;
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background-color: var(--color-neutral-100);
+    border-radius: 4px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    transition: 0.4s;
+}
+
+.hide {
+    right: -400px;
+}
+
+.success {
+    border-right: 8px solid var(--color-primary-75);
+    color: var(--color-primary-50);
+}
+
+.error {
+    border-right: 8px solid var(--color-error-75);
+    color: var(--color-error-50);
+}
+
+.warning {
+    border-right: 8px solid var(--color-warning-75);
+    color: var(--color-warning-50);
+}
+
+.icon {
+    width: 24px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}

@@ -12,12 +12,19 @@ import FormPage1 from './components/formPage1/formPage1';
 import FormPage2 from './components/formPage2/formPage2';
 import styles from './signUp.module.css';
 import Loading from '../../components/loading/loading';
+import { SnackbarProps } from '../../components/snackbar/snackBar';
 
 function SignUp() {
     const { logout } = useAuth();
     const [industryTypes, setIndustryTypes] = useState<IndustryType[] | null>(null);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({
+        show: false,
+        status: 'success',
+        title: '',
+        subtitle: ''
+    });
 
     const navigate = useNavigate();
 
@@ -54,18 +61,22 @@ function SignUp() {
     async function handleSignIn(fields: Partial<CreateIndustry>, imageFile: File) {
         setLoading(true);
 
-        const locationData: LocationData = await getLocationData(form.current.cep);
-        const image: string = await saveIndustryImage(imageFile);
+        try {
+            const locationData: LocationData = await getLocationData(form.current.cep);
+            const image: string = await saveIndustryImage(imageFile);
 
-        form.current = { ...form.current, ...fields, ...locationData, image };
+            form.current = { ...form.current, ...fields, ...locationData, image };
 
-        const loginData = await signUp(form.current);
+            const loginData = await signUp(form.current);
 
-        if (loginData) {
-            console.log("Sucesso");
-            navigate("/profile");
-        } else {
-            console.log("Erro");
+            if (loginData) navigate("/sign-in");
+        } catch (err) {
+            setSnackbar({
+                show: true,
+                status: 'error',
+                title: "Erro",
+                subtitle: "Não foi possível fazer o cadastro"
+            });
         }
 
         setLoading(false);

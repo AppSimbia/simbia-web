@@ -8,6 +8,7 @@ import styles from "./profile.module.css";
 import { Industry, Post } from "../../interfaces/models";
 import Loading from "../../components/loading/loading";
 import { useParams } from "react-router-dom";
+import { getIndustry } from "../../api/services/industryService";
 
 function Profile() {
     useProtectedRoute();
@@ -18,18 +19,30 @@ function Profile() {
     const [profileIndustry, setProfileIndustry] = useState<Industry | null>(null);
 
     useEffect(() => {
-        setProfileIndustry(industry);
+        async function fetchIndustry() {
+            const data = await getIndustry(cnpj!);
 
+            setProfileIndustry(data);
+        }
+
+        if (cnpj && cnpj !== industry?.cnpj) {
+            fetchIndustry();
+        } else {
+            setProfileIndustry(industry);
+        }
+    }, [cnpj, industry]);
+
+    useEffect(() => {
         async function fetchPosts() {
-            if (!industry) return;
+            if (!profileIndustry) return;
             
-            const data = await getPosts(industry.cnpj);
+            const data = await getPosts(profileIndustry.cnpj);
 
             setPosts(data);
         }
 
         fetchPosts();
-    }, [industry]);
+    }, [profileIndustry]);
 
     if (!profileIndustry) return <Loading isLoading fullScreen/>;
 

@@ -10,7 +10,7 @@ import { useAuth } from "../../contexts/authContext";
 import { createEmployee } from "../../firebase/services/employeesService";
 import { createEmployeeAndGetId } from "../../api/services/employeeService";
 import { EmployeeRequest } from "../../api/dtos";
-import Snackbar, { SnackbarProps } from "../../components/snackbar/snackBar";
+import Snackbar, { SnackbarProps } from "../../components/snackbar/snackbar";
 import Loading from "../../components/loading/loading";
 
 function Employees() {

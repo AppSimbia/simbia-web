@@ -6,7 +6,7 @@ import { Solicitation } from "../../interfaces/models";
 import { getSolicitations } from "../../mongo/services/solicitationService";
 import styles from "./solicitations.module.css";
 import { useAuth } from "../../contexts/authContext";
-import Snackbar, { SnackbarProps } from "../../components/snackbar/snackBar";
+import Snackbar, { SnackbarProps } from "../../components/snackbar/snackbar";
 
 function Solicitations() {
     const { industry } = useAuth();

@@ -20,7 +20,10 @@ function PostCard({
                 <div className={styles.imgContainer}>
                     <div
                         className={styles.industryInfo}
-                        onClick={() => {navigate(`/profile/${post.industryCnpj}`)}}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/profile/${post.industryCnpj}`)
+                        }}
                     >
                         <img src={post.industryImage} className={styles.industryImage}/>
                         <h3>{post.industryName}</h3>

@@ -7,6 +7,7 @@ import SolicitationCard from "../solicitationCard/solicitationCard";
 import SolicitationDetails from "../solicitationDetails/solicitationDetails";
 import styles from "./loadSolicitations.module.css";
 import Loading from "../loading/loading";
+import EmptyListFeedback from "../emptyListFeedback/emptyListFeedback";
 
 export interface LoadSolicitationsProps {
     solicitations: Solicitation[] | null;
@@ -27,6 +28,8 @@ function LoadSolicitations({solicitations}: LoadSolicitationsProps) {
     const [refuseModalOpen, setRefuseModalOpen] = useState(false);
 
     if (!solicitations) return <Loading isLoading/>
+
+    if (solicitations.length === 0) return <EmptyListFeedback message="Nenhuma solicitação foi encontrada"/>
 
     return (
         <>

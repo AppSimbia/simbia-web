@@ -18,7 +18,7 @@ function Loading({
             `}>
             <div className={styles.content}>
                 <span className={styles.loading}></span>
-                <p className={styles.loadingText}>carregando...</p>
+                <p className={styles.loadingText}>Carregando...</p>
             </div>
         </section>
     );

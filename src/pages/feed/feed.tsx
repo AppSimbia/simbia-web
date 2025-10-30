@@ -6,21 +6,37 @@ import TextInput from '../../components/textInput/textInput';
 import { useAuth } from '../../contexts/authContext';
 import { Post } from '../../interfaces/models';
 import styles from './feed.module.css';
+import Snackbar, { SnackbarProps } from '../../components/snackbar/snackBar';
 
 function Feed() {
     const { industry } = useAuth();
     const [posts, setPosts] = useState<Post[] | null>(null);
     const [filteredPosts, setFilteredPosts] = useState<Post[] | null>(null);
     const [search, setSearch] = useState("");
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({
+        show: false,
+        status: 'success',
+        title: '',
+        subtitle: ''
+    });
 
     useEffect(() => {
         async function fetchPosts() {
             if (!industry) return;
             
-            const data = await getPosts(industry.cnpj);
+            try {
+                const data = await getPosts(industry.cnpj);
 
-            setPosts(data);
-            setFilteredPosts(data);
+                setPosts(data);
+                setFilteredPosts(data);
+            } catch (err) {
+                setSnackbar({
+                    show: true,
+                    status: 'error',
+                    title: "Erro",
+                    subtitle: "Não foi possível carregar as postagens"
+                });
+            }
         }
 
         fetchPosts();
@@ -41,26 +57,36 @@ function Feed() {
     }, [posts, search]);
 
     return (
-        <section>
-            <h1 className={styles.feedTitle}>Feed</h1>
+        <>
+            <section>
+                <h1 className={styles.feedTitle}>Feed</h1>
 
-            <div className={styles.actions}>
-                <TextInput
-                    placeholder="Pesquisar..."
-                    size="xg"
-                    value={search}
-                    onChange={(value) => setSearch(value)}
-                />
+                <div className={styles.actions}>
+                    <TextInput
+                        placeholder="Pesquisar..."
+                        size="xg"
+                        value={search}
+                        onChange={(value) => setSearch(value)}
+                    />
 
-                <Button
-                    label="Filtrar"
-                    size="ssm"
-                    onClick={() => {console.log(posts)}}
-                />
-            </div>
+                    <Button
+                        label="Filtrar"
+                        size="ssm"
+                        onClick={() => {console.log(posts)}}
+                    />
+                </div>
 
-            <LoadPosts posts={filteredPosts}/>
-        </section>
+                <LoadPosts posts={filteredPosts}/>
+            </section>
+
+            <Snackbar
+                status={snackbar.status}
+                title={snackbar.title}
+                subtitle={snackbar.subtitle}
+                show={snackbar.show}
+                onClose={() => setSnackbar({ ...snackbar, show: false })}
+            />
+        </>
     );
 }
 

@@ -6,12 +6,19 @@ import { useAuth } from '../../contexts/authContext';
 import { LoginData } from '../../interfaces/models';
 import styles from './signIn.module.css';
 import Loading from '../../components/loading/loading';
+import Snackbar, { SnackbarProps } from '../../components/snackbar/snackBar';
 
 function SignIn() {
     const { login, logout } = useAuth();
     const [cnpj, setCnpj] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({
+        show: false,
+        status: 'success',
+        title: '',
+        subtitle: ''
+    });
 
     const navigate = useNavigate();
 
@@ -31,7 +38,12 @@ function SignIn() {
         
             navigate("/profile");
         } catch (err) {
-            console.error("Erro: ", err);
+            setSnackbar({
+                show: true,
+                status: 'error',
+                title: "Erro",
+                subtitle: "Verifique os campos"
+            });
         }
 
         setLoading(false);
@@ -81,6 +93,14 @@ function SignIn() {
             </section>
 
             <Loading isLoading={loading} fullScreen/>
+
+            <Snackbar
+                status={snackbar.status}
+                title={snackbar.title}
+                subtitle={snackbar.subtitle}
+                show={snackbar.show}
+                onClose={() => setSnackbar({ ...snackbar, show: false })}
+            />
         </>
     );
 }

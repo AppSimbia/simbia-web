@@ -7,6 +7,7 @@ import EmployeeDetails from "../employeeDetails/employeeDetails";
 import Loading from "../loading/loading";
 import Modal from "../modal/modal";
 import styles from "./loadEmployees.module.css";
+import EmptyListFeedback from "../emptyListFeedback/emptyListFeedback";
 
 export interface LoadEmployeesProps {
     employees: Employee[] | null;
@@ -30,6 +31,8 @@ function LoadEmployees({
     }
 
     if (!employees) return <Loading isLoading/>
+
+    if (employees.length === 0) return <EmptyListFeedback message="Nenhum funcionário foi encontrado"/>
     
     return (
         <>

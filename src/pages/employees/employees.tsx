@@ -10,6 +10,8 @@ import { useAuth } from "../../contexts/authContext";
 import { createEmployee } from "../../firebase/services/employeesService";
 import { createEmployeeAndGetId } from "../../api/services/employeeService";
 import { EmployeeRequest } from "../../api/dtos";
+import Snackbar, { SnackbarProps } from "../../components/snackbar/snackBar";
+import Loading from "../../components/loading/loading";
 
 function Employees() {
     const { industry } = useAuth();
@@ -19,6 +21,13 @@ function Employees() {
     const [createEmployeeModalOpen, setCreateEmployeeModalOpen] = useState(false);
     const [employeeName, setEmployeeName] = useState("");
     const [employeeEmail, setEmployeeEmail] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({
+        show: false,
+        status: 'success',
+        title: '',
+        subtitle: ''
+    });
 
     useEffect(() => {
         fetchEmployees();
@@ -41,35 +50,67 @@ function Employees() {
     async function fetchEmployees() {
         if (!industry) return;
 
-        const data = await getEmployees(industry.id);
+        try {
+            const data = await getEmployees(industry.id);
 
-        setEmployees(data);
-        setFilteredEmployees(data);
+            setEmployees(data);
+            setFilteredEmployees(data);
+        } catch (err) {
+            setSnackbar({
+                show: true,
+                status: 'error',
+                title: "Erro",
+                subtitle: "Não foi possível carregar os funcionários"
+            });
+        }
     }
 
     async function handleCreateEmployee() {
         if (!industry) return;
 
         if (employeeName.trim() !== "" && employeeEmail.trim() !== "") {
-            const employeeData: EmployeeRequest = {
-                industryId: industry.id,
-                name: employeeName.trim(),
-                email: employeeEmail.trim(),
+            setLoading(true);
+
+            try {
+                const employeeData: EmployeeRequest = {
+                    industryId: industry.id,
+                    name: employeeName.trim(),
+                    email: employeeEmail.trim(),
+                };
+
+                const employeeId = await createEmployeeAndGetId(employeeData);
+
+                const success: boolean = await createEmployee({
+                    ...employeeData,
+                    employeeId
+                });
+
+                if (success) await fetchEmployees();
+
+                setCreateEmployeeModalOpen(false);
+                setSnackbar({
+                    show: true,
+                    status: 'success',
+                    title: "Sucesso!",
+                    subtitle: "Funcionário criado com sucesso"
+                });
+            } catch (err) {
+                setSnackbar({
+                    show: true,
+                    status: 'error',
+                    title: "Erro",
+                    subtitle: "Não foi possível criar o funcionário"
+                });
             }
 
-            const employeeId = await createEmployeeAndGetId(employeeData);
-
-            const success: boolean = await createEmployee({
-                ...employeeData,
-                employeeId
+            setLoading(false);
+        } else {
+            setSnackbar({
+                show: true,
+                status: 'error',
+                title: "Erro",
+                subtitle: "Preencha todos os campos"
             });
-
-            if (success) {
-                console.log("Sucesso");
-                fetchEmployees();
-            } else {
-                console.error("Erro");
-            }
         }
     }
 
@@ -138,6 +179,16 @@ function Employees() {
                         onClick: () => {setCreateEmployeeModalOpen(false)}
                     }
                 ]}
+            />
+
+            <Loading isLoading={loading} fullScreen/>
+
+            <Snackbar
+                status={snackbar.status}
+                title={snackbar.title}
+                subtitle={snackbar.subtitle}
+                show={snackbar.show}
+                onClose={() => setSnackbar({ ...snackbar, show: false })}
             />
         </>
     );

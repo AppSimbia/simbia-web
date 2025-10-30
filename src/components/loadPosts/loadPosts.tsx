@@ -6,6 +6,7 @@ import Loading from "../loading/loading";
 import PostCard from "../postCard/postCard";
 import PostDetails from "../postDetails/postDetails";
 import styles from "./loadPosts.module.css";
+import EmptyListFeedback from "../emptyListFeedback/emptyListFeedback";
 
 export interface LoadPostsProps {
     posts: Post[] | null;
@@ -22,9 +23,9 @@ function LoadPosts({posts}: LoadPostsProps) {
         setDetailsOpen(true);
     };
 
-    if (!posts) {
-        return <Loading isLoading/>;
-    }
+    if (!posts) return <Loading isLoading/>
+
+    if (posts.length === 0) return <EmptyListFeedback message="Nenhuma postagem foi encontrada"/>
 
     return (
         <>

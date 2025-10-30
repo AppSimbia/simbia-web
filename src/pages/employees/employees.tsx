@@ -11,6 +11,7 @@ import { createEmployee } from "../../firebase/services/employeesService";
 import { createEmployeeAndGetId } from "../../api/services/employeeService";
 import { EmployeeRequest } from "../../api/dtos";
 import Snackbar, { SnackbarProps } from "../../components/snackbar/snackBar";
+import Loading from "../../components/loading/loading";
 
 function Employees() {
     const { industry } = useAuth();
@@ -20,6 +21,7 @@ function Employees() {
     const [createEmployeeModalOpen, setCreateEmployeeModalOpen] = useState(false);
     const [employeeName, setEmployeeName] = useState("");
     const [employeeEmail, setEmployeeEmail] = useState("");
+    const [loading, setLoading] = useState(false);
     const [snackbar, setSnackbar] = useState<SnackbarProps>({
         show: false,
         status: 'success',
@@ -67,6 +69,8 @@ function Employees() {
         if (!industry) return;
 
         if (employeeName.trim() !== "" && employeeEmail.trim() !== "") {
+            setLoading(true);
+
             try {
                 const employeeData: EmployeeRequest = {
                     industryId: industry.id,
@@ -81,7 +85,15 @@ function Employees() {
                     employeeId
                 });
 
-                if (success) fetchEmployees();
+                if (success) await fetchEmployees();
+
+                setCreateEmployeeModalOpen(false);
+                setSnackbar({
+                    show: true,
+                    status: 'success',
+                    title: "Sucesso!",
+                    subtitle: "Funcionário criado com sucesso"
+                });
             } catch (err) {
                 setSnackbar({
                     show: true,
@@ -90,6 +102,15 @@ function Employees() {
                     subtitle: "Não foi possível criar o funcionário"
                 });
             }
+
+            setLoading(false);
+        } else {
+            setSnackbar({
+                show: true,
+                status: 'error',
+                title: "Erro",
+                subtitle: "Preencha todos os campos"
+            });
         }
     }
 
@@ -159,6 +180,8 @@ function Employees() {
                     }
                 ]}
             />
+
+            <Loading isLoading={loading} fullScreen/>
 
             <Snackbar
                 status={snackbar.status}

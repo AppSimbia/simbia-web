@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signUp } from '../../api/services/authService';
-import { getIndustryTypes } from '../../api/services/industryTypeService';
+import { getIndustryTypes } from '../../api/services/industryService';
 import { getLocationData } from '../../apiIntegration/services/cepService';
 import Button from '../../components/button/button';
 import { useAuth } from '../../contexts/authContext';

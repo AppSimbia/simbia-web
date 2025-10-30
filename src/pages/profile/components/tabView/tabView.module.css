@@ -72,11 +72,4 @@
     height: 100%;
     overflow: auto;
     padding: 20px;
-    padding-bottom: 0;
-}
-
-@media (max-width: 1080px) {
-    .tabContent {
-        padding-bottom: 20px;
-    }
 }

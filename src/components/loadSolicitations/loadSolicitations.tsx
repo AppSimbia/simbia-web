@@ -35,9 +35,10 @@ function LoadSolicitations({solicitations}: LoadSolicitationsProps) {
         <>
             <section className={styles.content}>
                 <div className={styles.solicitations}>
-                    {solicitations.slice(0, limit).map((s) => {
+                    {solicitations.slice(0, limit).map((s, i) => {
                         return (
                             <SolicitationCard
+                                key={i}
                                 solicitation={s}
                                 onClick={() => {openDetails(s)}}
                                 onAccept={() => {setAcceptModalOpen(true)}}

@@ -59,20 +59,14 @@ function Feed() {
     return (
         <>
             <section>
+                <div className={styles.actions}>
                 <h1 className={styles.feedTitle}>Feed</h1>
 
-                <div className={styles.actions}>
                     <TextInput
                         placeholder="Pesquisar..."
                         size="xg"
                         value={search}
                         onChange={(value) => setSearch(value)}
-                    />
-
-                    <Button
-                        label="Filtrar"
-                        size="ssm"
-                        onClick={() => {console.log(posts)}}
                     />
                 </div>
 

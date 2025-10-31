@@ -6,11 +6,13 @@ import ProfileInfo from "../profileInfo/profileInfo";
 import styles from "./tabView.module.css";
 
 export interface TabViewProps {
+    selfProfile?: boolean;
     industry: Industry;
     posts: Post[] | null;
 };
 
 function TabView({
+    selfProfile = false,
     industry,
     posts
 }: TabViewProps) {
@@ -48,7 +50,7 @@ function TabView({
 
             <div className={styles.tabContent}>
                 {selectedTab === "info" ? (
-                        <ProfileInfo {...industry}/>
+                        <ProfileInfo industry={industry} selfProfile={selfProfile}/>
                     ) : (
                         <LoadPosts posts={posts}/>
                     )

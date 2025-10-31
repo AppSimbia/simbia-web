@@ -4,7 +4,15 @@ import TextInputMultiline from "../../../../components/textInputMultiline/textIn
 import { Industry } from "../../../../interfaces/models/industry";
 import styles from "./profileInfo.module.css";
 
-function ProfileInfo(industry: Industry) {
+export interface ProfileInfoProps {
+    industry: Industry;
+    selfProfile?: boolean;
+}
+
+function ProfileInfo({
+    industry,
+    selfProfile = false
+}: ProfileInfoProps) {
     return (
         <section className={styles.content}>
             <div className={styles.industryData}>
@@ -59,10 +67,13 @@ function ProfileInfo(industry: Industry) {
                 />
             </div>
 
-            <Button
-                label="Salvar Alterações"
-                size="xg"
-            />
+            {selfProfile === true &&
+                <Button
+                    label="Salvar Alterações"
+                    size="xg"
+                    onClick={() => {console.log(selfProfile)}}
+                />
+            }
         </section>
     );
 }

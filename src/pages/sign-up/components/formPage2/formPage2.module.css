@@ -12,7 +12,14 @@
 }
 
 .actions {
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     display: flex;
     gap: 10px;
+}
+
+@media (max-width: 480px) {
+    .actions {
+        flex-direction: column;
+    }
 }

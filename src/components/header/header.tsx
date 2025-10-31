@@ -86,11 +86,11 @@ function Header({
                             <h3>Perfil</h3>
                         </li>
                         <li className={styles.navigationItem} onClick={() => {
-                            navigate("/feed");
+                            navigate("/employees");
                             setSidebarOpen(false);
                         }}>
-                            <img src={emailClosedIcon} className={styles.navigationIcon}/>
-                            <h3>Postagens</h3>
+                            <img src={userGroupIcon} className={styles.navigationIcon}/>
+                            <h3>Funcionários</h3>
                         </li>
                         <li className={styles.navigationItem} onClick={() => {
                             navigate("/solicitations");
@@ -100,11 +100,11 @@ function Header({
                             <h3>Solicitações</h3>
                         </li>
                         <li className={styles.navigationItem} onClick={() => {
-                            navigate("/employees");
+                            navigate("/feed");
                             setSidebarOpen(false);
                         }}>
-                            <img src={userGroupIcon} className={styles.navigationIcon}/>
-                            <h3>Funcionários</h3>
+                            <img src={emailClosedIcon} className={styles.navigationIcon}/>
+                            <h3>Feed</h3>
                         </li>
                     </ul>
                 </div>

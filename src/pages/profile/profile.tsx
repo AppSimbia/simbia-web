@@ -57,7 +57,11 @@ function Profile() {
                     </div>
                 </div>
 
-                <TabView industry={profileIndustry} posts={posts}/>
+                <TabView
+                    selfProfile={!cnpj || industry?.cnpj === cnpj}
+                    industry={profileIndustry}
+                    posts={posts}
+                />
             </section>
         </>
     );

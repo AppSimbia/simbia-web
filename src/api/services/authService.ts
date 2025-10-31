@@ -2,6 +2,7 @@ import { IndustryRequest, IndustryResponse } from "../dtos";
 import { Industry } from "../../interfaces/models/industry";
 import { LoginData } from "../../interfaces/models/loginData";
 import api from "../config";
+import { industryAdapter } from "../adapters/industryAdapter";
 
 export async function signIn(loginData: LoginData): Promise<Industry> {
   const response = await api.post<IndustryResponse>(
@@ -12,27 +13,7 @@ export async function signIn(loginData: LoginData): Promise<Industry> {
     }
   );
 
-  const data = response.data;
-
-  const industry: Industry = {
-    id: data.login.id,
-    name: data.industryName,
-    cnpj: data.cnpj,
-    industryType: {
-      id: data.industryType.id,
-      industryTypeName: data.industryType.industryTypeName,
-      info: data.industryType.info
-    },
-    description: data.description,
-    plan: data.plan.planName,
-    email: data.contactMail,
-    cep: data.cep,
-    state: data.state,
-    latitude: data.latitude,
-    longitude: data.longitude,
-    city: data.city,
-    image: data.image,
-  };
+  const industry: Industry = industryAdapter(response.data);
 
   return industry;
 }
@@ -43,27 +24,7 @@ export async function signUp(industryRequest: IndustryRequest): Promise<Industry
     industryRequest
   );
 
-  const data = response.data;
-
-  const registeredIndustry: Industry = {
-    id: data.login.id,
-    name: data.industryName,
-    cnpj: data.cnpj,
-    industryType: {
-      id: data.industryType.id,
-      industryTypeName: data.industryType.industryTypeName,
-      info: data.industryType.info
-    },
-    description: data.description,
-    plan: data.plan.planName,
-    email: data.contactMail,
-    cep: data.cep,
-    state: data.state,
-    latitude: data.latitude,
-    longitude: data.longitude,
-    city: data.city,
-    image: data.image,
-  };
+  const registeredIndustry: Industry = industryAdapter(response.data);
 
   return registeredIndustry;
 }

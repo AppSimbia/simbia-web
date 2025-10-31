@@ -12,7 +12,7 @@ import FormPage1 from './components/formPage1/formPage1';
 import FormPage2 from './components/formPage2/formPage2';
 import styles from './signUp.module.css';
 import Loading from '../../components/loading/loading';
-import { SnackbarProps } from '../../components/snackbar/snackBar';
+import { SnackbarProps } from '../../components/snackbar/snackbar';
 
 function SignUp() {
     const { logout } = useAuth();

@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import { getPosts } from '../../api/services/postService';
+import { getFeed } from '../../api/services/postService';
 import Button from '../../components/button/button';
 import LoadPosts from '../../components/loadPosts/loadPosts';
+import Snackbar, { SnackbarProps } from '../../components/snackbar/snackbar';
 import TextInput from '../../components/textInput/textInput';
 import { useAuth } from '../../contexts/authContext';
 import { Post } from '../../interfaces/models';
 import styles from './feed.module.css';
-import Snackbar, { SnackbarProps } from '../../components/snackbar/snackBar';
 
 function Feed() {
     const { industry } = useAuth();
@@ -25,7 +25,7 @@ function Feed() {
             if (!industry) return;
             
             try {
-                const data = await getPosts(industry.cnpj);
+                const data = await getFeed(industry.cnpj);
 
                 setPosts(data);
                 setFilteredPosts(data);

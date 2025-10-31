@@ -7,6 +7,7 @@ import { getSolicitations } from "../../mongo/services/solicitationService";
 import styles from "./solicitations.module.css";
 import { useAuth } from "../../contexts/authContext";
 import Snackbar, { SnackbarProps } from "../../components/snackbar/snackbar";
+import { solicitationListMock } from "../../mocks";
 
 function Solicitations() {
     const { industry } = useAuth();
@@ -25,7 +26,7 @@ function Solicitations() {
             if (!industry) return;
 
             try {
-                const data = await getSolicitations(industry.cnpj);
+                const data = solicitationListMock;
 
                 setSolicitations(data);
                 setFilteredSolicitations(data);
@@ -62,19 +63,14 @@ function Solicitations() {
     return (
         <>
             <section>
+                <div className={styles.actions}>
                 <h1 className={styles.solicitationsTitle}>Solicitações</h1>
 
-                <div className={styles.actions}>
                     <TextInput
                         placeholder="Pesquisar..."
                         size="xg"
                         value={search}
                         onChange={(value) => setSearch(value)}
-                    />
-
-                    <Button
-                        label="Filtrar"
-                        size="ssm"
                     />
                 </div>
 

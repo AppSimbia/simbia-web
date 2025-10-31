@@ -40,7 +40,9 @@
 }
 
 .industryImage {
+    height: 32px;
     width: 32px;
+    object-fit: cover;
     border: 2px solid var(--color-primary-50);
     border-radius: 50%;
 }

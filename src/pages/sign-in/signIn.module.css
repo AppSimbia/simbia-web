@@ -1,15 +1,19 @@
 .content {
     width: 100%;
-    height: calc(100vh - 104px);
+    min-height: calc(100vh - 104px);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .container {
-    width: 900px;
+    width: 100%;
+    max-width: 900px;
     height: 600px;
+    min-height: fit-content;
     display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-neutral-100);
     position: relative;
     border-radius: 4px;
@@ -54,6 +58,7 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    padding: 20px;
 }
 .contentRight > :first-child {
     margin-bottom: 30px;
@@ -67,4 +72,19 @@
     position: absolute;
     right: 10px;
     top: 10px;
+}
+
+@media (max-width: 940px) {
+    .container {
+        height: fit-content;
+        flex-direction: column-reverse;
+    }
+
+    .contentLeft {
+        width: 100%;
+    }
+
+    .contentRight {
+        width: 100%;
+    }
 }

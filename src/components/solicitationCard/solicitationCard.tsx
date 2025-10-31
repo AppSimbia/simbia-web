@@ -26,7 +26,7 @@ function SolicitationCard({
 
                 <h3 className={styles.postTitle}>{solicitation.post.title}</h3>
 
-                <div className={styles.aaa}>
+                <div className={styles.details}>
                     <Tag label={solicitation.solicitationType} onClick={(e) => e.stopPropagation()}/>
 
                     <div

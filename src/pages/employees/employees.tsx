@@ -103,25 +103,40 @@ function Employees() {
                 });
             }
 
+            setCreateEmployeeModalOpen(false);
             setLoading(false);
         } else {
             setSnackbar({
                 show: true,
-                status: 'error',
+                status: 'warning',
                 title: "Erro",
                 subtitle: "Preencha todos os campos"
             });
         }
     }
 
-    async function handleRemoveEmployee(uid: string) {
-        const success = await removeEmployee(uid);
+    async function handleRemoveEmployee(uid: string): Promise<void> {
+        setLoading(true);
+        
+        try {
+            await removeEmployee(uid);
 
-        if (success) {
-            console.log("Sucesso");
-            fetchEmployees();
-        } else {
-            console.error("Erro");
+            setSnackbar({
+                show: true,
+                status: 'success',
+                title: "Sucesso!",
+                subtitle: "Funcionário removido"
+            });
+        } catch (err) {
+            setSnackbar({
+                show: true,
+                status: 'error',
+                title: "Erro",
+                subtitle: "Não foi possível remover o funcionário"
+            });
+        } finally {
+            await fetchEmployees();
+            setLoading(false);
         }
     }
 

@@ -17,7 +17,7 @@ function EmployeeCard({
 
                 <div className={styles.employeeInfo}>
                     <h1 className={styles.employeeName}>{employee.name}</h1>
-                    <h3 className={styles.eployeeEmail}>{employee.email}</h3>
+                    <h3 className={styles.employeeEmail}>{employee.email}</h3>
                 </div>
             </div>
         </>

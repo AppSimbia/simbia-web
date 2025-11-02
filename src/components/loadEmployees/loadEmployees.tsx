@@ -30,6 +30,12 @@ function LoadEmployees({
         setDetailsOpen(true);
     }
 
+    function handleRemoveEmployee() {
+        removeEmployee(detailsData.id);
+        setRemoveEmployeeModalOpen(false);
+        setDetailsOpen(false);
+    }
+
     if (!employees) return <Loading isLoading/>
 
     if (employees.length === 0) return <EmptyListFeedback message="Nenhum funcionário foi encontrado"/>
@@ -74,7 +80,7 @@ function LoadEmployees({
                     {
                         label: 'Remover',
                         variant: 'error',
-                        onClick: () => {removeEmployee(detailsData.id)}
+                        onClick: handleRemoveEmployee
                     }
                 ]}
             />

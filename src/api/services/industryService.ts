@@ -25,3 +25,12 @@ export async function getIndustryTypes(): Promise<IndustryType[]> {
 
     return industryTypes;
 }
+
+export async function updateIndustry(cnpj: string, updatedFields: Partial<Industry>): Promise<Industry> {
+    const response = await api.put<Industry>(
+        `/industries/${cnpj}`,
+        updatedFields
+    );
+
+    return response.data;
+}

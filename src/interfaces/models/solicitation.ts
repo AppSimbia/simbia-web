@@ -1,11 +1,15 @@
-import { Payment } from "./payment";
+import { Industry } from "./industry";
 import { Post } from "./post";
 
 export interface Solicitation {
-    id: number;
-    employeeName?: string;
-    industryName?: string;
+    solicitationId: string | null;
+    categoryName: string;
+    industry: Industry | null;
     post: Post;
-    solicitationType: 'Postagem' | 'Match' | 'Fechamento de Match';
-    paymentInfo?: Payment
-};
+    measureUnit: string | null;
+    quantity: number | null;
+    price: number | null;
+    solicitationType: string;
+    solicitationText: string | null;
+    title: string;
+}

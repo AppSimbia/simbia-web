@@ -21,7 +21,7 @@ function SolicitationCard({
         <>
             <div className={styles.card} onClick={onClick}>
                 <h1 className={styles.employeeName}>
-                    {solicitation.employeeName || solicitation.industryName}
+                    {solicitation.industry?.name || solicitation.post.employeeName}
                 </h1>
 
                 <h3 className={styles.postTitle}>{solicitation.post.title}</h3>

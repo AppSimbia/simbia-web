@@ -1,4 +1,4 @@
-export interface SolicitationResponse {
+export interface MatchSolicitationResponse {
     id: string;
     idPost: number;
     uidEmployeePurchaser: string | null;

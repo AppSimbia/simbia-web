@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import Button from "../../components/button/button";
+import { getAllSolicitations } from "../../api/services/solicitationService";
 import LoadSolicitations from "../../components/loadSolicitations/loadSolicitations";
-import TextInput from "../../components/textInput/textInput";
-import { Solicitation } from "../../interfaces/models";
-import { getSolicitations } from "../../mongo/services/solicitationService";
-import styles from "./solicitations.module.css";
-import { useAuth } from "../../contexts/authContext";
 import Snackbar, { SnackbarProps } from "../../components/snackbar/snackbar";
-import { solicitationListMock } from "../../mocks";
+import TextInput from "../../components/textInput/textInput";
+import { useAuth } from "../../contexts/authContext";
+import { Solicitation } from "../../interfaces/models";
+import styles from "./solicitations.module.css";
 
 function Solicitations() {
     const { industry } = useAuth();
@@ -26,7 +24,7 @@ function Solicitations() {
             if (!industry) return;
 
             try {
-                const data = solicitationListMock;
+                const data = await getAllSolicitations(industry.cnpj);
 
                 setSolicitations(data);
                 setFilteredSolicitations(data);
@@ -50,15 +48,14 @@ function Solicitations() {
             setFilteredSolicitations(solicitations);
         } else {
             const filteredData = solicitations.filter((e) => 
-                e.employeeName ?
-                    e.employeeName.toLowerCase().includes(search.toLowerCase())
-                    :
-                    e.industryName?.toLowerCase().includes(search.toLowerCase())
+                e.post.title.toLowerCase().includes(search.toLowerCase())
             );
 
             setFilteredSolicitations(filteredData);
         }
     }, [solicitations, search]);
+
+    if (!industry) return null;
 
     return (
         <>
@@ -70,11 +67,11 @@ function Solicitations() {
                         placeholder="Pesquisar..."
                         size="xg"
                         value={search}
-                        onChange={(value) => setSearch(value)}
+                        onChange={setSearch}
                     />
                 </div>
 
-                <LoadSolicitations solicitations={filteredSolicitations}/>
+                <LoadSolicitations solicitations={filteredSolicitations} industryId={industry.id}/>
             </section>
 
             <Snackbar

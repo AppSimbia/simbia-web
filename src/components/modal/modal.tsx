@@ -15,7 +15,7 @@ interface ModalProps {
 function Modal({
     title,
     subtitle,
-    isOpen = false,
+    isOpen,
     onClose,
     inputs = [],
     actions = []

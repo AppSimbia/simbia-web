@@ -10,8 +10,8 @@ export function postAdapter(response: PostResponse): Post {
 
     const measureUnitMap: Record<string, string> = {
         "1": "Kg",
-        "2": "L",
-        "3": "M",
+        "2": "M",
+        "3": "L",
         "4": "Unidades"
     };
 

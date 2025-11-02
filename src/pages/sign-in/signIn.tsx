@@ -7,6 +7,7 @@ import { LoginData } from '../../interfaces/models';
 import styles from './signIn.module.css';
 import Loading from '../../components/loading/loading';
 import Snackbar, { SnackbarProps } from '../../components/snackbar/snackbar';
+import { acceptSolicitation } from '../../mongo/services/solicitationService';
 
 function SignIn() {
     const { login, logout } = useAuth();

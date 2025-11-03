@@ -17,7 +17,20 @@
 
 .employeeImg {
     width: 100px;
+    height: 100px;
+    object-fit: cover;
     border-radius: 50%;
     padding: 4px;
     background-color: var(--color-primary-50);
+}
+
+@media(max-width: 430px) {
+    .employeeImg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .employeeEmail {
+        font-size: 0.6rem;
+    }
 }

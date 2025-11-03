@@ -136,3 +136,9 @@
     transform: none;
     background-color: #FFFFFF00;
 }
+
+@media(max-width: 430px) {
+    .tag {
+        font-size: 0.8rem;
+    }
+}

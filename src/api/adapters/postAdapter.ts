@@ -4,14 +4,14 @@ import { PostResponse } from "../dtos";
 export function postAdapter(response: PostResponse): Post {
     const classificationMap: Record<string, string> = {
         "1": "Perigoso",
-        "2": "Perigoso Não Inerte",
-        "3": "Perigoso Inerte"
+        "2": "Não Perigoso Não Inerte",
+        "3": "Não Perigoso Inerte"
     };
 
     const measureUnitMap: Record<string, string> = {
         "1": "Kg",
-        "2": "L",
-        "3": "M",
+        "2": "M",
+        "3": "L",
         "4": "Unidades"
     };
 
@@ -29,10 +29,12 @@ export function postAdapter(response: PostResponse): Post {
         title: response.title,
         description: response.description,
         quantity: response.quantity,
+        price: response.price,
         measureUnit: measureUnitMap[response.measureUnit],
         classification: classificationMap[response.classification],
         image: response.image,
-        publicationDate: response.publicationDate
+        publicationDate: response.publicationDate,
+        status: response.status
     };
 
     return adaptedPost;

@@ -16,6 +16,7 @@ export function AppRoutes() {
             <Route path="/solicitations" element={<Solicitations/>}/>
             <Route path="/employees" element={<Employees/>}/>
             <Route path="/profile" element={<Profile/>}/>
+            <Route path="/profile/:cnpj" element={<Profile/>}/>
         </Routes>
     );
 }

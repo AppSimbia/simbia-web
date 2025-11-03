@@ -1,0 +1,52 @@
+.overlay {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.content {
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+.loading {
+    width: 80px;
+    height: 80px;
+    border: 4px solid transparent;
+    border-bottom-color: var(--color-primary-50);
+    border-left-color: var(--color-primary-50);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.hide {
+    display: none;
+}
+
+.loadingText {
+    color: var(--color-primary-50);
+    font-weight: 600;
+}
+
+.fullScreen {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

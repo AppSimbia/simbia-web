@@ -1,13 +1,23 @@
 import { useState } from "react";
+import { Employee } from "../../interfaces/models";
 import { employeeMock } from "../../mocks";
+import Button from "../button/button";
 import EmployeeCard from "../employeeCard/employeeCard";
 import EmployeeDetails from "../employeeDetails/employeeDetails";
+import Loading from "../loading/loading";
 import Modal from "../modal/modal";
 import styles from "./loadEmployees.module.css";
-import { Employee, Employees } from "../../interfaces/models";
-import Button from "../button/button";
+import EmptyListFeedback from "../emptyListFeedback/emptyListFeedback";
 
-function LoadEmployees({employees}: Employees) {
+export interface LoadEmployeesProps {
+    employees: Employee[] | null;
+    removeEmployee: (uid: string) => void;
+};
+
+function LoadEmployees({
+    employees,
+    removeEmployee
+}: LoadEmployeesProps) {
     const [limit, setLimit] = useState(10);
 
     const [detailsData, setDetailsData] = useState<Employee>(employeeMock);
@@ -19,6 +29,16 @@ function LoadEmployees({employees}: Employees) {
         setDetailsData(employee);
         setDetailsOpen(true);
     }
+
+    function handleRemoveEmployee() {
+        removeEmployee(detailsData.id);
+        setRemoveEmployeeModalOpen(false);
+        setDetailsOpen(false);
+    }
+
+    if (!employees) return <Loading isLoading/>
+
+    if (employees.length === 0) return <EmptyListFeedback message="Nenhum funcionário foi encontrado"/>
     
     return (
         <>
@@ -59,7 +79,8 @@ function LoadEmployees({employees}: Employees) {
                     },
                     {
                         label: 'Remover',
-                        variant: 'error'
+                        variant: 'error',
+                        onClick: handleRemoveEmployee
                     }
                 ]}
             />

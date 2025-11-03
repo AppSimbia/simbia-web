@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import emailClosedIcon from '../../assets/icons/email-closed.svg';
 import hamburguerIcon from '../../assets/icons/hamburguer.svg';
-import { HeaderProps } from '../../interfaces/props';
-import styles from './header.module.css';
-import { industryMock } from '../../mocks';
+import helpChatIcon from '../../assets/icons/help-chat.svg';
+import userCircleIcon from '../../assets/icons/user-circle.svg';
+import userGroupIcon from '../../assets/icons/user-group.svg';
 import { useAuth } from '../../contexts/authContext';
+import styles from './header.module.css';
+
+export interface HeaderProps {
+    children: React.ReactNode;
+};
 
 function Header({
     children,
@@ -38,7 +44,7 @@ function Header({
                 <div className={styles.right}>
                     {industry ?
                         <img
-                            src={industryMock.imgUrl}
+                            src={industry.image}
                             alt="Logo da empresa"
                             className={styles.headerLogo}
                             onClick={() => {navigate("/profile")}}
@@ -75,26 +81,30 @@ function Header({
                         <li className={styles.navigationItem} onClick={() => {
                             navigate("/profile");
                             setSidebarOpen(false);
-                            }}>
+                        }}>
+                            <img src={userCircleIcon} className={styles.navigationIcon}/>
                             <h3>Perfil</h3>
-                        </li>
-                        <li className={styles.navigationItem} onClick={() => {
-                            navigate("/feed");
-                            setSidebarOpen(false);
-                            }}>
-                            <h3>Postagens</h3>
-                        </li>
-                        <li className={styles.navigationItem} onClick={() => {
-                            navigate("/solicitations");
-                            setSidebarOpen(false);
-                            }}>
-                            <h3>Solicitações</h3>
                         </li>
                         <li className={styles.navigationItem} onClick={() => {
                             navigate("/employees");
                             setSidebarOpen(false);
-                            }}>
+                        }}>
+                            <img src={userGroupIcon} className={styles.navigationIcon}/>
                             <h3>Funcionários</h3>
+                        </li>
+                        <li className={styles.navigationItem} onClick={() => {
+                            navigate("/solicitations");
+                            setSidebarOpen(false);
+                        }}>
+                            <img src={helpChatIcon} className={styles.navigationIcon}/>
+                            <h3>Solicitações</h3>
+                        </li>
+                        <li className={styles.navigationItem} onClick={() => {
+                            navigate("/feed");
+                            setSidebarOpen(false);
+                        }}>
+                            <img src={emailClosedIcon} className={styles.navigationIcon}/>
+                            <h3>Feed</h3>
                         </li>
                     </ul>
                 </div>

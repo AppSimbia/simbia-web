@@ -1,4 +1,8 @@
-import { ProductCategory } from "./productCategory";
+export interface ProductCategory {
+    id: number;
+    categoryName: string;
+    info: string;
+};
 
 export interface Post {
     idPost: number;
@@ -10,8 +14,10 @@ export interface Post {
     title: string;
     description: string;
     quantity: number;
+    price: number;
     measureUnit: string;
     classification: string;
     image: string;
     publicationDate: string;
+    status: string;
 };

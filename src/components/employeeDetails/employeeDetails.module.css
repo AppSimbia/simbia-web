@@ -7,6 +7,7 @@
     display: none;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     background-color: rgba(0, 0, 0, 0.2);
     z-index: 100;
 }
@@ -31,12 +32,14 @@
 
 .employeeImg {
     width: 200px;
+    height: 200px;
     border-radius: 50%;
     padding: 4px;
     background-color: var(--color-primary-50);
 }
 
 .employeeInfo {
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;

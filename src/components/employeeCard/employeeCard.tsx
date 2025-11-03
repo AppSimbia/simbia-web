@@ -1,6 +1,10 @@
-import styles from "./employeeCard.module.css";
 import { Employee } from "../../interfaces/models";
-import { EmployeeCardProps } from "../../interfaces/props";
+import styles from "./employeeCard.module.css";
+
+export interface EmployeeCardProps {
+    employee: Employee;
+    onClick: () => void;
+};
 
 function EmployeeCard({
     employee,
@@ -9,11 +13,11 @@ function EmployeeCard({
     return (
         <>
             <div className={styles.card} onClick={onClick}>
-                <img src={employee.image} alt="Imagem de perfil" className={styles.employeeImg}/>
+                <img src={employee.imageUri} alt="Imagem de perfil" className={styles.employeeImg}/>
 
                 <div className={styles.employeeInfo}>
                     <h1 className={styles.employeeName}>{employee.name}</h1>
-                    <h3 className={styles.eployeeEmail}>{employee.email}</h3>
+                    <h3 className={styles.employeeEmail}>{employee.email}</h3>
                 </div>
             </div>
         </>

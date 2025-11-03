@@ -22,4 +22,10 @@
     --color-neutral-50: #A0A0A0;
     --color-neutral-25: #7F7F7F;
     --color-neutral-0: #4C4C4C;
+
+    --color-warning-100: #FAE7C4;
+    --color-warning-75: #F3C86A;
+    --color-warning-50: #E0A41B;
+    --color-warning-25: #B37E11;
+    --color-warning-0: #805B0B;
 }

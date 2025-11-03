@@ -1,17 +1,17 @@
 import { Solicitation } from "../interfaces/models";
-import { productMock } from "./product.mock";
+import { postMock } from "./post.mock";
 
 export const solicitationMock: Solicitation = {
     id: 1,
     industryName: "Nestlé",
-    product: productMock,
+    post: postMock,
     solicitationType: 'Match'
 };
 
 export const solicitationMock2: Solicitation = {
     id: 2,
     employeeName: "Marcelo Jr",
-    product: productMock,
+    post: postMock,
     solicitationType: "Fechamento de Match",
     paymentInfo: {
         value: 299.99,

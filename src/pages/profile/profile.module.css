@@ -64,3 +64,10 @@
         align-items: center;
     }
 }
+
+@media(max-width: 430px) {
+    .profileInfo {
+        width: fit-content;
+        max-width: 280px;
+    }
+}

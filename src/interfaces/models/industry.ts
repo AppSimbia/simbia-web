@@ -1,15 +1,17 @@
-import { industryType } from "./industryType";
+import { IndustryType } from "./industryType";
 
 export interface Industry {
     id: number;
     name: string;
-    imgUrl: string;
+    image: string;
     cnpj: string;
-    industryType: industryType;
+    industryType: IndustryType;
     description: string;
     plan: string;
     email: string;
     cep: string;
     state: string;
+    latitude: number;
+    longitude: number;
     city: string;
 };

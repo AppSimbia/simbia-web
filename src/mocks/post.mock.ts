@@ -15,9 +15,11 @@ export const postMock: Post = {
     image: "https://recicla.club/wp-content/uploads/2021/11/design-blog-37-.png",
     description: "O resíduo de Plástico PET (Polietileno Tereftalato) é amplamente utilizado em garrafas e embalagens de bebidas. Após o consumo, ele pode ser reciclado diversas vezes, sendo transformado em fibras têxteis, novos recipientes plásticos ou até mesmo materiais para construção. A correta separação e higienização deste resíduo são fundamentais para garantir a qualidade do material reciclado e reduzir o impacto ambiental causado pelo descarte incorreto.",
     quantity: 1500,
+    price: 9.5,
     measureUnit: "kg",
     classification: "Não perigoso",
-    publicationDate: "aaaaaaa"
+    publicationDate: "aaaaaaa",
+    status: "2"
 };
 
 export const postListMock: Post[] = Array(20).fill(postMock);

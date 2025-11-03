@@ -2,7 +2,14 @@ import Tag from "../tag/tag";
 import styles from "./solicitationCard.module.css";
 import closeIcon from "../../assets/icons/close.svg";
 import CheckIcon from "../../assets/icons/check.svg";
-import { SolicitationCardProps } from "../../interfaces/props/solicitationCardProps";
+import { Solicitation } from "../../interfaces/models";
+
+export interface SolicitationCardProps {
+    solicitation: Solicitation;
+    onClick: () => void;
+    onAccept: () => void;
+    onRefuse: () => void;
+};
 
 function SolicitationCard({
     solicitation,
@@ -14,12 +21,12 @@ function SolicitationCard({
         <>
             <div className={styles.card} onClick={onClick}>
                 <h1 className={styles.employeeName}>
-                    {solicitation.employeeName || solicitation.industryName}
+                    {solicitation.industry?.name || solicitation.post.employeeName}
                 </h1>
 
-                <h3 className={styles.postTitle}>{solicitation.product.name}</h3>
+                <h3 className={styles.postTitle}>{solicitation.post.title}</h3>
 
-                <div className={styles.aaa}>
+                <div className={styles.details}>
                     <Tag label={solicitation.solicitationType} onClick={(e) => e.stopPropagation()}/>
 
                     <div

@@ -1,0 +1,94 @@
+.modalOverlay  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 100;
+}
+
+.isOpen {
+    display: flex;
+}
+
+.content {
+    width: 500px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: var(--color-neutral-100);
+    border-radius: 4px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+}
+
+.employees {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    overflow: auto;
+}
+
+.employeeCard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: var(--color-neutral-100);
+    border-radius: 4px;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.employeeCard:hover {
+    transform: translateY(-1px);
+}
+
+.selectEmployee {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--color-primary-50);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.selectEmployee:checked::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--color-primary-50);
+}
+
+.employeeInfo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.employeeImg {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary-50);
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}

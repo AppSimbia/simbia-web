@@ -1,66 +1,91 @@
 import { useEffect, useState } from "react";
-import Button from "../../components/button/button";
+import { getAllSolicitations } from "../../api/services/solicitationService";
 import LoadSolicitations from "../../components/loadSolicitations/loadSolicitations";
+import Snackbar, { SnackbarProps } from "../../components/snackbar/snackbar";
 import TextInput from "../../components/textInput/textInput";
+import { useAuth } from "../../contexts/authContext";
 import { Solicitation } from "../../interfaces/models";
-import { solicitationListMock } from "../../mocks";
 import styles from "./solicitations.module.css";
 
 function Solicitations() {
-    const [solicitations, setSolicitations] = useState<Solicitation[]>([]);
-    const [filteredSolicitations, setFilteredSolicitations] = useState<Solicitation[]>([]);
+    const { industry } = useAuth();
+    const [solicitations, setSolicitations] = useState<Solicitation[] | null>(null);
+    const [filteredSolicitations, setFilteredSolicitations] = useState<Solicitation[] | null>(null);
     const [search, setSearch] = useState("");
+    const [snackbar, setSnackbar] = useState<SnackbarProps>({
+        show: false,
+        status: 'success',
+        title: '',
+        subtitle: ''
+    });
 
     useEffect(() => {
-        async function fetchSolicitations() {
-            const data = solicitationListMock;
-
-            setSolicitations(data);
-            setFilteredSolicitations(data);
-        }
-
         fetchSolicitations();
-    }, []);
+    }, [industry]);
 
     useEffect(() => {
+        if (!solicitations) return;
+
         if (search.trim() === "") {
             setFilteredSolicitations(solicitations);
         } else {
             const filteredData = solicitations.filter((e) => 
-                e.employeeName ?
-                    e.employeeName.toLowerCase().includes(search.toLowerCase())
-                    :
-                    e.industryName?.toLowerCase().includes(search.toLowerCase())
+                e.post.title.toLowerCase().includes(search.toLowerCase())
             );
 
             setFilteredSolicitations(filteredData);
         }
     }, [solicitations, search]);
 
-    if (!solicitations) {
-        return null;
+    async function fetchSolicitations() {
+        if (!industry) return;
+
+        try {
+            const data = await getAllSolicitations(industry.cnpj);
+
+            setSolicitations(data);
+            setFilteredSolicitations(data);
+        } catch (err) {
+            setSnackbar({
+                show: true,
+                status: 'error',
+                title: "Erro",
+                subtitle: "Não foi possível carregar as solicitações"
+            });
+        }
     }
 
+    if (!industry) return null;
+
     return (
-        <section>
-            <h1 className={styles.solicitationsTitle}>Solicitações</h1>
+        <>
+            <section>
+                <div className={styles.actions}>
+                <h1 className={styles.solicitationsTitle}>Solicitações</h1>
 
-            <div className={styles.actions}>
-                <TextInput
-                    placeholder="Pesquisar..."
-                    size="xg"
-                    value={search}
-                    onChange={(value) => setSearch(value)}
+                    <TextInput
+                        placeholder="Pesquisar..."
+                        size="xg"
+                        value={search}
+                        onChange={setSearch}
+                    />
+                </div>
+
+                <LoadSolicitations
+                    solicitations={filteredSolicitations}
+                    industryId={industry.id}
+                    onUpdateSolicitations={fetchSolicitations}
                 />
+            </section>
 
-                <Button
-                    label="Filtrar"
-                    size="ssm"
-                />
-            </div>
-
-            <LoadSolicitations solicitations={filteredSolicitations}/>
-        </section>
+            <Snackbar
+                status={snackbar.status}
+                title={snackbar.title}
+                subtitle={snackbar.subtitle}
+                show={snackbar.show}
+                onClose={() => setSnackbar({ ...snackbar, show: false })}
+            />
+        </>
     );
 }
 

@@ -1,4 +1,4 @@
-export interface industryRequest {
+export interface IndustryRequest {
     idIndustryType: number;
     cnpj: string;
     password: string;
@@ -7,6 +7,8 @@ export interface industryRequest {
     contactMail: string;
     cep: string;
     city: string;
+    latitude: number;
+    longitude: number;
     state: string;
     image: string;
 };

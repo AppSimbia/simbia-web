@@ -10,6 +10,7 @@
     font-weight: 400;
     text-align: start;
     color: var(--color-secondary-0);
+    background-color: var(--color-neutral-100);
     resize: none;
 }
 .input:focus {
@@ -17,17 +18,20 @@
 }
 
 .sm {
-    width: 200px;
+    max-width: 200px;
 }
-
 .md {
-    width: 300px;
+    max-width: 300px;
 }
-
 .lg {
-    width: 400px;
+    max-width: 400px;
+}
+.xg {
+    max-width: 500px;
 }
 
-.xg {
-    width: 500px;
+@media(max-width: 430px) {
+    .input {
+        font-size: 0.8rem;
+    }
 }

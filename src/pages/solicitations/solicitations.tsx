@@ -6,8 +6,11 @@ import TextInput from "../../components/textInput/textInput";
 import { useAuth } from "../../contexts/authContext";
 import { Solicitation } from "../../interfaces/models";
 import styles from "./solicitations.module.css";
+import { useProtectedRoute } from "../../hooks/useProtectedRoute";
 
 function Solicitations() {
+    useProtectedRoute();
+    
     const { industry } = useAuth();
     const [solicitations, setSolicitations] = useState<Solicitation[] | null>(null);
     const [filteredSolicitations, setFilteredSolicitations] = useState<Solicitation[] | null>(null);

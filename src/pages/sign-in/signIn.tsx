@@ -74,14 +74,12 @@ function SignIn() {
                         <TextInput
                             placeholder='CNPJ'
                             size='lg'
-                            variant='underline'
                             value={cnpj}
                             onChange={setCnpj}
                         />
                         <TextInput
                             placeholder='Senha'
                             size='lg'
-                            variant='underline'
                             type='password'
                             value={password}
                             onChange={setPassword}

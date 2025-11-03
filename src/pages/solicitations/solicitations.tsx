@@ -20,24 +20,6 @@ function Solicitations() {
     });
 
     useEffect(() => {
-        async function fetchSolicitations() {
-            if (!industry) return;
-
-            try {
-                const data = await getAllSolicitations(industry.cnpj);
-
-                setSolicitations(data);
-                setFilteredSolicitations(data);
-            } catch (err) {
-                setSnackbar({
-                    show: true,
-                    status: 'error',
-                    title: "Erro",
-                    subtitle: "Não foi possível carregar as solicitações"
-                });
-            }
-        }
-
         fetchSolicitations();
     }, [industry]);
 
@@ -55,6 +37,24 @@ function Solicitations() {
         }
     }, [solicitations, search]);
 
+    async function fetchSolicitations() {
+        if (!industry) return;
+
+        try {
+            const data = await getAllSolicitations(industry.cnpj);
+
+            setSolicitations(data);
+            setFilteredSolicitations(data);
+        } catch (err) {
+            setSnackbar({
+                show: true,
+                status: 'error',
+                title: "Erro",
+                subtitle: "Não foi possível carregar as solicitações"
+            });
+        }
+    }
+
     if (!industry) return null;
 
     return (
@@ -71,7 +71,11 @@ function Solicitations() {
                     />
                 </div>
 
-                <LoadSolicitations solicitations={filteredSolicitations} industryId={industry.id}/>
+                <LoadSolicitations
+                    solicitations={filteredSolicitations}
+                    industryId={industry.id}
+                    onUpdateSolicitations={fetchSolicitations}
+                />
             </section>
 
             <Snackbar

@@ -3,6 +3,7 @@ import { acceptPostSolicitation, refusePostSolicitation } from "../../api/servic
 import { getEmployees } from "../../firebase/services/employeesService";
 import { Employee, Solicitation } from "../../interfaces/models";
 import { solicitationMock } from "../../mocks";
+import { acceptMatchSolicitation, refuseMatchSolicitation } from "../../mongo/services/solicitationService";
 import Button from "../button/button";
 import EmployeeSelect from "../employeeSelect/employeeSelect";
 import EmptyListFeedback from "../emptyListFeedback/emptyListFeedback";
@@ -12,16 +13,17 @@ import Snackbar, { SnackbarProps } from "../snackbar/snackbar";
 import SolicitationCard from "../solicitationCard/solicitationCard";
 import SolicitationDetails from "../solicitationDetails/solicitationDetails";
 import styles from "./loadSolicitations.module.css";
-import { acceptMatchSolicitation, refuseMatchSolicitation } from "../../mongo/services/solicitationService";
 
 export interface LoadSolicitationsProps {
     solicitations: Solicitation[] | null;
     industryId: number;
+    onUpdateSolicitations: () => Promise<void>;
 }
 
 function LoadSolicitations({
     solicitations,
-    industryId
+    industryId,
+    onUpdateSolicitations
 }: LoadSolicitationsProps) {
     const [limit, setLimit] = useState(10);
 
@@ -44,6 +46,7 @@ function LoadSolicitations({
     const [refuseModalOpen, setRefuseModalOpen] = useState(false);
 
     const [solicitationPostId, setSolicitationPostId] = useState(0);
+    const [solicitationType, setSolicitationType] = useState("");
     const [solicitationMatchId, setSolicitationMatchId] = useState("");
     
     useEffect(() => {
@@ -67,12 +70,13 @@ function LoadSolicitations({
     function openDetails(solicitation: Solicitation) {
         setDetailsData(solicitation);
         setSolicitationPostId(solicitation.post.idPost);
+        setSolicitationType(solicitation.solicitationType);
         setSolicitationMatchId(solicitation.solicitationId || "");
         setDetailsOpen(true);
     };
 
-    function handleAcceptSolicitation() {
-        if (solicitationMatchId) {
+    function handleAcceptSolicitation(solicitation?: Solicitation) {
+        if (solicitation?.solicitationType === "Criação de Match" || solicitationType === "Criação de Match") {
             setSelectEmployeeModalOpen(true);
         } else {
             setAcceptModalOpen(true);
@@ -84,6 +88,8 @@ function LoadSolicitations({
 
         try {
             await acceptPostSolicitation(solicitationPostId);
+
+            await onUpdateSolicitations();
             
             setSnackbar({
                 show: true,
@@ -110,6 +116,8 @@ function LoadSolicitations({
 
         try {
             await refusePostSolicitation(solicitationPostId);
+
+            await onUpdateSolicitations();
             
             setSnackbar({
                 show: true,
@@ -131,11 +139,17 @@ function LoadSolicitations({
         }
     }
 
-    async function acceptMatch(uidEmployee: string) {
+    async function acceptMatch(uidEmployee?: string) {
         setLoading(true);
 
         try {
-            await acceptMatchSolicitation(solicitationMatchId, uidEmployee);
+            if (uidEmployee) {
+                await acceptMatchSolicitation(solicitationMatchId, uidEmployee);
+            } else {
+                await acceptMatchSolicitation(solicitationMatchId);
+            }
+
+            await onUpdateSolicitations();
             
             setSnackbar({
                 show: true,
@@ -163,11 +177,13 @@ function LoadSolicitations({
         await acceptMatch(uidEmployee);
     }
     
-    async function refuseMatch() {
+    async function refuseMatch(solicitationId?: string) {
         setLoading(true);
 
         try {
-            await refuseMatchSolicitation(solicitationMatchId);
+            await refuseMatchSolicitation(solicitationId || solicitationMatchId);
+
+            await onUpdateSolicitations();
             
             setSnackbar({
                 show: true,
@@ -189,11 +205,35 @@ function LoadSolicitations({
         }
     }
 
-    function handleRefuseSolicitation() {
-        if (solicitationMatchId) {
-            refuseMatch();
+    function handleRefuseSolicitation(solicitation?: Solicitation) {
+        if (solicitation?.solicitationId || solicitationMatchId) {
+            refuseMatch(solicitation?.solicitationId ?? undefined);
         } else {
             refusePost();
+        }
+    }
+
+    function fastActionAccept(solicitation: Solicitation) {
+        setDetailsData(solicitation);
+        setSolicitationPostId(solicitation.post.idPost);
+        setSolicitationMatchId(solicitation.solicitationId || "");
+
+        handleAcceptSolicitation(solicitation);
+    }
+
+    function fastActionRefuse(solicitation: Solicitation) {
+        setDetailsData(solicitation);
+        setSolicitationPostId(solicitation.post.idPost);
+        setSolicitationMatchId(solicitation.solicitationId || "");
+
+        handleRefuseSolicitation(solicitation);
+    }
+
+    function handleAccept() {
+        if (solicitationMatchId !== "") {
+            acceptMatch();
+        } else {
+            acceptPost();
         }
     }
 
@@ -211,8 +251,8 @@ function LoadSolicitations({
                                 key={i}
                                 solicitation={s}
                                 onClick={() => {openDetails(s)}}
-                                onAccept={() => {setAcceptModalOpen(true)}}
-                                onRefuse={() => {setRefuseModalOpen(true)}}
+                                onAccept={() => {fastActionAccept(s)}}
+                                onRefuse={() => {fastActionRefuse(s)}}
                             />
                         )
                     })}
@@ -252,7 +292,7 @@ function LoadSolicitations({
                 actions={[
                     {
                         label: 'Aceitar',
-                        onClick: acceptPost
+                        onClick: handleAccept
                     },
                     {
                         label: 'Cancelar',

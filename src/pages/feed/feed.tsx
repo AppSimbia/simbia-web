@@ -7,8 +7,12 @@ import TextInput from '../../components/textInput/textInput';
 import { useAuth } from '../../contexts/authContext';
 import { Post } from '../../interfaces/models';
 import styles from './feed.module.css';
+import { useProtectedRoute } from '../../hooks/useProtectedRoute';
 
 function Feed() {
+        
+    useProtectedRoute();
+    
     const { industry } = useAuth();
     const [posts, setPosts] = useState<Post[] | null>(null);
     const [filteredPosts, setFilteredPosts] = useState<Post[] | null>(null);

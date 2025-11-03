@@ -12,8 +12,11 @@ import { createEmployeeAndGetId } from "../../api/services/employeeService";
 import { EmployeeRequest } from "../../api/dtos";
 import Snackbar, { SnackbarProps } from "../../components/snackbar/snackbar";
 import Loading from "../../components/loading/loading";
+import { useProtectedRoute } from "../../hooks/useProtectedRoute";
 
 function Employees() {
+    useProtectedRoute();
+    
     const { industry } = useAuth();
     const [employees, setEmployees] = useState<Employee[] | null>(null);
     const [filteredEmployees, setFilteredEmployees] = useState<Employee[] | null>(null);

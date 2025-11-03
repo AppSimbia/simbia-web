@@ -11,7 +11,7 @@ export async function getMatchSolicitations(cnpj: string): Promise<SolicitationR
     return data;
 }
 
-export async function acceptMatchSolicitation(idMatch: string, uidEmployeeSeller: string) {
+export async function acceptMatchSolicitation(idMatch: string, uidEmployeeSeller?: string) {
     const response = await api.post(
         `/match/status/${idMatch}?action=update`,
         {uidEmployeeSeller: uidEmployeeSeller}

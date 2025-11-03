@@ -7,7 +7,9 @@
     display: none;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     background-color: rgba(0, 0, 0, 0.2);
+    overflow: auto;
     z-index: 100;
 }
 
@@ -16,7 +18,8 @@
 }
 
 .content {
-    width: 1000px;
+    width: 100%;
+    max-width: 1000px;
     height: 500px;
     display: flex;
     justify-content: center;
@@ -26,6 +29,7 @@
     background-color: var(--color-neutral-100);
     border-radius: 4px;
     box-shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 .containerLeft {
@@ -49,6 +53,7 @@
     width: 100%;
     display: flex;
     gap: 4px;
+    flex-wrap: wrap;
 }
 
 .postDetails {
@@ -56,8 +61,8 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: flex-start;
+    gap: 20px;
 }
 
 .postInfo {
@@ -70,4 +75,44 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
+}
+
+@media (max-width: 900px) {
+    .content {
+        flex-direction: column;
+        height: auto;
+        max-height: none;
+    }
+
+    .containerLeft, .postDetails {
+        width: 100%;
+        height: auto;
+    }
+
+    .postImg {
+        height: 300px;
+    }
+}
+
+@media (max-width: 600px) {
+    .content {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .postImg {
+        height: 240px;
+    }
+
+    .postDetails h1 {
+        font-size: 1.4rem;
+    }
+
+    .postInfo h3 {
+        font-size: 1rem;
+    }
+
+    .description span {
+        font-size: 0.95rem;
+    }
 }

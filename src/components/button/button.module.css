@@ -180,3 +180,9 @@
 .xg {
     max-width: 500px;
 }
+
+@media(max-width: 430px) {
+    .button {
+        font-size: 0.8rem;
+    }
+}

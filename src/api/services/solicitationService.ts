@@ -7,37 +7,34 @@ import { MatchSolicitationResponse, PostSolicitationResponse } from "../dtos";
 import { getIndustry } from "./industryService";
 import { getPost } from "./postService";
 
-export async function getAllSolicitations(
-    cnpj: string,
-): Promise<Solicitation[]> {
+export async function getAllSolicitations(cnpj: string): Promise<Solicitation[]> {
     const solicitations: Solicitation[] = [];
 
     const solicitationsInfo: MatchSolicitationResponse[] = await getMatchSolicitations(cnpj);
-    solicitationsInfo.forEach(async (s) => {
+
+    const matchPromises = solicitationsInfo.map(async (s) => {
         const post = await getPost(s.idPost);
         const industry = await getIndustry(s.idIndustryPurchaser);
-
-        const solicitation: Solicitation = matchSolicitationAdapter(s, post, industry);
-        solicitations.push(solicitation);
+        return matchSolicitationAdapter(s, post, industry);
     });
-    
+
+    const matchResults = await Promise.all(matchPromises);
+    solicitations.push(...matchResults);
+
     const response = await api.post<PostSolicitationResponse[]>(
         "/solicitations",
-        {
-            cnpjIndustry: cnpj,
-            solicitations: []
-        }
+        { cnpjIndustry: cnpj, solicitations: [] }
     );
 
     const data = response.data;
 
-    data.forEach(async (s) => {
+    const postPromises = data.map(async (s) => {
         const post = await getPost(s.idPost);
-        
-
-        const solicitation = postSolicitationAdapter(s, post);
-        solicitations.push(solicitation);
+        return postSolicitationAdapter(s, post);
     });
+
+    const postResults = await Promise.all(postPromises);
+    solicitations.push(...postResults);
 
     return solicitations;
 }

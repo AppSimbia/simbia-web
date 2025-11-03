@@ -44,7 +44,6 @@ function PostDetails({
                             <span>Descrição:</span>
                             <TextInputMultiline placeholder='Descrição' value={post.description} rows={8} readonly/>
                         </div>
-                        <Button label='Solicitar Match'/>
                     </div>
                 </div>
             </section>

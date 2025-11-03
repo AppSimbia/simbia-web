@@ -19,6 +19,8 @@ FROM nginx:stable-alpine
 # Deleta o padrao do nginx e leva o que subiu no dist
 RUN rm -rf /usr/share/nginx/html/*
 COPY --from=builder /app/dist /usr/share/nginx/html
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 
 # Expondo a porta 80
 EXPOSE 80
